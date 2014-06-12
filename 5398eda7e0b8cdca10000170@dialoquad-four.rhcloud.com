@@ -37,10 +37,10 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 	define('DB_NAME', 'dialoquad');
 
 	/** MySQL database username */
-	define('DB_USER', 'the_account');
+	define('DB_USER', 'adminsYVQHgb');
 
 	/** MySQL database password */
-	define('DB_PASSWORD', 'the_password');
+	define('DB_PASSWORD', '8KeAKBjupIEk');
 
 	/** MySQL hostname */
 	define('DB_HOST', 'localhost:3306');
