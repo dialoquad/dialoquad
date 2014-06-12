@@ -1,0 +1,24 @@
+{% macro select( id, name='', attributes = [], options = [] ) %}
+	{% if name == '' %}
+		{% set name = id %}
+	{% endif %}
+	<select
+		name="{{ name }}"
+		id="{{ id }}"
+		class="ai1ec-form-control {{ attributes.class }}"
+		{% for attribute, value in attributes %}
+			{% if attribute != 'class' %}
+				{{ attribute }}="{{ value }}"
+			{% endif %}
+		{% endfor %}
+		>
+		{% for option in options %}
+			<option
+				value="{{ option.value }}"
+			{% for attribute, value in option.args %}
+				{{ attribute }}="{{ value }}"
+			{% endfor %}
+			>{{ option.text }}</option>
+		{% endfor %}
+		</select>
+{% endmacro %}

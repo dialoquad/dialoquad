@@ -1,0 +1,41 @@
+li.norman-adv-archive-year a.icon span {
+	display: none;
+}
+
+li.norman-adv-archive-year a.icon {
+	background: url('moreless.png') no-repeat scroll top left;
+	padding-right: 16px;
+	line-height: 20px;
+	padding-top: 1px;
+}
+
+li.norman-adv-archive-year a.more {
+	background: url('moreless.png') no-repeat scroll top left;
+	padding-right: 16px;
+	line-height: 20px;
+	padding-top: 1px;
+}
+
+li.norman-adv-archive-year a.less {
+	background-position: 0 -16px;
+}
+
+li.norman-adv-archive-year ul {
+	display: none;
+}
+
+li.norman-adv-archive-year a.icon, li.norman-adv-archive-year a.icon:hover, li.norman-adv-archive-year a.active {
+	text-decoration: none;
+}
+
+li.norman-adv-archive-year-groupby ul {
+	margin-left: 20px;
+}
+
+li.norman-adv-archive-year-groupby ul li {
+	font-size: 90%;
+}
+
+li.widget_normanarchivewidget li {
+	font-size: 12px;
+}

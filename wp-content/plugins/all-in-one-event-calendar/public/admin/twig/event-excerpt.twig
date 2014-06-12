@@ -1,0 +1,12 @@
+<div class="timely ai1ec-excerpt">
+	<div class="ai1ec-time">
+		<strong>{{ 'When:' | __}}</strong>
+		{{ event | timespan | raw }}
+	</div>
+	{% if location is not empty %}
+		<div class="ai1ec-location">
+			<strong>{{ 'Where:' | __ }}</strong>
+			{{ location | raw }}
+		</div>
+	{% endif %}
+</div>

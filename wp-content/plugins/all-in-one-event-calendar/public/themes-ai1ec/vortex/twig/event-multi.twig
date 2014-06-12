@@ -1,0 +1,61 @@
+<div class="timely ai1ec-multi-event
+	ai1ec-event-id-{{ event.get( 'post_id' ) }}
+	{% if event.is_multiday %}ai1ec-multiday{% endif %}
+	{% if event.is_allday %}ai1ec-allday{% endif %} ">
+
+	<div class="ai1ec-event-details ai1ec-clearfix">
+
+		{% if event.ticket_url is not empty or event.show_map %}
+			<div class="ai1ec-btn-group ai1ec-pull-right">
+				{% if event.ticket_url is not empty %}
+					<a href="{{ event.ticket_url | e('html_attr') }}" target="_blank"
+						class="ai1ec-tickets ai1ec-btn ai1ec-btn-sm ai1ec-btn-primary">
+						{{ event.get_runtime( 'tickets_url_label' ) }}
+					</a>
+				{% endif %}
+				{% if event.show_map %}
+					<a class="ai1ec-btn ai1ec-btn-default ai1ec-btn-sm"
+						href="{{ event.get_runtime( 'instance_permalink' ) | e('html_attr') }}#ai1ec-event">
+						<i class="ai1ec-fa ai1ec-fa-map-marker"></i>
+						{{ 'View Map' | __ }}
+					</a>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		<div class="ai1ec-time">
+			<div class="ai1ec-field-label">{{ 'When:' | __ }}</div>
+			<div class="ai1ec-field-value">
+				{{ event | timespan | raw }}
+				{% include 'recurrence.twig' %}
+			</div>
+		</div>
+
+		{% if location is not empty %}
+			<div class="ai1ec-location">
+				<div class="ai1ec-field-label">{{ 'Where:' | __ }}</div>
+				<div class="ai1ec-field-value">{{ location | raw }}</div>
+			</div>
+		{% endif %}
+
+		{% if categories is not empty %}
+			<div class="ai1ec-categories">
+				<div class="ai1ec-field-label">
+					{{ 'Categories' | __ }}
+				</div>
+				<div class="ai1ec-field-value">{{ categories | raw }}</div>
+			</div>
+		{% endif %}
+
+		{% if tags is not empty %}
+			<div class="ai1ec-tags">
+				<div class="ai1ec-field-label">
+					{{ 'Tags' | __ }}
+				</div>
+				<div class="ai1ec-field-value">{{ tags | raw }}</div>
+			</div>
+		{% endif %}
+
+	</div>
+
+</div>

@@ -1,0 +1,16 @@
+<div class="message {{class}}">
+	{% if label is not defined %}
+          {% set label = "All-in-One Event Calendar"|__ %}
+	{% endif %}
+	<h3>{{ label }}</h3>
+
+	<p>{{ message | raw }}</p>
+
+	{% if button %}
+		<div>
+			<input type="button" class="button {{ button.class }}"
+				value="{{ button.value }}">
+		</div>
+		<p></p>
+	{% endif %}
+</div>

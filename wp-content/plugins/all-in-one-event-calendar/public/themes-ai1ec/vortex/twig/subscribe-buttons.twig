@@ -1,0 +1,31 @@
+<div class="ai1ec-subscribe-container ai1ec-btn-group ai1ec-pull-left">
+	<a class="ai1ec-btn ai1ec-btn-default ai1ec-btn-sm ai1ec-subscribe
+			ai1ec-tooltip-trigger {{ button_classes }}"
+		data-placement="bottom"
+		href="{{ ( export_url ~ url_args ) | e('html_attr') }}"
+		title="{{ 'Subscribe to this calendar in your personal calendar (iCal, Outlook, etc.)' | __ }}" >
+		<i class="ai1ec-fa ai1ec-fa-plus"></i>
+		{% if subscribe_label is not empty %}
+			{{ subscribe_label }}
+		{% else %}
+			{% if is_filtered %}
+				{{ 'Subscribe to filtered calendar' | __ }}
+			{% else %}
+				{{ 'Subscribe' | __ }}
+			{% endif %}
+		{% endif %}
+	</a>
+	{% set url = export_url | replace( {"webcal://": "http://"} ) ~ url_args %}
+	<a class="ai1ec-btn ai1ec-btn-default ai1ec-btn-sm ai1ec-subscribe-google
+			ai1ec-tooltip-trigger {{ button_classes }}"
+		target="_blank" data-placement="bottom"
+		href="http://www.google.com/calendar/render?cid={{ url | url_encode | e('html_attr') }}"
+		title="{{ 'Subscribe to this calendar in your Google Calendar' | __ }}" >
+		<i class="ai1ec-fa ai1ec-fa-google-plus ai1ec-fa-lg"></i>
+		{% if google_label is not empty %}
+			{{ google_label }}
+		{% else %}
+			{{ 'Add to Google' | __ }}
+		{% endif %}
+	</a>
+</div>

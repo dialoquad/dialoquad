@@ -1,0 +1,51 @@
+{% autoescape false %}
+<div class="ai1ec-col-sm-12">
+<p>
+	<a href="#ai1ec-embedding" id="ai1ec-embedding-trigger"
+		data-toggle="ai1ec-collapse">
+		<i class="ai1ec-fa ai1ec-fa-code ai1ec-fa-lg ai1ec-fa-fw"></i>
+		{{ 'Embed the calendar using a shortcode'|__ }}
+		<i class="ai1ec-fa ai1ec-fa-caret-down"></i>
+		<i class="ai1ec-fa ai1ec-fa-caret-up ai1ec-hide"></i>
+	</a>
+</p>
+<div id="ai1ec-embedding" class="ai1ec-collapse">
+	<div class="ai1ec-well ai1ec-prose">
+		<p>{{ 'Insert one of these shortcodes into your page body to embed the calendar into any arbitrary WordPress Page:'|__ }}</p>
+		<ul>
+			<li>{{ 'Month view:'|__ }} <code>[ai1ec view="monthly"]</code></li>
+			<li>{{ 'Week view:'|__ }} <code>[ai1ec view="weekly"]</code></li>
+			<li>{{ 'Day view:'|__ }} <code>[ai1ec view="oneday"]</code></li>
+			<li>{{ 'Agenda view:'|__ }} <code>[ai1ec view="agenda"]</code></li>
+
+			{{ viewing_events_shortcodes }}
+
+			<li><em>General form:</em> {{ 'Some Other view:'|__ }} <code>[ai1ec view="someother"]</code></li>
+			<li>{{ 'Default view as per settings:'|__ }} <code>[ai1ec]</code></li>
+		</ul>
+		<p>
+			<span class="ai1ec-text-muted">{{ 'Optional.'|__ }}</span>
+			{{ 'Add options to display a filtered calender. (You can find out category and tag IDs by inspecting the URL of your filtered calendar page.)'|__ }}
+		</p>
+		<ul>
+			<li>{{ 'Filter by event category name/slug:'|__ }} <code>[ai1ec cat_name="{{ 'Holidays'|__ }}"]</code></li>
+			<li>{{ 'Filter by event category names/slugs (separate names by comma):'|__ }} <code>[ai1ec cat_name="{{ 'Lunar Cycles'|__ }},{{ 'zodiac-date-ranges'|__ }}"]</code></li>
+			<li>{{ 'Filter by event category ID:'|__ }} <code>[ai1ec cat_id="1"]</code></li>
+			<li>{{ 'Filter by event category IDs (separate IDs by comma):'|__ }} <code>[ai1ec cat_id="1,2"]</code></li>
+
+			<li>{{ 'Filter by event tag name/slug:'|__ }} <code>[ai1ec tag_name="{{ 'tips-and-tricks'|__ }}"]</code></li>
+			<li>{{ 'Filter by event tag names/slugs (separate names by comma):'|__ }} <code>[ai1ec tag_name="{{ 'creative writing'|__ }},{{ 'performing arts'|__ }}"]</code></li>
+			<li>{{ 'Filter by event tag ID:'|__ }} <code>[ai1ec tag_id="1"]</code></li>
+			<li>{{ 'Filter by event tag IDs (separate IDs by comma):'|__ }} <code>[ai1ec tag_id="1,2"]</code></li>
+
+			<li>{{ 'Filter by post ID:'|__ }} <code>[ai1ec post_id="1"]</code></li>
+			<li>{{ 'Filter by post IDs (separate IDs by comma):'|__ }} <code>[ai1ec post_id="1,2"]</code></li>
+		</ul>
+		<div class="ai1ec-alert ai1ec-alert-warning">
+			<strong>{{ 'Warning:'|__ }}</strong>
+			{{ 'It is currently not supported to embed more than one calendar in the same page. Do not attempt to embed the calendar via shortcode in a page that already displays the calendar.'|__ }}
+		</div>
+	</div>
+</div>
+</div>
+{% endautoescape %}

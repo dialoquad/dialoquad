@@ -1,0 +1,17 @@
+<div>
+	<div>
+		<span>{{ 'When:' | __ }}</span>
+		<b>{{ timespan | raw }}</b>
+	</div>
+	{% if location is not empty %}
+		<div>
+			<span>{{ 'Where:' | __ }}</span>
+			<b>{{ location | raw }}</b>
+		</div>
+	{% endif %}
+</div>
+{% if description is not empty %}
+	<div>
+		{{ description | raw }}
+	</div>
+{% endif %}
