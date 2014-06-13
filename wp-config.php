@@ -14,6 +14,10 @@
  * @package WordPress
  */
 
+
+// ** WP super cache setting ** //
+define('WP_CACHE', true); 
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 
@@ -44,6 +48,12 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 
 	/** MySQL hostname */
 	define('DB_HOST', 'localhost:3306');
+	
+	//Added by WP-Cache Manager
+	define( 'WPCACHEHOME', '/home/user_account/dialoquad/app-root/dialoquad/wp-content/plugins/wp-super-cache/' ); 
+	
+	//Enable Linux to write files
+	define('FS_METHOD','direct');	 
 }
 
 
