@@ -146,7 +146,7 @@ class Ai1ec_View_Event_Taxonomy extends Ai1ec_Base {
 		$categories        = $this->_taxonomy_model->get_post_categories(
 			$event->get( 'post_id' )
 		);
-		if ( false !== $categories ) {
+		if ( ! empty( $categories ) ) {
 			$category_bg_color = $this
 				->get_event_category_bg_color(
 					$categories[0]->term_id,
@@ -164,7 +164,7 @@ class Ai1ec_View_Event_Taxonomy extends Ai1ec_Base {
 		$categories          = $this->_taxonomy_model->get_post_categories(
 			$event->get( 'post_id' )
 		);
-		if ( false !== $categories ) {
+		if ( ! empty( $categories ) ) {
 			$category_text_color = $this
 				->get_event_category_text_color(
 					$categories[0]->term_id,

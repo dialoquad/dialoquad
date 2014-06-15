@@ -17,7 +17,7 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 	protected $_registry;
 
 	/**
-	 * Injkects the registry object.
+	 * Inject the registry object.
 	 *
 	 * @param Ai1ec_Registry_Object $registry
 	 */
@@ -36,6 +36,11 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 		);
 	}
 
+	/**
+	 * Twig callback - return a list of filters registered by this extension.
+	 *
+	 * @return array
+	 */
 	public function getFilters() {
 		return array(
 			new Twig_SimpleFilter( 'truncate',          array( $this, 'truncate' ) ),
@@ -49,6 +54,17 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 			new Twig_SimpleFilter( 'theme_img_url',     array( $this, 'theme_img_url' ) ),
 			new Twig_SimpleFilter( 'date_i18n',         array( $this, 'date_i18n' ) ),
 			new Twig_SimpleFilter( '__',                'Ai1ec_I18n::__' ),
+		);
+	}
+
+	/**
+	 * Twig callback - return a list of tests registered by this extension.
+	 *
+	 * @return array
+	 */
+	public function getTests() {
+		return array(
+			new Twig_SimpleTest( 'string', array( $this, 'is_string' ) ),
 		);
 	}
 
@@ -81,6 +97,17 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 				$classes,
 				$wrap_permalink
 			);
+	}
+
+	/**
+	 * Check if provided value is a string.
+	 *
+	 * @param mixed $var Suspected string
+	 *
+	 * @return boolean True if it is a string, false otherwise.
+	 */
+	public function is_string( $var ) {
+		return is_string( $var );
 	}
 
 	/**

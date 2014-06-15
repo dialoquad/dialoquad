@@ -25,7 +25,7 @@ class Ai1ec_View_Event_Location extends Ai1ec_Base {
 		}
 		return implode( ' | ', $location_items );
 	}
-	
+
 	/*
 	 * Return any available location details separated by newlines
 	*/
@@ -68,7 +68,7 @@ class Ai1ec_View_Event_Location extends Ai1ec_Base {
 		}
 		return $location;
 	}
-	
+
 	/**
 	 * get_map_view function
 	 *
@@ -83,20 +83,22 @@ class Ai1ec_View_Event_Location extends Ai1ec_Base {
 		if( ! $event->get( 'show_map' ) ) {
 			return '';
 		}
-	
+
 		$location = $this->get_latlng( $event );
 		if ( ! $location ) {
 			$location = $event->get( 'address' );
 		}
-	
+
 		$args = array(
 			'address'                 => $location,
 			'gmap_url_link'           => $this->get_gmap_url( $event, false ),
 			'hide_maps_until_clicked' => $settings->get( 'hide_maps_until_clicked' ),
+			'text_view_map'           => __( 'Click to view map', AI1EC_PLUGIN_NAME ),
+			'text_full_map'           => __( 'View Full-Size Map', AI1EC_PLUGIN_NAME ),
 		);
 		return $loader->get_file( 'event-map.twig', $args, false )->get_content();
 	}
-	
+
 	/**
 	 * Returns the latitude/longitude coordinates as a textual string
 	 * parsable by the Geocoder API.
@@ -116,7 +118,7 @@ class Ai1ec_View_Event_Location extends Ai1ec_Base {
 		}
 		return $location;
 	}
-	
+
 	/**
 	 * get_gmap_url function
 	 *
@@ -135,9 +137,9 @@ class Ai1ec_View_Event_Location extends Ai1ec_Base {
 			// Otherwise use the address
 			$location = $event->get( 'address' );
 		}
-	
+
 		$lang = $loc->get_language();
-	
+
 		return 'https://www.google.com/maps?f=q&hl=' . $lang .
 		'&source=embed&q=' . urlencode( $location );
 	}

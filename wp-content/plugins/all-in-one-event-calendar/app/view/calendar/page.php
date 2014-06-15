@@ -172,9 +172,15 @@ class Ai1ec_Calendar_Page extends Ai1ec_Base {
 			return '';
 		}
 		$args = array(
-			'url_args'    => '',
-			'is_filtered' => false,
-			'export_url'  => AI1EC_EXPORT_URL,
+			'url_args'                => '',
+			'is_filtered'             => false,
+			'export_url'              => AI1EC_EXPORT_URL,
+			'export_url_no_html'      => AI1EC_EXPORT_URL . '&no_html=true',
+			'text_filtered'           => __( 'Subscribe to filtered calendar', AI1EC_PLUGIN_NAME ),
+			'text_subscribe'          => __( 'Subscribe', AI1EC_PLUGIN_NAME ),
+			'text'                    => $this->_registry
+				->get( 'view.calendar.subscribe-button' )
+				->get_labels(),
 		);
 		if ( ! empty( $view_args['cat_ids'] ) ) {
 			$args['url_args'] .= '&ai1ec_cat_ids=' .
@@ -277,12 +283,15 @@ class Ai1ec_Calendar_Page extends Ai1ec_Base {
 				if ( ! Ai1ec_Validation_Utility::is_valid_time_stamp( $exact_date ) ) {
 					// Try to parse it
 					$exact_date = $this->return_gmtime_from_exact_date( $exact_date );
+					if ( false === $exact_date ) {
+						return null;
+					}
 				}
 			}
 			// Last try, let's see if an exact date is set in settings.
 			if ( false === $exact_date && $settings->get( 'exact_date' ) !== '' ) {
 				$exact_date = $this->return_gmtime_from_exact_date(
-					$exact_date
+					$settings->get( 'exact_date' )
 				);
 			}
 			$this->_exact_dates->set( $use_key, $exact_date );
@@ -315,6 +324,9 @@ class Ai1ec_Calendar_Page extends Ai1ec_Base {
 				$date,
 				'sys.default'
 			)->format_to_gmt();
+			if ( $exact_date < 0 ) {
+				return false;
+			}
 		}
 		return $exact_date;
 	}
@@ -385,6 +397,12 @@ class Ai1ec_Calendar_Page extends Ai1ec_Base {
 		$view_args['action'] = $action;
 
 		$view_args['request'] = $request;
+		if ( null === $exact_date ) {
+			$href = $this->_registry->get( 'html.element.href', $view_args )
+				->generate_href();
+			return Ai1ec_Http_Response_Helper::redirect( $href, 307 );
+
+		}
 		return $view_args;
 	}
 }

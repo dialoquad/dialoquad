@@ -370,6 +370,20 @@ class Ai1ec_Settings extends Ai1ec_App {
 					),
 				),
 			),
+			'timezone_string' => array(
+				'type' => 'wp_option',
+				'renderer' => array(
+					'class'     => 'select',
+					'tab'       => 'viewing-events',
+					'item'      => 'viewing-events',
+					'label'     => Ai1ec_I18n::__( 'Timezone' ),
+					'options'   => 'Ai1ec_Date_Timezone:get_timezones',
+					'condition' => 'Ai1ec_Date_Timezone:is_timezone_not_set',
+				),
+				'default'  => $this->_registry->get( 'model.option' )->get(
+					'timezone_string'
+				),
+			),
 			'default_tags_categories' => array(
 				'type' => 'array',
 				'renderer' => array(
@@ -409,6 +423,32 @@ class Ai1ec_Settings extends Ai1ec_App {
 					'validator' => 'numeric',
 				),
 				'default'  => 10,
+			),
+			'week_view_starts_at' => array(
+				'type' => 'int',
+				'renderer' => array(
+					'class'     => 'input',
+					'tab'       => 'viewing-events',
+					'item'      => 'viewing-events',
+					'label'     => Ai1ec_I18n::__( 'Week/Day view starts at' ),
+					'type'      => 'append',
+					'append'    => 'hrs',
+					'validator' => 'numeric',
+				),
+				'default'  => 8,
+			),
+			'week_view_ends_at' => array(
+				'type' => 'int',
+				'renderer' => array(
+					'class'     => 'input',
+					'tab'       => 'viewing-events',
+					'item'      => 'viewing-events',
+					'label'     => Ai1ec_I18n::__( 'Week/Day view ends at' ),
+					'type'      => 'append',
+					'append'    => 'hrs',
+					'validator' => 'numeric',
+				),
+				'default'  => 24,
 			),
 			'month_word_wrap' => array(
 				'type'     => 'bool',

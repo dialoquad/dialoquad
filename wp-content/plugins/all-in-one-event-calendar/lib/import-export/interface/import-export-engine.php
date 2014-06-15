@@ -26,8 +26,9 @@ interface Ai1ec_Import_Export_Engine {
 	 * This methods allow exporting events.
 	 *
 	 * @param array $arguments An array of arguments needed for exporting.
+	 * @param array @params    An array of export parameters.
 	 *
 	 * @return void It doesn't return anything.
 	 */
-	public function export( array $arguments );
+	public function export( array $arguments, array $params = array() );
 }

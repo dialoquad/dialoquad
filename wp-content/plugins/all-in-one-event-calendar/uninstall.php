@@ -134,7 +134,7 @@ ai1ec_clean_up_site();
 // Delete themes folder
 if ( is_object( $wp_filesystem ) && ! is_wp_error( $wp_filesystem->errors ) ) {
 	// Get the base plugin folder
-	$themes_dir = $wp_filesystem->wp_content_dir() . AI1EC_THEMES_FOLDER;
+	$themes_dir = $wp_filesystem->wp_content_dir() . AI1EC_THEME_FOLDER;
 	if ( ! empty( $themes_dir ) ) {
 		$themes_dir = trailingslashit( $themes_dir );
 		$wp_filesystem->delete( $themes_dir, true );

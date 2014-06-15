@@ -50,7 +50,7 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 	// = Plugin Version =
 	// ==================
 	if ( ! defined( 'AI1EC_VERSION' ) ) {
-		define( 'AI1EC_VERSION', '2.0.9' );
+		define( 'AI1EC_VERSION', '2.0.12' );
 	}
 
 	// ================
@@ -98,7 +98,6 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 	if ( ! defined( 'AI1EC_URL' ) ) {
 		define( 'AI1EC_URL', $ai1ec_base_url );
 	}
-
 	// ===============
 	// = VENDOR PATH =
 	// ===============
@@ -306,7 +305,7 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 		define(
 			'AI1EC_EXPORT_URL',
 			$webcal_url . '&controller=ai1ec_exporter_controller' .
-				'&action=export_events&cb=' . rand()
+				'&action=export_events'
 		);
 		unset( $webcal_url );
 	}

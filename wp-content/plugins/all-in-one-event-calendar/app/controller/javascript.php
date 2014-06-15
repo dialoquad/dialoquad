@@ -300,7 +300,7 @@ class Ai1ec_Javascript_Controller {
 		if ( false === $script_to_load ) {
 			$script_to_load = apply_filters( 'ai1ec_backend_js', self::LOAD_ONLY_BACKEND_SCRIPTS );
 		}
-		if ( current_user_can( 'manage_options' ) && 
+		if ( current_user_can( 'manage_options' ) &&
 			$this->_registry->get( 'model.settings' )->get( 'show_tracking_popup' )
 		) {
 			wp_enqueue_style( 'wp-pointer' );
@@ -421,8 +421,10 @@ class Ai1ec_Javascript_Controller {
 			'day_names'                      => $locale->get_localized_week_names(),
 			// Start the week on this day in the date picker
 			'week_start_day'                 => $settings->get( 'week_start_day' ),
+			'week_view_starts_at'            => $settings->get( 'week_view_starts_at' ),
+			'week_view_ends_at'              => $settings->get( 'week_view_ends_at' ),
 			'blog_timezone'                  => $blog_timezone,
-			'show_tracking_popup'            => 
+			'show_tracking_popup'            =>
 				current_user_can( 'manage_options' ) && $settings->get( 'show_tracking_popup' ),
 		);
 		return $data;

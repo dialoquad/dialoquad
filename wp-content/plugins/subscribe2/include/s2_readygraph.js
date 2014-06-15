@@ -1,15 +1,17 @@
+/* global objectL10n */
 jQuery(document).ready(function(){
-	jQuery('#signin-submit').click(function(e){
-		var emailempty = '{emailempty}'.replace('{emailempty}', objectL10n.emailempty);
-		var passwordempty = '{passwordempty}'.replace('{passwordempty}', objectL10n.passwordempty);
-		var email = jQuery('#signin-email').val();
-		var password = jQuery('#signin-password').val();
+	var emailempty, passwordempty, email, password, site_url, first_name, password2, urlempty, passwordmatch;
+	jQuery('#signin-submit').click(function(){
+		emailempty = '{emailempty}'.replace('{emailempty}', objectL10n.emailempty);
+		passwordempty = '{passwordempty}'.replace('{passwordempty}', objectL10n.passwordempty);
+		email = jQuery('#signin-email').val();
+		password = jQuery('#signin-password').val();
 		if (!email) {
-			alert(emailempty);
+			window.alert(emailempty);
 			return;
 		}
 		if (!password) {
-			alert(passwordempty);
+			window.alert(passwordempty);
 			return;
 		}
 		jQuery.ajax({
@@ -23,7 +25,7 @@ jQuery(document).ready(function(){
 			success: function(response) {
 				if (response.success) {
 					var pathname = window.location.href;
-					window.location = pathname + "&app_id="+response.data.app_id;
+					window.location = pathname + '&app_id='+response.data.app_id;
 				} else {
 					jQuery('#error').text(response.error);
 					jQuery('#error').show();
@@ -32,25 +34,25 @@ jQuery(document).ready(function(){
 		});
 	});
 
-	jQuery('#register-app-submit').click(function(e){
-		var email = jQuery('#register-email').val();
-		var site_url = jQuery('#register-url').val();
-		var first_name = jQuery('#register-name').val();
-		var password = jQuery('#register-password').val();
-		var password2 = jQuery('#register-password1').val();
-		var urlempty = '{urlempty}'.replace('{urlempty}', objectL10n.urlempty);
-		var emailempty = '{emailempty}'.replace('{emailempty}', objectL10n.emailempty);
-		var passwordmatch = '{passwordmatch}'.replace('{passwordmatch}', objectL10n.passwordmatch);
+	jQuery('#register-app-submit').click(function(){
+		email = jQuery('#register-email').val();
+		site_url = jQuery('#register-url').val();
+		first_name = jQuery('#register-name').val();
+		password = jQuery('#register-password').val();
+		password2 = jQuery('#register-password1').val();
+		urlempty = '{urlempty}'.replace('{urlempty}', objectL10n.urlempty);
+		emailempty = '{emailempty}'.replace('{emailempty}', objectL10n.emailempty);
+		passwordmatch = '{passwordmatch}'.replace('{passwordmatch}', objectL10n.passwordmatch);
 		if (!site_url) {
-			alert(urlempty);
+			window.alert(urlempty);
 			return;
 		}
 		if (!email) {
-			alert(emailempty);
+			window.alert(emailempty);
 			return;
 		}
 		if ( !password || password != password2 ) {
-			alert(passwordmatch);
+			window.alert(passwordmatch);
 			return;
 		}
 
@@ -69,7 +71,7 @@ jQuery(document).ready(function(){
 			success: function(response) {
 				if (response.success) {
 					var pathname = window.location.href;
-					window.location = pathname + "&app_id="+response.data.app_id;
+					window.location = pathname + '&app_id='+response.data.app_id;
 				} else {
 					jQuery('#error').text(response.error);
 					jQuery('#error').show();

@@ -13,9 +13,9 @@ class Ai1ec_View_Event_Single extends Ai1ec_Base {
 
 	/**
 	 * Renders the html of the page and returns it.
-	 * 
+	 *
 	 * @param Ai1ec_Event $event
-	 * 
+	 *
 	 * @return string the html of the page
 	 */
 	public function get_content( Ai1ec_Event $event ) {
@@ -26,10 +26,10 @@ class Ai1ec_View_Event_Single extends Ai1ec_Base {
 		$ticket   = $this->_registry->get( 'view.event.ticket' );
 		$content  = $this->_registry->get( 'view.event.content' );
 		$time     = $this->_registry->get( 'view.event.time' );
-		
+
 		$subscribe_url = AI1EC_EXPORT_URL . '&ai1ec_post_ids=' .
 			$event->get( 'post_id' );
-		$subscribe_url = str_replace( 'webcal://', 'http://', $subscribe_url );
+
 		$event->set_runtime(
 			'tickets_url_label',
 			$ticket->get_tickets_url_label( $event, false )
@@ -50,6 +50,8 @@ class Ai1ec_View_Event_Single extends Ai1ec_Base {
 			nl2br( $location->get_location( $event ) ),
 			$event
 		);
+		// objects are passed by reference so an action is ok 
+		do_action( 'ai1ec_single_event_page_before_render', $event );
 
 		$args = array(
 			'event'                   => $event,
@@ -62,12 +64,24 @@ class Ai1ec_View_Event_Single extends Ai1ec_Base {
 			'contact'                 => $ticket->get_contact_html( $event ),
 			'back_to_calendar'        => $content->get_back_to_calendar_button_html(),
 			'subscribe_url'           => $subscribe_url,
+			'subscribe_url_no_html'   => $subscribe_url . '&no_html=true',
 			'edit_instance_url'       => null,
 			'edit_instance_text'      => null,
 			'google_url'              => 'http://www.google.com/calendar/render?cid=' . urlencode( $subscribe_url ),
 			'show_subscribe_buttons'  => ! $settings->get( 'turn_off_subscription_buttons' ),
 			'hide_featured_image'     => $settings->get( 'hide_featured_image' ),
-			'extra_buttons'           => $extra_buttons
+			'extra_buttons'           => $extra_buttons,
+			'text_add_calendar'       => __( 'Add to Calendar', AI1EC_PLUGIN_NAME ),
+			'subscribe_buttons_text'  => $this->_registry
+				->get( 'view.calendar.subscribe-button' )
+				->get_labels(),
+			'text_when'               => __( 'When:', AI1EC_PLUGIN_NAME ),
+			'text_where'              => __( 'Where:', AI1EC_PLUGIN_NAME ),
+			'text_cost'               => __( 'Cost:', AI1EC_PLUGIN_NAME ),
+			'text_contact'            => __( 'Contact:', AI1EC_PLUGIN_NAME ),
+			'text_free'               => __( 'Free', AI1EC_PLUGIN_NAME ),
+			'text_categories'         => __( 'Categories', AI1EC_PLUGIN_NAME ),
+			'text_tags'               => __( 'Tags', AI1EC_PLUGIN_NAME ),
 		);
 
 		if (
@@ -91,13 +105,15 @@ class Ai1ec_View_Event_Single extends Ai1ec_Base {
 
 	/**
 	 * @param Ai1ec_Event $event
-	 * 
+	 *
 	 * @return The html of the footer
 	 */
 	public function get_footer( Ai1ec_Event $event ) {
 		$loader = $this->_registry->get( 'theme.loader' );
 		$args   = array(
-			'event' => $event,
+			'event'              => $event,
+			'text_calendar_feed' => __( 'This post was replicated from another site\'s <a class="ai1ec-ics-icon" href="%s" title="iCalendar feed">calendar feed</a>.', AI1EC_PLUGIN_NAME ),
+			'text_view_post'     => __( 'View original post', AI1EC_PLUGIN_NAME ),
 		);
 		return $loader->get_file( 'event-single-footer.twig', $args, false )
 			->get_content();

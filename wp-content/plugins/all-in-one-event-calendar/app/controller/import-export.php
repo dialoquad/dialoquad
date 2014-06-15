@@ -23,6 +23,11 @@ class Ai1ec_Import_Export_Controller {
 	protected $_registry;
 
 	/**
+	 * @var array Import / export params.
+	 */
+	protected $_params;
+
+	/**
 	 * This controller is instanciated only if we need to import/export something.
 	 *
 	 * When it is instanciated it allows other engines to be injected through a
@@ -31,16 +36,19 @@ class Ai1ec_Import_Export_Controller {
 	 *
 	 * @param Ai1ec_Registry_Object $registry
 	 * @param array $core_engines
+	 * @param array $params
 	 */
 	public function __construct(
 			Ai1ec_Registry_Object $registry,
-			array $core_engines = array( 'ics' )
+			array $core_engines = array( 'ics' ),
+			array $params = array()
 	) {
 		$this->_registry = $registry;
 		$known_engines   = apply_filters(
 			'ai1ec_register_import_export_engines',
 			$core_engines
 		);
+		$this->_params   = $params;
 		foreach ( $known_engines as $engine ) {
 			$this->register( $engine );
 		}
@@ -99,6 +107,6 @@ class Ai1ec_Import_Export_Controller {
 		}
 		// external engines must register themselves into the registry.
 		$engine = $this->_registry->get( 'import-export.' . $engine );
-		return $engine->export( $args );
+		return $engine->export( $args, $this->_params );
 	}
 }

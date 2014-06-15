@@ -40,23 +40,27 @@ class Ai1ec_Command_Save_Settings extends Ai1ec_Command_Save_Abstract {
 				} else {
 
 					switch ( $data['type'] ) {
-						case 'bool';
+						case 'bool':
 							$value  = true;
 							break;
-						case 'int';
+						case 'int':
 							$value  = (int)$_POST[$name];
 							break;
-						case 'string';
+						case 'string':
 							$value  = (string)$_POST[$name];
 							break;
-						case 'array';
+						case 'array':
 							$method = '_handle_saving_' . $name;
 							$value  = $this->$method();
 							break;
-						case 'mixed';
+						case 'mixed':
 							$method = '_handle_saving_' . $name;
 							$value  = $this->$method( $_POST[$name] );
 							break;
+						case 'wp_option': // set the corresponding WP option
+							$this->_registry->get( 'model.option' )
+								->set( $name, $_POST[$name], true );
+							$value = null;
 					}
 				}
 			} else {

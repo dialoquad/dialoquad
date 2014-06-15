@@ -10,15 +10,17 @@
  */
 class Ai1ec_Html_Element_Enabled_Views
     extends Ai1ec_Html_Element_Settings {
-	
+
 	/* (non-PHPdoc)
 	 * @see Ai1ec_Html_Element_Settings::render()
 	 */
 	public function render( $output = '' ) {
 		$this->_convert_values();
-		$args = array( 
-			'views' => $this->_args['value'],
-			'label' => $this->_args['renderer']['label'],
+		$args = array(
+			'views'        => $this->_args['value'],
+			'label'        => $this->_args['renderer']['label'],
+			'text_enabled' => __( 'Enabled', AI1EC_PLUGIN_NAME ),
+			'text_default' => __( 'Default', AI1EC_PLUGIN_NAME ),
 		);
 		$loader = $this->_registry->get( 'theme.loader' );
 		return $loader->get_file( 'setting/enabled-views.twig', $args, true )
@@ -30,8 +32,8 @@ class Ai1ec_Html_Element_Enabled_Views
 	 */
 	protected function _convert_values() {
 		foreach( $this->_args['value'] as &$view ) {
-			$view['enabled'] = $view['enabled'] ? 
-				'checked="checked"' : 
+			$view['enabled'] = $view['enabled'] ?
+				'checked="checked"' :
 				'';
 			$view['default'] = $view['default'] ?
 				'checked="checked"' :

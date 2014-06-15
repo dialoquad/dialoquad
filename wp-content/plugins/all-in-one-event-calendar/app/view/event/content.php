@@ -28,8 +28,10 @@ class Ai1ec_View_Event_Content extends Ai1ec_Base {
 			)
 		);
         $args = array(
-            'event'    => $event,
-            'location' => $location,
+            'event'      => $event,
+            'location'   => $location,
+            'text_when'  => __( 'When:', AI1EC_PLUGIN_NAME ),
+            'text_where' => __( 'Where:', AI1EC_PLUGIN_NAME ),
 		);
 		$loader = $this->_registry->get( 'theme.loader' );
 		echo $loader->get_file(

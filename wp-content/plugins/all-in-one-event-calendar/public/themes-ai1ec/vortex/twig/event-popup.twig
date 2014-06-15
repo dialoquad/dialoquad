@@ -10,7 +10,7 @@
 			>{{ event.get_runtime( 'filtered_title' ) | truncate | raw }}</a>
 		{% if show_location_in_title and event.get( 'venue' ) is not empty %}
 			<span class="ai1ec-event-location"
-				>{{ '@ %s' | __ | format( event.get( 'venue' ) ) }}</span>
+				>{{ text_venue_separator | format( event.get( 'venue' ) ) }}</span>
 		{% endif %}
 		{% if is_ticket_button_enabled and event.get( 'ticket_url' ) is not empty %}
 			<a class="ai1ec-pull-right ai1ec-btn ai1ec-btn-primary ai1ec-btn-xs
@@ -23,7 +23,7 @@
 	{% set edit_post_link = event.get_runtime( 'edit_post_link' ) %}
 	{% if edit_post_link is not empty %}
 		<a class="post-edit-link" href="{{ edit_post_link | raw }}">
-			<i class="ai1ec-fa ai1ec-fa-pencil"></i> {{ 'Edit' | __ }}
+			<i class="ai1ec-fa ai1ec-fa-pencil"></i> {{ text_edit }}
 		</a>
 	{% endif %}
 

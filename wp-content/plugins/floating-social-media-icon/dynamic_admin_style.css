@@ -1,0 +1,63 @@
+#toplevel_page_Acurax-Social-Icons-Settings
+{
+background: none repeat scroll 0 0 LimeGreen;
+color: white;
+}
+#toplevel_page_Acurax-Social-Icons-Settings li a
+{
+color: #21759B;
+text-align: left;
+}
+.folded #toplevel_page_Acurax-Social-Icons-Settings .wp-submenu-head
+{
+color: #21759B;
+}
+.folded #toplevel_page_Acurax-Social-Icons-Settings img
+{
+margin-left: -1px !important;
+margin-top: 1px !important;
+}
+#toplevel_page_Acurax-Social-Icons-Settings img
+{
+	background: none repeat scroll 0 0 white;
+    border-radius: 4px 4px 4px 4px;
+    margin-left: 4px;
+    margin-top: 11px;
+    opacity: 1 !important;
+    padding: 4px !important;
+}
+#toplevel_page_Acurax-Social-Icons-Settings a
+{
+	color: InfoText;
+    font-size: 12px !important;
+    text-align: center;
+}
+#floating-social-media-icon
+{
+background: url("images/plugin_page_bg.png") repeat-x scroll 0 0 #FFFFFF;
+}
+#plugin_page_links
+{
+background: none repeat scroll 0 0 #87CEFA;
+border-radius: 8px;
+color: #2F4F4F;
+min-height: 22px;
+padding: 5px;
+text-align: center;
+}
+#floating-social-media-icon .plugin-title
+{
+    background: url("images/from.png") no-repeat scroll 10% 94% transparent;
+}
+#plugin_page_links a
+{
+color: #2F4F4F;
+font-family: arial;
+font-size: 13px;
+font-weight: bold;
+padding: 2px 10px;
+}
+#plugin_page_links a:hover
+{
+text-decoration:underline;
+}

@@ -12,13 +12,26 @@
 			{% endif %}
 		{% endfor %}
 		>
-		{% for option in options %}
-			<option
-				value="{{ option.value }}"
-			{% for attribute, value in option.args %}
-				{{ attribute }}="{{ value }}"
-			{% endfor %}
-			>{{ option.text }}</option>
+		{% for key, option in options %}
+			{% if key is string %}
+				<optgroup label="{{ key }}">
+					{% for opt in option %}
+						<option
+							value="{{ opt.value }}"
+						{% for attribute, value in opt.args %}
+							{{ attribute }}="{{ value }}"
+						{% endfor %}
+						>{{ opt.text }}</option>
+					{% endfor %}
+				</optgroup>
+			{% else %}
+				<option
+					value="{{ option.value }}"
+				{% for attribute, value in option.args %}
+					{{ attribute }}="{{ value }}"
+				{% endfor %}
+				>{{ option.text }}</option>
+			{% endif %}
 		{% endfor %}
 		</select>
 {% endmacro %}

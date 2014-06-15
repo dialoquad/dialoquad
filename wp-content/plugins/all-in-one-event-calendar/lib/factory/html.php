@@ -74,7 +74,7 @@ class Ai1ec_Factory_Html extends Ai1ec_Base {
 	) {
 		$settings    = $this->_registry->get( 'model.settings' );
 		$date_system = $this->_registry->get( 'date.system' );
-	
+
 		$date_format_pattern = $date_system->get_date_pattern_by_key(
 			$settings->get( 'input_date_format' )
 		);
@@ -122,8 +122,8 @@ class Ai1ec_Factory_Html extends Ai1ec_Base {
 			'attributes' => $attributes,
 			'data_type'  => $args['data_type'],
 			'icon_url'   => $file->get_url(),
+			'text_date'  => __( 'Choose a date using calendar', AI1EC_PLUGIN_NAME ),
 		);
-		
 
 		return $loader->get_file( 'datepicker_link.twig', $args );
 	}

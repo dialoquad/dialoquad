@@ -138,16 +138,7 @@ class Ai1ec_Event_Creating extends Ai1ec_Base {
 			->get( 'date.time', $start_time, $timezone_name );
 		$end_time_entry   = $this->_registry
 			->get( 'date.time', $end_time,   $timezone_name );
-		// If the events is marked as instant, make it last 30 minutes
-		if ( $instant_event ) {
-			$end_time_entry   = $this->_registry
-				->get( 'date.time', $start_time,   $timezone_name );
-			$end_time_entry->set_time( 
-				$end_time_entry->format( 'H' ), 
-				$end_time_entry->format( 'i' ) + 30, 
-				$end_time_entry->format( 's' )
-			);
-		}
+
 		$timezone_name = $start_time_entry->get_timezone();
 		if ( null === $timezone_name ) {
 			$timezone_name = $start_time_entry->get_default_format_timezone();
@@ -155,10 +146,13 @@ class Ai1ec_Event_Creating extends Ai1ec_Base {
 
 		$event->set( 'post_id',          $post_id );
 		$event->set( 'start',            $start_time_entry );
-		$event->set( 'end',              $end_time_entry );
+		if ( $instant_event ) {
+			$event->set_no_end_time();
+		} else {
+			$event->set( 'end',          $end_time_entry );
+		}
 		$event->set( 'timezone_name',    $timezone_name );
 		$event->set( 'allday',           $all_day );
-		$event->set( 'instant_event',    $instant_event );
 		$event->set( 'venue',            $venue );
 		$event->set( 'address',          $address );
 		$event->set( 'city',             $city );
@@ -179,6 +173,7 @@ class Ai1ec_Event_Creating extends Ai1ec_Base {
 		$event->set( 'show_coordinates', $show_coordinates );
 		$event->set( 'longitude',        trim( $longitude ) );
 		$event->set( 'latitude',         trim( $latitude ) );
+		$event->set( 'ical_uid',         $event->get_uid() );
 
 		// let other extensions save their fields.
 		do_action( 'ai1ec_save_post', $event );

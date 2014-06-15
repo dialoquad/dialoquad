@@ -1,8 +1,7 @@
 <footer class="ai1ec-event-footer">
 	{% if event.get( 'ical_feed_url' ) is not empty %}
 		<p class="ai1ec-source-link">
-			{{ 'This post was replicated from another site’s <a class="ai1ec-ics-icon" href="%s" title="iCalendar feed">calendar feed</a>.'
-				| __
+			{{ text_calendar_feed
 				| format(
 					event.get( 'ical_feed_url' )
 					| replace( { 'http://': 'webcal://' } )
@@ -12,7 +11,7 @@
 			{% if event.get( 'ical_source_url' ) is not empty %}
 				<a href="{{ event.get( 'ical_source_url' ) | e('html_attr') }}"
 					target="_blank">
-					{{ 'View original post' | __ }}
+					{{ text_view_post }}
 					<i class="ai1ec-fa ai1ec-fa-external-link"></i>
 				</a>
 			{% endif %}

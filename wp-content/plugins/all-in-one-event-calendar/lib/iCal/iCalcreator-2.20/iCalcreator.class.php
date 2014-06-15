@@ -37,6 +37,8 @@ define( 'ICALCREATOR_VERSION', 'iCalcreator 2.20' );
 /**
  * vcalendar class
  *
+ * @instantiator new
+ *
  * @author Kjell-Inge Gustafsson, kigkonsult <ical@kigkonsult.se>
  * @since 2.9.6 - 2011-05-14
  */

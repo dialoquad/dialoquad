@@ -96,5 +96,6 @@
 		<input type="hidden" name="ai1ec_province" id="ai1ec_province" value="<?php echo esc_attr( $province ); ?>">
 		<input type="hidden" name="ai1ec_postal_code" id="ai1ec_postal_code" value="<?php echo esc_attr( $postal_code ); ?>">
 		<input type="hidden" name="ai1ec_country" id="ai1ec_country" value="<?php echo esc_attr( $country ); ?>">
+		<input type="hidden" name="ai1ec_country_short" id="ai1ec_country_short" value="">
 	</div>
 </div>

@@ -9,7 +9,7 @@
  * @package    AI1EC
  * @subpackage AI1EC.Notification
  */
-abstract class Ai1ec_Notification {
+abstract class Ai1ec_Notification extends Ai1ec_Base {
 
 	/**
 	 * @var string The message to send.
@@ -19,20 +19,7 @@ abstract class Ai1ec_Notification {
 	/**
 	 * @var array A list of recipients.
 	 */
-	protected $recipients = array();
-
-	/**
-	 * Set local variables.
-	 *
-	 * @param array  $recipients List of recipients.
-	 * @param string $message    Message text.
-	 *
-	 * @return void
-	 */
-	public function __construct( $message, array $recipients ) {
-		$this->_message    = $message;
-		$this->_recipients = $recipients;
-	}
+	protected $_recipients = array();
 
 	/**
 	 * This function performs the actual sending of the message.

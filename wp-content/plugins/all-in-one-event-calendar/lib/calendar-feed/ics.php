@@ -71,8 +71,8 @@ class Ai1ecIcsConnectorPlugin extends Ai1ec_Connector_Plugin {
 				),
 			),
 		);
-		// hold import lock for half an hour
-		if ( $this->_xguard->acquire( $cron_name, 1800 ) ) {
+		// hold import lock for 8 minutes
+		if ( $this->_xguard->acquire( $cron_name, 480 ) ) {
 			$output = $this->process_ics_feed_update( $ajax, $feed_id );
 		}
 		$this->_xguard->release( $cron_name );
@@ -103,10 +103,9 @@ class Ai1ecIcsConnectorPlugin extends Ai1ec_Connector_Plugin {
 		);
 		$output = array();
 		if ( $feed ) {
-			// flush the feed
-			$this->flush_ics_feed( false, $feed->feed_url );
-			$count    = 0;
-			$message  = false;
+
+			$count = 0;
+			$message = false;
 			// reimport the feed
 			$response = wp_remote_get(
 				$feed->feed_url,
@@ -122,13 +121,24 @@ class Ai1ecIcsConnectorPlugin extends Ai1ec_Connector_Plugin {
 				! empty( $response['body'] )
 			) {
 				try {
+
 					$import_export = $this->_registry->get(
 						'controller.import-export'
 					);
-					$args                   = array();
-					$args['feed']           = $feed;
+
+					$search       = $this->_registry->get( 'model.search' );
+					$events_in_db = $search->get_event_ids_for_feed( $feed->feed_url );
+					// flip the array. We will use keys to check events which are imported.
+					$events_in_db = array_flip( $events_in_db );
+					$args         = array();
+					$args['events_in_db'] = $events_in_db;
+					$args['feed'] = $feed;
+
 					$args['comment_status'] = 'open';
-					if ( isset( $feed->comments_enabled ) && $feed->comments_enabled < 1 ) {
+					if (
+						isset( $feed->comments_enabled ) &&
+						$feed->comments_enabled < 1
+					) {
 						$args['comment_status'] = 'closed';
 					}
 
@@ -140,7 +150,13 @@ class Ai1ecIcsConnectorPlugin extends Ai1ec_Connector_Plugin {
 						$args['do_show_map'] = 1;
 					}
 					$args['source'] = $response['body'];
-					$count = $import_export->import_events( 'ics', $args );
+					$result = $import_export->import_events( 'ics', $args );
+					$count  = $result['count'];
+					// we must flip again the array to iterate over it
+					$events_to_delete = array_flip( $result['events_to_delete'] );
+					foreach ( $events_to_delete as $event_id ) {
+						wp_delete_post( $event_id, true );
+					}
 				} catch ( Ai1ec_Parse_Exception $e ) {
 					$message = "the provided feed didn't return valid ics data";
 				} catch ( Ai1ec_Engine_Not_Set_Exception $e ) {
@@ -283,8 +299,6 @@ class Ai1ecIcsConnectorPlugin extends Ai1ec_Connector_Plugin {
 			// update the feed
 			$this->update_ics_feed( $feed_id );
 		}
-		// Release lock
-		$xguard->release( $guard_name );
 	}
 
 	/**

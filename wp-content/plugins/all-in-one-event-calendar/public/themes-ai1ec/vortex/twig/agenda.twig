@@ -3,7 +3,7 @@
 <div class="ai1ec-agenda-view">
 	{% if dates is empty %}
 		<p class="ai1ec-no-results">
-			{{ 'There are no upcoming events to display at this time.' | __ }}
+			{{ text_upcoming_events }}
 		</p>
 	{% else %}
 		{% for date, date_info in dates %}
@@ -37,14 +37,14 @@
 										{{ event.get_runtime( 'filtered_title' ) | raw }}
 										{% if show_location_in_title and event.get( 'venue' ) is not empty %}
 											<span class="ai1ec-event-location"
-												>{{ '@ %s' | __ | format( event.get( 'venue' ) ) }}</span>
+												>{{ text_venue_separator | format( event.get( 'venue' ) ) }}</span>
 										{% endif %}
 									</span>
 
 									{% set edit_post_link = event.get_runtime( 'edit_post_link' ) %}
 									{% if edit_post_link is not empty %}
 										<a class="post-edit-link" href="{{ edit_post_link | raw }}">
-											<i class="ai1ec-fa ai1ec-fa-pencil"></i> {{ 'Edit' | __ }}
+											<i class="ai1ec-fa ai1ec-fa-pencil"></i> {{ text_edit }}
 										</a>
 									{% endif %}
 
@@ -80,7 +80,7 @@
 												class="ai1ec-read-more ai1ec-btn ai1ec-btn-default
 													ai1ec-load-event"
 												href="{{ event.get_runtime( 'instance_permalink' ) | e('html_attr') }}">
-												{{ 'Read more' | __ }} <i class="ai1ec-fa ai1ec-fa-arrow-right"></i>
+												{{ text_read_more }} <i class="ai1ec-fa ai1ec-fa-arrow-right"></i>
 											</a>
 										</div>
 										{% set categories = event.get_runtime( 'categories_html' ) %}
@@ -89,7 +89,7 @@
 											<span class="ai1ec-categories">
 												<span class="ai1ec-field-label">
 													<i class="ai1ec-fa ai1ec-fa-folder-open"></i>
-													{{ 'Categories:' | __ }}
+													{{ text_categories }}
 												</span>
 												{{ categories | raw }}
 											</span>
@@ -98,7 +98,7 @@
 											<span class="ai1ec-tags">
 												<span class="ai1ec-field-label">
 													<i class="ai1ec-fa ai1ec-fa-tags"></i>
-													{{ 'Tags:' | __ }}
+													{{ text_tags }}
 												</span>
 												{{ tags | raw }}
 											</span>

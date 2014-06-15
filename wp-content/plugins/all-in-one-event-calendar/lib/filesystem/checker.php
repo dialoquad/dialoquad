@@ -28,7 +28,7 @@ class Ai1ec_Filesystem_Checker {
 		// otherwise credentials would be needed
 		return $writable && $wp_filesystem->method === 'direct';
 	}
-	
+
 	/**
 	 * Creates a file using $wp_filesystem.
 	 * 

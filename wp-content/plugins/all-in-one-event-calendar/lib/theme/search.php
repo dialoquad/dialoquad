@@ -228,4 +228,57 @@ class Ai1ec_Theme_Search extends Ai1ec_Base {
 		return true;
 	}
 
+	/**
+	 * Move passed themes to backup folder.
+	 * 
+	 * @param array $themes
+	 */
+	public function move_themes_to_backup( array $themes ) {
+		global $wp_filesystem;
+		$root = WP_CONTENT_DIR . DIRECTORY_SEPARATOR . AI1EC_THEME_FOLDER . DIRECTORY_SEPARATOR;
+		$backup = WP_CONTENT_DIR . DIRECTORY_SEPARATOR . AI1EC_THEME_FOLDER . '-obsolete' . DIRECTORY_SEPARATOR;
+		// this will also set $wp_filesystem global
+		$writable = $this->_registry->get( 'filesystem.checker')->is_writable( WP_CONTENT_DIR );
+		// this also means the access is 'direct'
+		$backup_dir_exists = false;
+
+		$errors = array(); 
+		if ( true === $writable ) {
+			if ( ! $wp_filesystem->is_dir( $backup ) ) {
+				$backup_dir_exists = $wp_filesystem->mkdir( $backup );
+			} else {
+				$backup_dir_exists = true;
+			}
+		} else {
+			$message = __( 
+				'Unable to move your old core themes from <code>wp-content/themes-ai1ec</code> to <code>wp-content/themes-ai1ec-obsolete</code> because your <code>wp-content</code> folder is not writable. Please manually remove your old core themes from <code>wp-content/themes-ai1ec</code>.',
+				AI1EC_PLUGIN_NAME
+			);
+			$errors[] = $message;
+		}
+		if ( true === $backup_dir_exists ) {
+			foreach ( $themes as $theme_dir ) {
+				if ( $wp_filesystem->is_dir( $root . $theme_dir ) ) {
+					$result = $wp_filesystem->move( $root . $theme_dir, $backup . $theme_dir );
+					if ( false === $result ) {
+						$message = __(
+							'Failed to move your old core themes from <code>wp-content/themes-ai1ec/%s</code> to <code>wp-content/themes-ai1ec-obsolete/%s</code>. Please manually remove your old core themes from <code>wp-content/themes-ai1ec/%s</code>.',
+							AI1EC_PLUGIN_NAME
+						);
+						$errors[] = sprintf( $message, $theme_dir, $theme_dir, $theme_dir );
+					} 
+				}
+			}
+		}
+		if ( ! empty( $errors ) ) {
+			$notification = $this->_registry->get( 'notification.admin' );
+			$notification->store(
+				implode( '<br/>', $errors ),
+				'error',
+				2,
+				array( Ai1ec_Notification_Admin::RCPT_ALL ),
+				true
+			);
+		}
+	}
 }

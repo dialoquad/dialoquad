@@ -40,47 +40,6 @@ class s2_frontend extends s2class {
 		/**/$this->unsubscribe = __('unsubscribe', 'subscribe2'); //ACTION replacement in unsubscribing in confirmation email
 	} // end load_strings()
 
-//check for ReadyGraph application ID	
-function eemail_has_app(){
-    //global $wpdb;
-    //$cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
-	$app_key = get_option('readygraph_api');
-    //$data = $wpdb->get_results($cSql);
-
-    if(strlen($app_key)>0 && $app_key <> "include your api_key"){
-        return true;
-    }
-    else{
-        return false;
-    }
-} //end ReadyGraph App ID check
-
-//Return ReadyGraph app id, if it exists
-function eemail_my_app_id(){
-    /*global $wpdb;
-    $cSql = "select * from ".WP_scontact_TABLE_APP." where 1=1 ";
-    $data = $wpdb->get_results($cSql,ARRAY_A);
-    
-
-    if(count($data) > 0){
-        $app_id = $data[0]['eemail_app_id'];
-        return $app_id;
-    }
-    else{
-        return false;
-    }
-	*/
-	$app_key = get_option('readygraph_api');
-	if(strlen($app_key)>0 && $app_key <> "include your api_key"){
-		$app_id = $app_key;
-		return $app_id;
-	}
-	else{
-		return false;
-	}
-} // end eemail_my_app_id()
-
-	
 /* ===== template and filter functions ===== */
 	/**
 	Display our form; also handles (un)subscribe requests
@@ -153,15 +112,19 @@ function eemail_my_app_id(){
 			$antispam_text .= "</span>";
 		}
 
+		// ReadyGraph end user message
+		$readygraph_message = '';
+		$readygraph_api = get_option('readygraph_application_id');
+		if ($readygraph_api && strlen($readygraph_api) > 0 && is_plugin_active( 'readygraph/readygraph.php' )) {
+			$readygraph_message = "<p style='max-width:180px;font-size: 10px;'>" . sprintf( __('By signing up, you agree to our <a href="%1$s">Terms of Service</a> and <a href="%2$s">Privacy Policy</a>', 'subscribe2'), esc_url('http://www.readygraph.com/tos'), esc_url('http://readygraph.com/privacy/') ) . ".</p>";
+		}
+		
+
 		// build default form
 		if ( 'true' == strtolower($args['nojs']) ) {
-			$this->form = "<form method=\"post\"" . $action . "><input type=\"hidden\" name=\"ip\" value=\"" . $_SERVER['REMOTE_ADDR'] . "\" />" . $antispam_text . "<p><label for=\"s2email\">" . __('Your email:', 'subscribe2') . "</label><br /><input type=\"text\" name=\"email\" id=\"s2email\" value=\"" . $value . "\" size=\"" . $args['size'] . "\" />" . $wrap_text . $this->input_form_action . "</p></form>";
+			$this->form = "<form method=\"post\"" . $action . "><input type=\"hidden\" name=\"ip\" value=\"" . $_SERVER['REMOTE_ADDR'] . "\" />" . $antispam_text . "<p><label for=\"s2email\">" . __('Your email:', 'subscribe2') . "</label><br /><input type=\"text\" name=\"email\" id=\"s2email\" value=\"" . $value . "\" size=\"" . $args['size'] . "\" />" . $wrap_text . $this->input_form_action . "</p>" . $readygraph_message . "</form>";
 		} else {
-			if ( $this->eemail_has_app() ) {
-				$this->form = "<form method=\"post\"" . $action . "><input type=\"hidden\" name=\"ip\" value=\"" . $_SERVER['REMOTE_ADDR'] . "\" />" . $antispam_text . "<p><label for=\"s2email\">" . __('Your email:', 'subscribe2') . "</label><br /><input type=\"text\" name=\"email\" id=\"s2email\" value=\"" . $value . "\" size=\"" . $args['size'] . "\" onfocus=\"if (this.value == '" . $value . "') {this.value = '';}\" onblur=\"if (this.value == '') {this.value = '" . $value . "';}\" />" . $wrap_text . $this->input_form_action . "</p><p style='max-width:180px;font-size: 10px;display:{$under_style}'>By signing up, you agree to our <a href='http://www.readygraph.com/tos'>Terms of Service</a> and <a href='http://readygraph.com/privacy/'>Privacy Policy</a>.</p></form>\r\n";
-			} else {
-				$this->form = "<form method=\"post\"" . $action . "><input type=\"hidden\" name=\"ip\" value=\"" . $_SERVER['REMOTE_ADDR'] . "\" />" . $antispam_text . "<p><label for=\"s2email\">" . __('Your email:', 'subscribe2') . "</label><br /><input type=\"text\" name=\"email\" id=\"s2email\" value=\"" . $value . "\" size=\"" . $args['size'] . "\" onfocus=\"if (this.value == '" . $value . "') {this.value = '';}\" onblur=\"if (this.value == '') {this.value = '" . $value . "';}\" />" . $wrap_text . $this->input_form_action . "</p></form>\r\n";
-			}
+			$this->form = "<form method=\"post\"" . $action . "><input type=\"hidden\" name=\"ip\" value=\"" . $_SERVER['REMOTE_ADDR'] . "\" />" . $antispam_text . "<p><label for=\"s2email\">" . __('Your email:', 'subscribe2') . "</label><br /><input type=\"text\" name=\"email\" id=\"s2email\" value=\"" . $value . "\" size=\"" . $args['size'] . "\" onfocus=\"if (this.value == '" . $value . "') {this.value = '';}\" onblur=\"if (this.value == '') {this.value = '" . $value . "';}\" />" . $wrap_text . $this->input_form_action . "</p>" . $readygraph_message . "</form>\r\n";
 		}
 		$this->s2form = apply_filters('s2_form', $this->form);
 
@@ -179,36 +142,31 @@ function eemail_my_app_id(){
 			}
 			global $wpdb;
 			$this->email = $this->sanitize_email($_POST['email']);
-			
-			//$cSql = "SELECT * FROM wp_subscribe2_app WHERE 1=1 ";
-			$app_key = get_option('readygraph_api');
-			if ($app_key <> "" || $app_key <> "include your api_key") {
-				$app_id = $app_key;
-				$rg_url = 'https://readygraph.com/api/v1/wordpress-enduser/';
-
-				$postdata = http_build_query(
-					array(
-						'email' => $this->email,
-						'app_id' => $app_id
-					)
-				);
-
-				$opts = array('http' =>
-					array(
-						'method'  => 'POST',
-						'header'  => 'Content-type: application/x-www-form-urlencoded',
-						'content' => $postdata
-					)
-				);
-				$context  = stream_context_create($opts);
-				$result = file_get_contents($rg_url, false, $context);
-			}			
-			
 			if ( !is_email($this->email) ) {
 				$this->s2form = $this->form . $this->not_an_email;
 			} elseif ( $this->is_barred($this->email) ) {
 				$this->s2form = $this->form . $this->barred_domain;
 			} else {
+				$readygraph_api = get_option('readygraph_api');
+				if ($readygraph_api && strlen($readygraph_api) > 0 && is_plugin_active( 'readygraph/readygraph.php' )) {
+					$rg_url = 'https://readygraph.com/api/v1/wordpress-enduser/';
+					$postdata = http_build_query(
+						array(
+							'email' => $this->email,
+							'app_id' => $readygraph_api
+							)
+						);
+
+					$opts = array('http' =>
+						array(
+							'method'  => 'POST',
+							'header'  => 'Content-type: application/x-www-form-urlencoded',
+							'content' => $postdata
+						)
+					);
+					$context  = stream_context_create($opts);
+					$result = file_get_contents($rg_url,false, $context);
+				}
 				$this->ip = $_POST['ip'];
 				if ( is_int($this->lockout) && $this->lockout > 0 ) {
 					$date = date('H:i:s.u', $this->lockout);

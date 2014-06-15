@@ -75,20 +75,21 @@ class Ai1ec_Calendar_View_Oneday  extends Ai1ec_Calendar_View_Abstract {
 			'title'                    => $title,
 			'type'                     => 'oneday',
 			'cell_array'               => $cell_array,
-			'show_location_in_title'   => $settings->get(
-				'show_location_in_title'
-			),
+			'show_location_in_title'   => $settings->get( 'show_location_in_title' ),
 			'now_top'                  => $now,
 			'now_text'                 => $now_text,
 			'pagination_links'         => $pagination_links,
+			'time_format'              => $time_format,
 			'done_allday_label'        => false,// legacy
 			'done_grid'                => false,// legacy
-			'time_format'              => $time_format,
 			'data_type'                => $args['data_type'],
 			'data_type_events'         => '',
 			'is_ticket_button_enabled' => $is_ticket_button_enabled,
 			'show_reveal_button'       => $show_reveal_button,
-			'time_format'              => $time_format,
+			'text_full_day'            => __( 'Reveal full day', AI1EC_PLUGIN_NAME ),
+			'text_all_day'             => __( 'All-day', AI1EC_PLUGIN_NAME ),
+			'text_now_label'           => __( 'Now:', AI1EC_PLUGIN_NAME ),
+			'text_venue_separator'     => __( '@ %s', AI1EC_PLUGIN_NAME ),
 		);
 
 		// Add navigation if requested.

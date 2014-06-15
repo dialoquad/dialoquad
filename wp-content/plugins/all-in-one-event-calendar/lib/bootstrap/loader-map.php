@@ -418,6 +418,7 @@
       'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'notification' . DIRECTORY_SEPARATOR . 'email.php',
       'c' => 'Ai1ec_Email_Notification',
       'i' => 'n',
+      'r' => 'y',
     ),
     'Ai1ec_Engine_Not_Set_Exception' => 
     array (
@@ -932,6 +933,7 @@
       'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'notification' . DIRECTORY_SEPARATOR . 'abstract.php',
       'c' => 'Ai1ec_Notification',
       'i' => 'g',
+      'r' => 'y',
     ),
     'Ai1ec_Notification_Admin' => 
     array (
@@ -964,6 +966,13 @@
       'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'strategy' . DIRECTORY_SEPARATOR . 'persistence-context.php',
       'c' => 'Ai1ec_Persistence_Context',
       'i' => 'Ai1ec_Factory_Strategy.create_persistence_context',
+    ),
+    'Ai1ec_Post_Content_Check' => 
+    array (
+      'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'post' . DIRECTORY_SEPARATOR . 'content.php',
+      'c' => 'Ai1ec_Post_Content_Check',
+      'i' => 'g',
+      'r' => 'y',
     ),
     'Ai1ec_Post_Custom_Type' => 
     array (
@@ -1330,6 +1339,12 @@
       'c' => 'Ai1ec_View_Calendar_Shortcode',
       'i' => 'g',
       'r' => 'y',
+    ),
+    'Ai1ec_View_Calendar_SubscribeButton' => 
+    array (
+      'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'calendar' . DIRECTORY_SEPARATOR . 'subscribe-button.php',
+      'c' => 'Ai1ec_View_Calendar_SubscribeButton',
+      'i' => 'g',
     ),
     'Ai1ec_View_Calendar_Taxonomy' => 
     array (
@@ -3595,6 +3610,7 @@
       'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'notification' . DIRECTORY_SEPARATOR . 'abstract.php',
       'c' => 'Ai1ec_Notification',
       'i' => 'g',
+      'r' => 'y',
     ),
     'notification.admin' => 
     array (
@@ -3608,6 +3624,7 @@
       'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'notification' . DIRECTORY_SEPARATOR . 'email.php',
       'c' => 'Ai1ec_Email_Notification',
       'i' => 'n',
+      'r' => 'y',
     ),
     'p28n.i18n' => 
     array (
@@ -3632,6 +3649,13 @@
       'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'parser' . DIRECTORY_SEPARATOR . 'frequency.php',
       'c' => 'Ai1ec_Frequency_Utility',
       'i' => 'n',
+    ),
+    'post.content' => 
+    array (
+      'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'post' . DIRECTORY_SEPARATOR . 'content.php',
+      'c' => 'Ai1ec_Post_Content_Check',
+      'i' => 'g',
+      'r' => 'y',
     ),
     'post.custom-type' => 
     array (
@@ -4781,7 +4805,7 @@
     array (
       'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'iCal' . DIRECTORY_SEPARATOR . 'iCalcreator-2.20' . DIRECTORY_SEPARATOR . 'iCalcreator.class.php',
       'c' => 'vcalendar',
-      'i' => 'g',
+      'i' => 'n',
     ),
     'vevent' => 
     array (
@@ -4878,6 +4902,12 @@
       'c' => 'Ai1ec_View_Calendar_Shortcode',
       'i' => 'g',
       'r' => 'y',
+    ),
+    'view.calendar.subscribe-button' => 
+    array (
+      'f' => AI1EC_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'calendar' . DIRECTORY_SEPARATOR . 'subscribe-button.php',
+      'c' => 'Ai1ec_View_Calendar_SubscribeButton',
+      'i' => 'g',
     ),
     'view.calendar.taxonomy' => 
     array (

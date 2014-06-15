@@ -16,7 +16,7 @@ class Ai1ec_Command_Export_Events extends Ai1ec_Command {
 	 * @var string The name of the old exporter controller.
 	 */
 	const EXPORT_CONTROLLER = 'ai1ec_exporter_controller';
-	
+
 	/**
 	 * @var string The name of the old export method.
 	 */
@@ -51,6 +51,10 @@ class Ai1ec_Command_Export_Events extends Ai1ec_Command {
 			);
 			$params['lang'] = Ai1ec_Request_Parser::get_param(
 				'lang',
+				false
+			);
+			$params['no_html'] = (bool)Ai1ec_Request_Parser::get_param(
+				'no_html',
 				false
 			);
 			$this->_params = $params;
@@ -108,7 +112,14 @@ class Ai1ec_Command_Export_Events extends Ai1ec_Command {
 			: $this->_registry->get( 'date.time', time() - 24 * 60 * 60 ); // Include any events ending today
 		$end    = $this->_registry->get( 'date.time', '+3 years' );
 		$search = $this->_registry->get( 'model.search' );
-		$export_controller = $this->_registry->get( 'controller.import-export' );
+		$params = array(
+			'no_html' => $this->_params['no_html'],
+		);
+		$export_controller = $this->_registry->get(
+			'controller.import-export',
+			array( 'ics' ),
+			$params
+		);
 
 		$args['events'] = $this->unique_events(
 			$search->get_events_between( $start, $end, $filter )

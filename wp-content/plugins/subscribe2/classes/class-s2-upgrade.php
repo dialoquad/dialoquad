@@ -238,7 +238,7 @@ class s2class_upgrade {
 	} // end upgrade64()
 
 	function upgrade70() {
-		global $mysubscribe2;
+		global $mysubscribe2, $wpdb;
 		if ( version_compare($mysubscribe2->wp_release, '3.5', '<') ) {
 			$users = $wpdb->get_col($wpdb->prepare("SELECT ID from $wpdb->users WHERE ID NOT IN (SELECT user_id from $wpdb->usermeta WHERE meta_key=%s", $mysubscribe2->get_usermeta_keyname('s2_authors')));
 			foreach ( $users as $user_ID ) {
@@ -340,13 +340,13 @@ class s2class_upgrade {
 		}
 		maybe_add_column($mysubscribe2->public, 'time', "ALTER TABLE $mysubscribe2->public ADD time TIME DEFAULT '00:00:00' NOT NULL AFTER date");
 	} // end upgrade88()
-//	function upgrade100() {
+
 	function upgrade95() {
 		global $mysubscribe2;
 		if ( $mysubscribe2->subscribe2_options['email_freq'] != 'never' ) {
 			$mysubscribe2->subscribe2_options['last_s2cron'] = '';
 			unset($mysubscribe2->subscribe2_options['previous_s2cron']);
 		}
-	} // end upgrade95() or upgrade100()
+	} // end upgrade95()
 }
 ?>

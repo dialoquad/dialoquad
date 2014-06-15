@@ -1,14 +1,14 @@
 <li class="ai1ec-dropdown ai1ec-tag-filter
-	{% if selected_cat_ids is not empty %}ai1ec-active{% endif %}">
+	{% if selected_tag_ids is not empty %}ai1ec-active{% endif %}">
 	<a class="ai1ec-dropdown-toggle" data-toggle="ai1ec-dropdown">
 		<i class="ai1ec-fa ai1ec-fa-tags"></i>
 		<span class="ai1ec-clear-filter ai1ec-tooltip-trigger"
 			data-href="{{ clear_filter }}"
 			{{ data_type | raw }}
-			title="{{ 'Clear tag filter' | __ }}">
+			title="{{ text_clear_tag_filter }}">
 			<i class="ai1ec-fa ai1ec-fa-times-circle"></i>
 		</span>
-		{{ 'Tags' | __ }}
+		{{ text_tags }}
 		<span class="ai1ec-caret"></span>
 	</a>
 	<div class="ai1ec-dropdown-menu">

@@ -10,7 +10,7 @@
  * @subpackage AI1EC.View
  */
 class Ai1ec_View_Calendar_Taxonomy extends Ai1ec_Base {
-	
+
 	/**
 	 * Returns a link to a calendar page without the given arguments; does not
 	 * otherwise disturb current page state.
@@ -32,7 +32,7 @@ class Ai1ec_View_Calendar_Taxonomy extends Ai1ec_Base {
 
 	/**
 	 * Creates the html for tags filter
-	 * 
+	 *
 	 * @param array $view_args
 	 * @return string
 	 */
@@ -42,7 +42,7 @@ class Ai1ec_View_Calendar_Taxonomy extends Ai1ec_Base {
 
 	/**
 	 * Creates the html for categories filter
-	 * 
+	 *
 	 * @param array $view_args
 	 * @return string
 	 */
@@ -69,13 +69,13 @@ class Ai1ec_View_Calendar_Taxonomy extends Ai1ec_Base {
 			$type_for_filter    = 'tag_ids';
 			$type_for_view_args = 'tags';
 		}
-		
-	
+
+
 		$terms = get_terms( $taxonomy_name, array( 'orderby' => 'name' ) );
 		if( empty( $terms ) ) {
 			return '';
 		}
-	
+
 		foreach( $terms as &$term ) {
 			$href = $this->_registry->get( 'html.element.href', $view_args, $type );
 			$href->set_term_id( $term->term_id );
@@ -85,19 +85,23 @@ class Ai1ec_View_Calendar_Taxonomy extends Ai1ec_Base {
 				$term->color = $taxonomy->get_category_color_square( $term->term_id );
 			}
 		}
-	
+
 		$href_for_clearing_filter =
 			$this->generate_href_without_arguments( $view_args, array( $type_for_filter ) );
-	
+
 		$args = array(
 			$type_for_view_args            => $terms,
 			'selected_' . $type_for_filter => $view_args[$type_for_filter],
-			"data_type"                    => $view_args['data_type'],
-			"clear_filter"                 => $href_for_clearing_filter,
+			'data_type'                    => $view_args['data_type'],
+			'clear_filter'                 => $href_for_clearing_filter,
+			'text_clear_category_filter'   => __( 'Clear category filter', AI1EC_PLUGIN_NAME ),
+			'text_categories'              => __( 'Categories', AI1EC_PLUGIN_NAME ),
+			'text_clear_tag_filter'        => __( 'Clear tag filter', AI1EC_PLUGIN_NAME ),
+			'text_tags'                    => __( 'Tags', AI1EC_PLUGIN_NAME ),
 		);
 		$loader = $this->_registry->get( 'theme.loader' );
 		return $loader->get_file( $type_for_view_args . '.twig', $args, false )
 			->get_content();
 	}
-	
+
 }

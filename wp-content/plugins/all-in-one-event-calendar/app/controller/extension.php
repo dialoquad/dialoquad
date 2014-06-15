@@ -169,7 +169,9 @@ abstract class Ai1ec_Base_Extension_Controller {
 	public function show_settings( Ai1ec_Registry_Object $registry ) {
 		$settings = $registry->get( 'model.settings' );
 		foreach ( $this->_settings as $name => $params ) {
-			$settings->show_option( $name, $params['renderer'] );
+			if ( isset( $params['renderer'] ) ) {
+				$settings->show_option( $name, $params['renderer'] );
+			}
 		}
 		$settings->set( 'allow_statistics', true );
 	}

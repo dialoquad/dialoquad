@@ -46,11 +46,12 @@ class Ai1ec_Event extends Ai1ec_Base {
 	 * Wrapper to get property value.
 	 *
 	 * @param string $property Name of property to get.
+	 * @param mixed  $default  Default value to return.
 	 *
 	 * @return mixed Actual property.
 	 */
-	public function get( $property ) {
-		return $this->_entity->get( $property );
+	public function get( $property, $default = null ) {
+		return $this->_entity->get( $property, $default );
 	}
 
 	/**
@@ -96,6 +97,38 @@ class Ai1ec_Event extends Ai1ec_Base {
 		}
 		$this->_entity->set( $property, $value );
 		return $this;
+	}
+
+	/**
+	 * Set the event is all day, during the specified number of days
+	 * 
+	 * @param number $length
+	 */
+	public function set_all_day( $length = 1 ) {
+		// set allday as true
+		$this->set( 'allday', true );
+		$start = $this->get( 'start' );
+		// reset time component
+		$start->set_time( 0, 0, 0 );
+		$end   = $this->_registry->get( 'date.time', $start );
+		// set the correct length
+		$end->adjust_day( $length );
+		$this->set( 'end', $end );
+	}
+
+	/**
+	 * Set the event as if it has no end time
+	 */
+	public function set_no_end_time() {
+		$this->set( 'instant_event', true );
+		$start = $this->get( 'start' );
+		$end   = $this->_registry->get( 'date.time', $start );
+		$end->set_time(
+			$start->format( 'H' ),
+			$start->format( 'i' ) + 30,
+			$start->format( 's' )
+		);
+		$this->set( 'end', $end );
 	}
 
 	/**
@@ -392,18 +425,25 @@ class Ai1ec_Event extends Ai1ec_Base {
 	}
 
 	/**
-	 * Return UID to use according to ICS rules.
+	 * Get UID to be used for current event.
 	 *
-	 * @return string UID event identifier.
+	 * The generated format is cached in static variable within this function
+	 * to re-use when generating UIDs for different entries.
 	 *
-	 * @staticvar string $_blog_url Base URL of blog, used as part of UID.
+	 * @return string Generated UID.
+	 *
+	 * @staticvar string $format Cached format.
 	 */
 	public function get_uid() {
-		static $_blog_url = NULL;
-		if ( NULL === $_blog_url ) {
-			$_blog_url = bloginfo( 'url' );
+		static $format = null;
+		if ( null === $format ) {
+			$site_url = parse_url( get_site_url() );
+			$format   = 'ai1ec-%d@' . $site_url['host'];
+			if ( isset( $site_url['path'] ) ) {
+				$format .= $site_url['path'];
+			}
 		}
-		return $this->get( 'post_id' ) . '@' . $_blog_url;
+		return sprintf( $format, $this->get( 'post_id' ) );
 	}
 
 	/**
@@ -487,6 +527,9 @@ class Ai1ec_Event extends Ai1ec_Base {
 		$table_name = $dbi->get_table_name( 'ai1ec_events' );
 		$post_id    = $columns['post_id'];
 
+		if ( $this->get( 'end' )->format() <= 0 ) {
+			$this->set_no_end_time();
+		}
 		if ( $post_id ) {
 
 			$success = false;

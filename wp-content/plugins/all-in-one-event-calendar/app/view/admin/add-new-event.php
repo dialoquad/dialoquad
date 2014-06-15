@@ -293,7 +293,6 @@ class Ai1ec_View_Add_New_Event extends Ai1ec_Base {
 		$boxes[] = $theme_loader
 			->get_file( 'box_event_contact.php', $args, true )
 			->get_content();
-
 		// ==================
 		// = Publish button =
 		// ==================
@@ -333,23 +332,27 @@ class Ai1ec_View_Add_New_Event extends Ai1ec_Base {
 					$parent = null;
 				}
 			}
-			$children = $this->_registry->get( 'model.event.parent' )
-				->get_child_event_objects( $event->get( 'post_id' ) );
-			$args = compact( 'parent', 'children' );
-			$args['registry'] = $this->_registry;
-			
-			$boxes[] = $theme_loader->get_file(
-				'box_event_children.php',
-				$args,
-				true
-			)->get_content();
+			if ( $parent ) {
+				$children = $this->_registry->get( 'model.event.parent' )
+					->get_child_event_objects( $event->get( 'post_id' ) );
+				$args = compact( 'parent', 'children' );
+				$args['registry'] = $this->_registry;
+					
+				$boxes[] = $theme_loader->get_file(
+					'box_event_children.php',
+					$args,
+					true
+				)->get_content();
+			}
+
 		}
+
+		$boxes = apply_filters( 'ai1ec_add_new_event_boxes', $boxes, $event );
 		// Display the final view of the meta box.
 		$args = array(
 			'boxes'          => $boxes,
 			'publish_button' => $publish_button,
 		);
-
 		echo $theme_loader
 			->get_file( 'add_new_event_meta_box.php', $args, true )
 			->get_content();

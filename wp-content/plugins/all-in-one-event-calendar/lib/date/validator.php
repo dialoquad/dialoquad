@@ -111,7 +111,8 @@ class Ai1ec_Validation_Utility {
 				( (string)(int)$timestamp ) === (string)$timestamp
 			)
 			&& ( $timestamp <= PHP_INT_MAX )
-			&& ( $timestamp >= ~ PHP_INT_MAX );
+			&& ( $timestamp >= 0 /*~ PHP_INT_MAX*/ );
+		// do not allow negative timestamps until this is widely accepted
 	}
 
 	/**

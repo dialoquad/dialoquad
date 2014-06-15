@@ -96,6 +96,10 @@ class Ai1ec_Calendar_View_Week  extends Ai1ec_Calendar_View_Abstract {
 			'data_type_events'         => '',
 			'is_ticket_button_enabled' => $is_ticket_button_enabled,
 			'show_reveal_button'       => $show_reveal_button,
+			'text_full_day'            => __( 'Reveal full day', AI1EC_PLUGIN_NAME ),
+			'text_all_day'             => __( 'All-day', AI1EC_PLUGIN_NAME ),
+			'text_now_label'           => __( 'Now:', AI1EC_PLUGIN_NAME ),
+			'text_venue_separator'     => __( '@ %s', AI1EC_PLUGIN_NAME ),
 		);
 		if( $settings->get( 'ajaxify_events_in_web_widget' ) ) {
 			$view_args['data_type_events'] = $args['data_type'];

@@ -8,7 +8,7 @@
 
 	{% if dates is empty %}
 		<p class="ai1ec-no-results">
-			{{ 'There are no upcoming events.' | __ }}
+			{{ text_upcoming_events }}
 		</p>
 	{% else %}
 		<div>
@@ -36,7 +36,7 @@
 										class="ai1ec-popup-trigger">
 										{% if event.is_allday %}
 											<span class="ai1ec-allday-badge">
-												{{ 'all-day' | __ }}
+												{{ text_all_day }}
 											</span>
 										{% else %}
 											<span class="ai1ec-event-time">
@@ -48,12 +48,14 @@
 											{{ event.get_runtime( 'filtered_title' ) | truncate | raw }}
 											{% if show_location_in_title and event.get( 'venue' ) is not empty %}
 												<span class="ai1ec-event-location"
-													>{{ '@ %s' | __ | format( event.get( 'venue' ) ) }}</span>
+													>{{ text_venue_separator | format( event.get( 'venue' ) ) }}</span>
 											{% endif %}
 										</span>
 									</a>
 
-									{% include 'event-popup.twig' %}
+									{% include 'event-popup.twig' with {
+									'text_venue_separator': text_venue_separator
+									} %}
 
 								</div>
 							{% endfor %} {# event in category #}
@@ -70,17 +72,18 @@
 				<a class="ai1ec-btn ai1ec-btn-default ai1ec-btn-xs ai1ec-pull-right
 					ai1ec-calendar-link"
 					href="{{ calendar_url | e('html_attr') }}">
-					{{ 'View Calendar' | __ }}
+					{{ text_view_calendar }}
 					<i class="ai1ec-fa ai1ec-fa-arrow-right"></i>
 				</a>
 			{% endif %}
 
 			{% if show_subscribe_buttons %}
 				{% include 'subscribe-buttons.twig' with {
-					'button_classes':  'ai1ec-btn-xs',
-					'export_url':      subscribe_url,
-					'subscribe_label': 'Add' | __,
-					'google_label':    'Add' | __
+					'button_classes':     'ai1ec-btn-xs',
+					'export_url':         subscribe_url,
+					'export_url_no_html': subscribe_url_no_html,
+					'subscribe_label':    text_subscribe_label,
+					'text':               subscribe_buttons_text,
 				} %}
 			{% endif %}
 		</p>

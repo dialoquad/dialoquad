@@ -22,11 +22,11 @@ class Ai1ec_Ics_Import_Export_Engine
 	 * @see Ai1ec_Import_Export_Engine::import()
 	 */
 	public function import( array $arguments ) {
-		$cal = $this->_registry->get('vcalendar');
+		$cal = $this->_registry->get( 'vcalendar' );
 		if ( $cal->parse( $arguments['source'] ) ) {
 			$count = 0;
 			try {
-				$count = $this->add_vcalendar_events_to_db(
+				$result = $this->add_vcalendar_events_to_db(
 					$cal,
 					$arguments
 				);
@@ -36,7 +36,7 @@ class Ai1ec_Ics_Import_Export_Engine
 					'" triggered error: ' . $exception->getMessage()
 				);
 			}
-			return $count;
+			return $result;
 		}
 		throw new Ai1ec_Parse_Exception( 'The passed string is not a valid ics feed' );
 	}
@@ -44,7 +44,7 @@ class Ai1ec_Ics_Import_Export_Engine
 	/* (non-PHPdoc)
 	 * @see Ai1ec_Import_Export_Engine::export()
 	 */
-	public function export( array $arguments ) {
+	public function export( array $arguments, array $params = array() ) {
 		$c = new vcalendar();
 		$c->setProperty( 'calscale', 'GREGORIAN' );
 		$c->setProperty( 'method', 'PUBLISH' );
@@ -71,32 +71,15 @@ class Ai1ec_Ics_Import_Export_Engine
 		}
 		$this->_taxonomy_model->update_meta( $post_ids );
 		foreach ( $arguments['events'] as $event ) {
-			$c =$this->_insert_event_in_calendar( $event, $c, $export = true );
+			$c = $this->_insert_event_in_calendar(
+				$event,
+				$c,
+				true,
+				$params
+			);
 		}
 		$str = ltrim( $c->createCalendar() );
 		return $str;
-	}
-
-	/**
-	 * get_uid_format method
-	 *
-	 * Get format of UID, to be used for current site.
-	 * The generated format is cached in static variable within this function
-	 *
-	 * @return string Format to use when printing UIDs
-	 *
-	 * @staticvar string $format Cached format, to be returned
-	 */
-	public function get_uid_format() {
-		static $format = null;
-		if ( null === $format ) {
-			$site_url = parse_url( get_site_url() );
-			$format   = 'ai1ec-%d@' . $site_url['host'];
-			if ( isset( $site_url['path'] ) ) {
-				$format .= $site_url['path'];
-			}
-		}
-		return $format;
 	}
 
 	/**
@@ -141,7 +124,7 @@ class Ai1ec_Ics_Import_Export_Engine
 		$comment_status = isset( $args['comment_status'] ) ? $args['comment_status'] : 'open';
 		$do_show_map    = isset( $args['do_show_map'] ) ? $args['do_show_map'] : 0;
 		$count = 0;
-
+		$events_in_db   = $args['events_in_db'];
 		$v->sort();
 		// Reverse the sort order, so that RECURRENCE-IDs are listed before the
 		// defining recurrence events, and therefore take precedence during
@@ -218,7 +201,6 @@ class Ai1ec_Ics_Import_Export_Engine
 			}
 			$tags = $e->getProperty( "X-TAGS", false, true );
 
-
 			$imported_tags = array();
 			// If the user chose to preserve taxonomies during import, add tags.
 			if( $tags && $feed->keep_tags_categories ) {
@@ -285,7 +267,6 @@ class Ai1ec_Ics_Import_Export_Engine
 				$rdate = explode( ':', $rdate );
 				$rdate = trim( end( $rdate ) );
 			}
-
 
 			// ===================
 			// = Exception dates =
@@ -460,22 +441,24 @@ class Ai1ec_Ics_Import_Export_Engine
 			// Create event object.
 			$event = $this->_registry->get( 'model.event', $data );
 
-			// TODO: when singular events change their times in an ICS feed from one
-			// import to another, the matching_event_id is null, which is wrong. We
-			// want to match that event that previously had a different time.
-			// However, we also want the function to NOT return a matching event in
-			// the case of recurring events, and different events with different
-			// RECURRENCE-IDs... ponder how to solve this.. may require saving the
-			// RECURRENCE-ID as another field in the database.
 			$recurrence = $event->get( 'recurrence_rules' );
-			$matching_event_id = $this->_registry->get( 'model.search' )
-				->get_matching_event_id(
+			$search = $this->_registry->get( 'model.search' );
+			// first let's check by UID
+			$matching_event_id = $search
+				->get_matching_event_by_uid_and_url(
 					$event->get( 'ical_uid' ),
-					$event->get( 'ical_feed_url' ),
-					$event->get( 'start' ),
-					! empty( $recurrence )
+					$event->get( 'ical_feed_url' )
 				);
-
+			// if no result, perform the legacy check.
+			if ( null === $matching_event_id ) {
+				$matching_event_id = $search
+					->get_matching_event_id(
+						$event->get( 'ical_uid' ),
+						$event->get( 'ical_feed_url' ),
+						$event->get( 'start' ),
+						! empty( $recurrence )
+					);
+			}
 			if ( null === $matching_event_id ) {
 				// =================================================
 				// = Event was not found, so store it and the post =
@@ -501,10 +484,15 @@ class Ai1ec_Ics_Import_Export_Engine
 				}
 
 			}
+			// if the event was already present , unset it from the array so it's not deleted
+			unset( $events_in_db[$event->get( 'post_id' )] );
 			$count++;
 		}
 
-		return $count;
+		return array(
+			'count'            =>$count,
+			'events_to_delete' => $events_in_db,
+		);
 	}
 
 	/**
@@ -593,16 +581,18 @@ class Ai1ec_Ics_Import_Export_Engine
 	 * Convert an event from a feed into a new Ai1ec_Event object and add it to
 	 * the calendar.
 	 *
-	 * @param Ai1ec_Event $event    Event object
-	 * @param vcalendar   $calendar Calendar object
-	 * @param bool        $export   States whether events are created for export
+	 * @param Ai1ec_Event $event    Event object.
+	 * @param vcalendar   $calendar Calendar object.
+	 * @param bool        $export   States whether events are created for export.
+	 * @param array       $params   Additional parameters for export.
 	 *
 	 * @return void
 	 */
 	protected function _insert_event_in_calendar(
 			Ai1ec_Event $event,
 			vcalendar $calendar,
-			$export = false
+			$export = false,
+			array $params = array()
 	) {
 
 		$tz  = $this->_registry->get( 'date.timezone' )
@@ -613,7 +603,9 @@ class Ai1ec_Ics_Import_Export_Engine
 		if ( $event->get( 'ical_uid' ) ) {
 			$uid = addcslashes( $event->get( 'ical_uid' ), "\\;,\n" );
 		} else {
-			$uid = sprintf( $this->get_uid_format(), $event->get( 'post_id' ) );
+			$uid = $event->get_uid();
+			$event->set( 'ical_uid', $uid );
+			$event->save( true );
 		}
 		$e->setProperty( 'uid', $this->_sanitize_value( $uid ) );
 		$e->setProperty(
@@ -645,7 +637,35 @@ class Ai1ec_Ics_Import_Export_Engine
 					esc_attr( $img_url ) . '" width="' . $size[0] . '" height="' .
 					$size[1] . '" /></div>' . $content;
 		}
-		$e->setProperty( 'description', $this->_sanitize_value( $content ) );
+		if ( isset( $params['no_html'] ) && $params['no_html'] ) {
+			$e->setProperty(
+				'description',
+				$this->_sanitize_value(
+					strip_tags( strip_shortcodes( $content ) )
+				)
+			);
+			if ( ! empty( $content ) ) {
+				$html_content = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">\n' .
+					'<HTML>\n<HEAD>\n<TITLE></TITLE>\n</HEAD>\n<BODY>' . $content .
+					'</BODY></HTML>';
+				$e->setProperty(
+					'X-ALT-DESC',
+					$this->_sanitize_value( $html_content ),
+					array(
+						'FMTTYPE' => 'text/html',
+					)
+				);
+				unset( $html_content );
+			}
+		} else {
+			$e->setProperty( 'description', $this->_sanitize_value( $content ) );
+		}
+		$revision = (int)current(
+			array_keys(
+				wp_get_post_revisions( $event->get( 'post_id' ) )
+			)
+		);
+		$e->setProperty( 'sequence', $revision );
 
 		// =====================
 		// = Start & end times =
@@ -851,7 +871,7 @@ class Ai1ec_Ics_Import_Export_Engine
 		$exrule = array();
 		if ( ! empty( $exceptions ) ) {
 			$rules = array();
-			
+
 			foreach ( explode( ';', $exceptions ) as $v) {
 				if ( strpos( $v, '=' ) === false ) {
 					continue;

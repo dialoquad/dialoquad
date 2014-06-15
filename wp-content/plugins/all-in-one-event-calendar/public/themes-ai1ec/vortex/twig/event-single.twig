@@ -25,21 +25,13 @@
 				</a>
 			{% endif %}
 			{% if show_subscribe_buttons %}
-				<a class="ai1ec-btn ai1ec-btn-default ai1ec-btn-sm ai1ec-subscribe
-					ai1ec-tooltip-trigger" href="{{ subscribe_url | e('html_attr') }}"
-					title="{{ 'Add this event to your favourite calendar program (iCal, Outlook, etc.)' | __ | e('html_attr') }}"
-					data-placement="left">
-					<i class="ai1ec-fa ai1ec-fa-plus ai1ec-fa-fw"></i>
-					<span class="ai1ec-hidden-xs">{{ 'Add to Calendar' | __ }}</span>
-				</a>
-				<a class="ai1ec-btn ai1ec-btn-default ai1ec-btn-sm
-					ai1ec-subscribe-google ai1ec-tooltip-trigger" target="_blank"
-					href="{{ google_url | e('html_attr') }}"
-					title="{{ 'Add this event to your Google Calendar' | __ | e('html_attr') }}"
-					data-placement="left">
-					<i class="ai1ec-fa ai1ec-fa-google-plus ai1ec-fa-lg ai1ec-fa-fw"></i>
-					<span class="ai1ec-hidden-xs">{{ 'Add to Google' | __ }}</span>
-				</a>
+				{% include 'subscribe-buttons.twig' with {
+					'button_classes':         'ai1ec-btn-dropdown',
+					'export_url':             subscribe_url,
+					'export_url_no_html':     subscribe_url_no_html,
+					'subscribe_label':        text_add_calendar,
+					'text':                   subscribe_buttons_text
+				} %}
 			{% endif %}
 			{% if extra_buttons %}
 				{{ extra_buttons | raw }}
@@ -63,7 +55,7 @@
 {% endif %}
 
 	<div class="ai1ec-time ai1ec-row">
-		<div class="ai1ec-field-label {{ col1 }}">{{ 'When:' | __ }}</div>
+		<div class="ai1ec-field-label {{ col1 }}">{{ text_when }}</div>
 		<div class="ai1ec-field-value {{ col2 }}">
 			{{ event | timespan | raw }}
 			{% include 'recurrence.twig' %}
@@ -72,7 +64,7 @@
 
 	{% if location is not empty %}
 		<div class="ai1ec-location ai1ec-row">
-			<div class="ai1ec-field-label {{ col1 }}">{{ 'Where:' | __ }}</div>
+			<div class="ai1ec-field-label {{ col1 }}">{{ text_where }}</div>
 			<div class="ai1ec-field-value {{ col2 }}">
 				{{ location | raw }}
 			</div>
@@ -81,16 +73,16 @@
 
 	{% if event.get( 'cost' ) is not empty or event.is_free %}
 		<div class="ai1ec-cost ai1ec-row">
-			<div class="ai1ec-field-label {{ col1 }}">{{ 'Cost:' | __ }}</div>
+			<div class="ai1ec-field-label {{ col1 }}">{{ text_cost }}</div>
 			<div class="ai1ec-field-value {{ col2 }}">
-				{{ event.is_free ? 'Free' | __ : event.get( 'cost' ) }}
+				{{ event.is_free ? text_free : event.get( 'cost' ) }}
 			</div>
 		</div>
 	{% endif %}
 
 	{% if contact is not empty %}
 		<div class="ai1ec-contact ai1ec-row">
-			<div class="ai1ec-field-label {{ col1 }}">{{ 'Contact:' | __ }}</div>
+			<div class="ai1ec-field-label {{ col1 }}">{{ text_contact }}</div>
 			<div class="ai1ec-field-value {{ col2 }}">{{ contact | raw }}</div>
 		</div>
 	{% endif %}
@@ -99,7 +91,7 @@
 		<div class="ai1ec-categories ai1ec-row">
 			<div class="ai1ec-field-label {{ col1 }} ai1ec-col-xs-1">
 				<i class="ai1ec-fa ai1ec-fa-folder-open ai1ec-tooltip-trigger"
-					title="{{ 'Categories' | __ | e('html_attr') }}"></i>
+					title="{{ text_categories | e('html_attr') }}"></i>
 			</div>
 			<div class="ai1ec-field-value {{ col2 }} ai1ec-col-xs-10">
 				{{ categories | raw }}
@@ -111,7 +103,7 @@
 		<div class="ai1ec-tags ai1ec-row">
 			<div class="ai1ec-field-label {{ col1 }} ai1ec-col-xs-1">
 				<i class="ai1ec-fa ai1ec-fa-tags ai1ec-tooltip-trigger"
-					title="{{ 'Tags' | __ | e('html_attr') }}"></i>
+					title="{{ text_tags | e('html_attr') }}"></i>
 			</div>
 			<div class="ai1ec-field-value {{ col2 }} ai1ec-col-xs-10">
 				{{ tags | raw }}

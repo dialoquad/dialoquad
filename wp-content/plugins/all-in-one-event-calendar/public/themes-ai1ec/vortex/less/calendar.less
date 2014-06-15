@@ -169,6 +169,13 @@ h2.ai1ec-calendar-title {
 	margin-top: -2px;
 }
 
+// Dropdown icons
+.ai1ec-views-dropdown i {
+	font-size: 1.9em;
+	line-height: 0.75em;
+	vertical-align: -50%;
+}
+
 // Month, week, day tables.
 table.ai1ec-month-view,
 .ai1ec-week-view table,
@@ -616,6 +623,12 @@ table.ai1ec-oneday-view-original {
 	.ai1ec-date-events {
 		overflow: hidden;
 		margin: 0 0.75em 0 0;
+		// Fix for border bug in Chrome & Opera
+		@media screen and (-webkit-min-device-pixel-ratio:0) {
+			overflow: visible;
+			display: -webkit-flex;
+			-webkit-flex-wrap: wrap;
+		}
 	}
 	.ai1ec-date {
 		overflow: hidden;
@@ -633,15 +646,23 @@ table.ai1ec-oneday-view-original {
 	}
 	// Agenda view events.
 	.ai1ec-event {
-		position: relative;
-		clear: right;
-		overflow: hidden;
-		padding: 0.6em;
-		margin: @font-size-base / 2 0;
 		background: @event-bg;
 		border: 1px solid @event-border;
 		border-radius: 0.5em;
+		clear: right;
+		margin: @font-size-base / 2 0;
+		overflow: hidden;
+		position: relative;
+		padding: 0.6em;
 		.ai1ec-transition( border-color 0.1s );
+		// Fix for border bug in Chrome & Opera
+		@media screen and (-webkit-min-device-pixel-ratio:0) {
+			overflow: visible;
+			width: 100%;
+			& + .ai1ec-event {
+				margin: 0 0 @font-size-base / 2 0;
+			}
+		}
 		&.ai1ec-expanded {
 			border-color: @event-hover-border;
 			.ai1ec-box-shadow( 0 2px 4px mix( @text-color, @agenda-date-title-bg, 15% ) );
@@ -813,4 +834,19 @@ table.ai1ec-oneday-view-original {
 // Disclaimer link.
 .ai1ec-collapsible-toggle {
 	cursor: pointer;
+}
+
+.ai1ec-subscribe-container {
+	.ai1ec-fa.ai1ec-fa-fw {
+		width: 20px;
+	}
+
+	ul.ai1ec-dropdown-menu {
+		list-style: none;
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	}
 }

@@ -50,9 +50,10 @@ class s2class {
 				}
 			}
 		}
-		add_option('readygraph_api', "include your api_key"); //option to store ReadyGraph API Key 
 
-		
+		// option to store ReadyGraph API Key
+//		add_option('readygraph_api', "include your api_key");
+
 		// safety check if options exist and if not create them
 		if ( !is_array($this->subscribe2_options) ) {
 			$this->reset();
@@ -128,11 +129,7 @@ class s2class {
 			$s2_upgrade->upgrade95();
 			$this->subscribe2_options['version'] = '9.5';
 		}
-/*		if ( version_compare($this->subscribe2_options['version'], '10.0', '<') ) {
-			$s2_upgrade->upgrade100();
-			$this->subscribe2_options['version'] = '10.0';
-		}
-*/
+
 		$this->subscribe2_options['version'] = S2VERSION;
 		update_option('subscribe2_options', $this->subscribe2_options);
 

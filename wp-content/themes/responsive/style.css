@@ -4159,6 +4159,11 @@ table.cart td.actions .coupon .input-text {
 	padding-left: 3px;
 }
 
+div.acx_fsmi_float_fix.widget-acx-social-icons-widget-3-widget {
+    position: relative;
+	left: -5.5px;
+}
+
 /* =Alignments Extras
 -------------------------------------------------------------- */
 .left {

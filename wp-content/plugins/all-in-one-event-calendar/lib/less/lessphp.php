@@ -65,8 +65,6 @@ class Ai1ec_Less_Lessphp extends Ai1ec_Base {
 			'style.less',
 			'event.less',
 			'calendar.less',
-			'override.less',
-			'../style.less',
 		);
 	}
 
@@ -111,6 +109,7 @@ class Ai1ec_Less_Lessphp extends Ai1ec_Base {
 
 		// Allow extensions to add their own LESS files.
 		$this->files = apply_filters( 'ai1ec_less_files', $this->files );
+		$this->files[] = 'override.less';
 
 		// Find out the active theme URL.
 		$option      = $this->_registry->get( 'model.option' );
@@ -135,13 +134,6 @@ class Ai1ec_Less_Lessphp extends Ai1ec_Base {
 					continue;
 				}
 			}
-			// If the file is a CSS file, no need to parse it, just serve it as usual.
-			$ext = pathinfo( $file_to_parse->get_name(), PATHINFO_EXTENSION );
-			if ( 'css' === $ext ) {
-				$this->parsed_css .= $file_to_parse->get_content();
-				continue;
-			}
-
 			// We prepend the unparsed variables.less file we got earlier.
 			// We do this as we do not import that anymore in the less files.
 			$this->unparsed_variable_file .= $file_to_parse->get_content();
@@ -156,12 +148,12 @@ class Ai1ec_Less_Lessphp extends Ai1ec_Base {
 			}
 		}
 		$variables['fontdir'] = '~"' . $theme['theme_url'] . '/font"';
-		$variables['fontdir_default'] = '~"' . $this->default_theme_url . '/font"';
+		$variables['fontdir_default'] = '~"' . $this->default_theme_url . 'font"';
 		$variables['imgdir'] = '~"' . $theme['theme_url'] . '/img"';
-		$variables['imgdir_default'] = '~"' . $this->default_theme_url . '/img"';
+		$variables['imgdir_default'] = '~"' . $this->default_theme_url . 'img"';
 
 		try {
-			$this->parsed_css .= $this->lessc->parse(
+			$this->parsed_css = $this->lessc->parse(
 				$this->unparsed_variable_file,
 				$variables
 			);

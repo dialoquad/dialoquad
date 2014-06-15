@@ -28,9 +28,16 @@ class Ai1ec_Email_Notification extends Ai1ec_Notification {
 		$this->_translations = $translations;
 	}
 
-	public function __construct( $message, array $recipients, $subject ) {
-		parent::__construct( $message, $recipients );
-		$this->_subject = $subject;
+	public function __construct(
+		Ai1ec_Registry_Object $registry,
+		$message,
+		array $recipients,
+		$subject
+	) {
+		parent::__construct( $registry );
+		$this->_message    = $message;
+		$this->_recipients = $recipients;
+		$this->_subject    = $subject;
 	}
 
 	public function send() {

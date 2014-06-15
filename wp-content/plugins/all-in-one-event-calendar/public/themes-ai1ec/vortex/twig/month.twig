@@ -61,7 +61,9 @@
 										</div>
 									</a>
 
-									{% include 'event-popup.twig' %}
+									{% include 'event-popup.twig' with {
+									'text_venue_separator': text_venue_separator
+									} %}
 
 								{% endfor %}
 							</div>
