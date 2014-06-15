@@ -61,7 +61,7 @@ timer_start();
 wp_debug_mode();
 
 // For an advanced caching plugin to use. Uses a static drop-in because you would only want one.
-if ( !WP_CACHE )
+if ( WP_CACHE )
 	WP_DEBUG ? include( WP_CONTENT_DIR . '/advanced-cache.php' ) : @include( WP_CONTENT_DIR . '/advanced-cache.php' );
 
 // Define WP_LANG_DIR if not set.
