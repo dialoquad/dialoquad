@@ -36,6 +36,12 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 	/** MySQL hostname */
 	define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST') . ':' . getenv('OPENSHIFT_MYSQL_DB_PORT'));
 
+	/** Debug mode **/	
+	define('WP_DEBUG', false);
+
+	/** Generate inplace deubg log **/
+	define('WP_DEBUG_DISPLAY', false);
+
 /** These settings can be configured for your local development environment
 	and will not affect your OpenShift configuration */
 } else {
@@ -55,6 +61,12 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 	
 	//Enable Linux to write files
 	define('FS_METHOD','direct');	 
+	
+	/** Debug mode **/	
+	define('WP_DEBUG', true);
+
+	/** Generate inplace deubg log **/
+	define('WP_DEBUG_DISPLAY', true);
 }
 
 
@@ -110,7 +122,7 @@ define('WPLANG', 'zh_TW');
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
-define('WP_DEBUG', true);
+//define('WP_DEBUG', true);
 
 /* That's all, stop editing! Happy blogging. */
 
