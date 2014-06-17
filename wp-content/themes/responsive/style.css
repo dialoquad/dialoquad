@@ -4230,7 +4230,7 @@ BDO[DIR="rtl"] {
 
 /* =Just Font
 -------------------------------------------------------------- */
-html {
+/*html {
 	opacity: 0;
 }
 
@@ -4245,7 +4245,7 @@ html {
 .jf-inactive {
 	opacity: 1 !important;
 }
-
+*/
 /* =Media Print
 If you're working on a Child Theme, make sure that all
 media queries are included in your style.css
