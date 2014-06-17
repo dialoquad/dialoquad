@@ -35,7 +35,10 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 
 	/** MySQL hostname */
 	define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST') . ':' . getenv('OPENSHIFT_MYSQL_DB_PORT'));
-
+	
+	//Added by WP-Cache Manager
+	define( 'WPCACHEHOME', '/var/lib/openshift/539e42215973ca1fe10003d0/app-root/runtime/repo/wp-content/plugins/wp-super-cache/' );
+ 
 	/** Debug mode **/	
 	define('WP_DEBUG', false);
 
@@ -57,7 +60,7 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 	define('DB_HOST', 'localhost:3306');
 	
 	//Added by WP-Cache Manager
-	define( 'WPCACHEHOME', '/home/user_account/dialoquad/app-root/dialoquad/wp-content/plugins/wp-super-cache/' ); 
+	define( 'WPCACHEHOME', '/home/user_account/dialoquad/app-root/dialoquad/wp-content/plugins/wp-super-cache/' );
 	
 	//Enable Linux to write files
 	define('FS_METHOD','direct');	 
