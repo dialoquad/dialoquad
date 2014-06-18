@@ -17,6 +17,8 @@ if [ ! -d $OPENSHIFT_DATA_DIR/blogs.dir ]; then
 fi
 
 ln -sf ${OPENSHIFT_DATA_DIR}blogs.dir ${OPENSHIFT_REPO_DIR}wp-content/
+echo "Rebuilding data/uploads/ dependency"
+@rm -rf ${OPENSHIFT_REPO_DIR}wp-content/uploads
 ln -sf ${OPENSHIFT_DATA_DIR}uploads   ${OPENSHIFT_REPO_DIR}wp-content/
 
 set -e
@@ -36,10 +38,10 @@ then
 fi
 
 # Confirm database exists, if not create it
-if ! /usr/bin/mysql -u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -P "$OPENSHIFT_MYSQL_DB_PORT" -e "select * from wp_commentmeta;" "$OPENSHIFT_APP_NAME" > /dev/null 2>&1
-then
-    echo
-    echo "Database schema not yet added, WordPress is ready for install by visiting the site."
-else
-    echo "Database already configured."
-fi
+#if ! /usr/bin/mysql -u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -P "$OPENSHIFT_MYSQL_DB_PORT" -e "select * from wp_commentmeta;" "$OPENSHIFT_APP_NAME" > /dev/null 2>&1
+#then
+#    echo
+#    echo "Database schema not yet added, WordPress is ready for install by visiting the site."
+#else
+#    echo "Database already configured."
+#fi

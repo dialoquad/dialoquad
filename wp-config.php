@@ -28,14 +28,10 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 	define('DB_NAME', getenv('OPENSHIFT_APP_NAME'));
 
 	/** MySQL database username */
-	//define('DB_USER', getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
+	define('DB_USER', getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
 
 	/** MySQL database password */
-	//define('DB_PASSWORD', getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
-
-	define('DB_USER', 'the_account');
-
-	define('DB_PASSWORD', 'the_password');
+	define('DB_PASSWORD', getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
 	
 	/** MySQL hostname */
 	define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST') . ':' . getenv('OPENSHIFT_MYSQL_DB_PORT'));
