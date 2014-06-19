@@ -60,7 +60,7 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 	define('DB_HOST', 'localhost:3306');
 	
 	//Added by WP-Cache Manager
-define( 'WPCACHEHOME', '/var/lib/openshift/539fc8cbe0b8cddb680000cd/app-root/runtime/repo/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
+	define( 'WPCACHEHOME', '/home/user_account/dialoquad/app-root/dialoquad/wp-content/plugins/wp-super-cache/' );
 	
 	//Enable Linux to write files
 	define('FS_METHOD','direct');	 
