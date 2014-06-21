@@ -18,7 +18,7 @@ fi
 
 ln -sf ${OPENSHIFT_DATA_DIR}blogs.dir ${OPENSHIFT_REPO_DIR}wp-content/
 echo "Rebuilding data/uploads/ dependency"
-@rm -rf ${OPENSHIFT_REPO_DIR}wp-content/uploads
+rm -rf ${OPENSHIFT_REPO_DIR}wp-content/uploads
 ln -sf ${OPENSHIFT_DATA_DIR}uploads   ${OPENSHIFT_REPO_DIR}wp-content/
 
 set -e
