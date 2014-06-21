@@ -1,0 +1,236 @@
+/**
+ * @package Blue Hat CDN
+ * @version 2.9.4
+ * @copyright (C) Copyright 2006-2014 Blue Hat Network, BlueHatNetwork.com. All rights reserved.
+ * @license GNU/GPL http://www.gnu.org/licenses/gpl-3.0.txt
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#bhncdn_main_container {
+	width: auto;
+	padding: 0 1px 0 0;
+}
+
+#bhncdn_main_container a {
+	color: #2F82A8 !important;
+	text-decoration: none;
+}
+
+#bhncdn_main_container a:hover {
+	color: #2F7697;
+	text-decoration: underline;
+}
+
+#bhncdn_main_container a.ui-tabs-anchor:hover {
+	text-decoration: none !important;
+}
+
+#bhncdn_main_container .ui-jqgrid-btable a:hover {
+	text-decoration: underline;
+}
+
+#files_grid tbody td {
+	padding: 0 2px 0 3px;
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv {
+	overflow: hidden;
+}
+
+.icon-16-bluehatcdn {
+	background-image: url(../images/icons/bluehatcdn-icon-16.png);
+}
+
+.icon-24-bluehatcdn {
+	background-image: url(../images/icons/bluehatcdn-icon-24.png);
+}
+
+.icon-32-bluehatcdn {
+	background-image: url(../images/icons/bluehatcdn-icon-32.png);
+}
+
+.icon-48-bluehatcdn {
+	background-image: url(../images/icons/bluehatcdn-icon-48.png);
+}
+
+.bhnAdminForm td.bhnLabelCell,
+.bhnAdminFormLight td.bhnLabelCell {
+	text-align: right;
+}
+
+.ui-tooltip {
+	background-color: white;
+	font-size: 1.1em;
+	font-weight: normal;
+	padding: 9px 12px;
+	border-radius: 6px;
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+#progressbar {
+	position: absolute;
+	width: 40%;
+	top: 45%;
+	left: 25%;
+}
+
+.ui-progressbar {
+	position: relative;
+}
+
+.progress-label {
+	position: absolute;
+	left: 31%;
+	top: 6px;
+	text-shadow: 1px 1px 0 black;
+	color: white;
+	font-weight: bold;
+}
+
+#status_msg span {
+	font-size: 0.955em;
+}
+
+div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer {
+	width: 530px;
+	color: white !important;
+}
+
+#fbox_files_grid input[type=text] {
+	width: 290px !important;
+}
+
+.jqgrow a:hover {
+	text-decoration: underline;
+}
+
+.bhn-clr {
+	float: none;
+	display: block;
+	height: 1px;
+	font-size: 1px;
+	line-height: 1px;
+	clear: both;
+}
+
+.bhn-help-icon,
+a.bhn-help-icon {
+	display: inline-block;
+	text-align: center;
+	background-color: #E2EDF6;
+	padding: 1px 4px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	text-decoration: none;
+	margin: 0 0 0 2px;
+	font-size: 0.865em;
+	border: 1px solid #B5D4EC;
+}
+
+.bhn-help-icon:hover,
+a.bhn-help-icon:hover {
+	text-decoration: none !important;
+	background-color: #C8DEF0 !important;
+}
+
+.bhn-error-msg {
+	color: #EA2525; 
+	font-size: 1.3em;
+}
+
+#bhn_loadingbar {
+	z-index: 1000;
+	position: fixed;
+	position: absolute;
+	display: none;
+	width: 25%;
+	background-color: #9A9A99;
+	padding: 5px 10px;
+	color: white;
+	text-align: center;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border: 4px solid #575757;
+	font-size: 1.255em;
+}
+
+#bhncdn_main_container h3 {
+	font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+	font-size: 1.2em;
+	color: #316E97;
+}
+
+#file_stats {
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	word-spacing: -0.205em;
+	letter-spacing: -0.003em;
+	font-size: 0.972em;
+	color: #646E71;
+	float: left;
+}
+
+.bhn_errors {
+	width: auto;
+	border-radius: 5px;
+	border: 3px solid #DE3280;
+	margin: 0 auto 10px auto;
+	float: none;
+	clear: both;
+	text-align: center;
+	padding: 7px 3px;
+	font-size: 1.2em;
+	color: #5F6878;
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+}
+
+#alertmod_files_grid {
+	background-color: white;
+	border-radius: 5px;
+	padding: 5px 5px;
+	font-size: 1.0456em;
+	border: 1px solid #90E4E5;
+}
+
+#alertmod_files_grid .ui-jqdialog-title {
+	font-weight: bold;
+}
+
+.bhnLabelCell label {
+	display: inline-block;
+}
+
+.feature_checkbox {
+	margin: 0 !important;
+}
+
+.bhn_header {
+	background: transparent url(../images/icons/bluehatcdn-icon-48.png) no-repeat left center;
+	padding: 0 0 0 52px;
+	margin: 2px 0 3px 0;
+	line-height: 48px;
+	font-size: 23px;
+	color: #435FA1;
+	display: block;
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+	word-spacing: -3px;
+}
+
+.ui-jqgrid .ui-pg-input {
+	height: 15px;
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv { 
+	overflow-y: scroll;
+}
