@@ -42,9 +42,9 @@ if ( !defined('ABSPATH')) exit;
 
 <?php wp_enqueue_style('responsive-style', get_stylesheet_uri(), false, '1.8.8');?>
 <?php if ( is_category() || is_single() || is_search()) { ?>
-	<style type="text/css">
-.menu { display: block !important; }
-#search-head { visibility:visible !important; }
+<style type="text/css">
+	.menu { display: block !important; }
+	#search-head { visibility:visible !important; }
 </style>
 <?php } ?>
 
@@ -55,10 +55,10 @@ if ( !defined('ABSPATH')) exit;
 <?php } ?>
 
 <?php if ( is_page() ) { ?>
-	<style type="text/css">
-.breadcrumb-list,.post-meta,#respond { 
-	display: none !important; 
-}
+<style type="text/css">
+	.breadcrumb-list,.post-meta,#respond { 
+		display: none !important; 
+	}
 </style>
 <?php } ?>
 <?php wp_head(); ?>
@@ -70,117 +70,129 @@ if ( !defined('ABSPATH')) exit;
 <?php } ?>
 <?php if(is_home()): ?>
 <noscript>
-            <style>
-                .cn-images img{position: relative;display: block;border-bottom: 5px solid #d0ab47;} 
-                .cn-slideshow{height: auto;}
-            </style>
-        </noscript>
-		<script id="barTmpl" type="text/x-jquery-tmpl">
-            <div class="cn-bar">
-                <div class="cn-nav">
-					<a href="#" class="cn-nav-prev">
-                        <span>Previous</span>
-						<div style="background-image:url(${prevSource});"></div> 
-					</a>
-					<a href="#" class="cn-nav-next">
-                        <span>Next</span>
-						<div style="background-image:url(${nextSource});"></div>
-					</a>
-                </div><!-- cn-nav -->
-                <div class="cn-nav-content">
-                    <div class="cn-nav-content-prev">
-                        <span>上一則</span>
-                        <h3>${prevTitle}</h3>
-                    </div>
-                    <div class="cn-nav-content-current">
-                        <span>現正觀看</span>
-                        <h2>${currentTitle}</h2>
-                    </div>
-                    <div class="cn-nav-content-next">
-                        <span>下一則</span>
-                        <h3>${nextTitle}</h3>
-                    </div>
-                </div><!-- cn-nav-content -->
-            </div><!-- cn-bar -->
-		</script>
-        <?php endif;?>
-        <script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
-		  ga('create', 'UA-39738806-1', 'dialoquad.net');
-		  ga('send', 'pageview');
-       </script>
-        
-        
+    <style>
+        .cn-images img{position: relative;display: block;border-bottom: 5px solid #d0ab47;} 
+        .cn-slideshow{height: auto;}
+    </style>
+</noscript>
+<script id="barTmpl" type="text/x-jquery-tmpl">
+	<div class="cn-bar">
+    	<div class="cn-nav">
+			<a href="#" class="cn-nav-prev">
+    			<span>Previous</span>
+				<div style="background-image:url(${prevSource});"></div> 
+			</a>
+			<a href="#" class="cn-nav-next">
+    			<span>Next</span>
+				<div style="background-image:url(${nextSource});"></div>
+			</a>
+    	</div><!-- cn-nav -->
+    	<div class="cn-nav-content">
+    		<div class="cn-nav-content-prev">
+    			<span>上一則</span>
+    			<h3>${prevTitle}</h3>
+    		</div>
+    		<div class="cn-nav-content-current">
+    			<span>現正觀看</span>
+    			<h2>${currentTitle}</h2>
+    		</div>
+    		<div class="cn-nav-content-next">
+    			<span>下一則</span>
+    			<h3>${nextTitle}</h3>
+    		</div>
+    	</div><!-- cn-nav-content -->
+    </div><!-- cn-bar -->
+</script>
+<?php endif;?>
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-39738806-1', 'dialoquad.net');
+	ga('send', 'pageview');
+</script>
+
+
 </head>
 
 <body <?php body_class(); ?>>
-                 
-<?php responsive_container(); // before container hook ?>
-<div id="container" class="hfeed">
-         
-    <?php responsive_header(); // before header hook ?>
-    
-    <div id="header">
-    <div class="wide-container">
-        <?php if (has_nav_menu('top-menu', 'responsive')) { ?>
-	        <?php wp_nav_menu(array(
-				    'container'       => '',
-					'fallback_cb'	  =>  false,
-					'menu_class'      => 'top-menu',
-					'theme_location'  => 'top-menu')
-					); 
-				?>
-        <?php } ?>
-        
-    <?php responsive_in_header(); // header hook ?>
-   
-	<?php if ( get_header_image() != '' ) : ?>
-               
-        <div id="logo">
-            <a href="<?php echo home_url('/'); ?>"><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>" /></a>
-        </div><!-- end of #logo -->
-        
-    <?php endif; // header image was removed ?>
+	
+	<!-- Facebook like embedded code -->
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=493040587425313&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 
-    <?php if ( !get_header_image() ) : ?>
-                
-        <div id="logo">
-            <span class="site-name"><a href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home"><?php bloginfo('name'); ?></a></span>
-            <span class="site-description"><?php bloginfo('description'); ?></span>
-        </div><!-- end of #logo -->  
+	<?php responsive_container(); // before container hook ?>
+	<div id="container" class="hfeed">
 
-    <?php endif; // header image was removed (again) ?>
-    <div id="search-head" class="widget-wrapper widget_search"><?php get_search_form(); ?></div>
-     </div><!-- end of .narrow-container -->
-     <div class="landing-box">
-     <div class="wide-container">
-    <?php get_sidebar('top'); ?>
-			    
+    	<?php responsive_header(); // before header hook ?>
+
+    	<div id="header">
+    		<div class="wide-container">
+    			<?php if (has_nav_menu('top-menu', 'responsive')) { ?>
 				<?php wp_nav_menu(array(
-				    'container'       => '',
+				'container'       => '',
+				'fallback_cb'	  =>  false,
+				'menu_class'      => 'top-menu',
+				'theme_location'  => 'top-menu')
+				); 
+				?>
+				<?php } ?>
+
+				<?php responsive_in_header(); // header hook ?>
+
+				<?php if ( get_header_image() != '' ) : ?>
+
+				<div id="logo">
+    				<a href="<?php echo home_url('/'); ?>"><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>" /></a>
+    			</div><!-- end of #logo -->
+
+    			<?php endif; // header image was removed ?>
+
+    			<?php if ( !get_header_image() ) : ?>
+
+    			<div id="logo">
+    				<span class="site-name"><a href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home"><?php bloginfo('name'); ?></a></span>
+    				<span class="site-description"><?php bloginfo('description'); ?></span>
+    			</div><!-- end of #logo -->  
+
+    			<?php endif; // header image was removed (again) ?>
+    			<div id="search-head" class="widget-wrapper widget_search"><?php get_search_form(); ?></div>
+    		</div><!-- end of .narrow-container -->
+    		<div class="landing-box">
+    			<div class="wide-container">
+    				<?php get_sidebar('top'); ?>
+
+					<?php wp_nav_menu(array(
+					'container'       => '',
 					'theme_location'  => 'header-menu')
 					); 
-				?>
-                
-            <?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
-	            <?php wp_nav_menu(array(
-				    'container'       => '',
+					?>
+
+					<?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
+					<?php wp_nav_menu(array(
+					'container'       => '',
 					'menu_class'      => 'sub-header-menu',
 					'theme_location'  => 'sub-header-menu')
 					); 
-				?>
-            <?php } ?>
-	</div><!-- end of .wide-container -->
-    </div><!-- end of .landing-box -->
-    </div>
-    <!-- end of #header -->
-    
-    <?php responsive_header_end(); // after header hook ?>
-    
-	<?php responsive_wrapper(); // before wrapper ?>
-    <div id="wrapper" class="clearfix">
-    <?php responsive_in_wrapper(); // wrapper hook ?>
+					?>
+					<?php } ?>
+				</div><!-- end of .wide-container -->
+    		</div><!-- end of .landing-box -->
+    	</div>
+    	<!-- end of #header -->
+
+    	<?php responsive_header_end(); // after header hook ?>
+
+		<?php responsive_wrapper(); // before wrapper ?>
+    	<div id="wrapper" class="clearfix">
+    		<?php responsive_in_wrapper(); // wrapper hook ?>

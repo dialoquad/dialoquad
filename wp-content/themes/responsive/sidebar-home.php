@@ -48,7 +48,7 @@ if ( !defined('ABSPATH')) exit;
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %s', 'responsive'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h1>
 
 					<?php wpe_excerpt('wpe_excerptlength_random', 'wpe_excerptmore');  $count++;?>
-					<iframe id="facebook-like" src="//www.facebook.com/plugins/like.php?href=<?php echo get_site_url();?>/?p=<?php echo get_the_ID();?>&send=false&layout=button_count&width=450&show_faces=true&action=like&colorscheme=light&font&height=80" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+					<div class="fb-like" id="facebook-like-random" data-href=<?php echo get_site_url();?> data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 				</div>
 
 
