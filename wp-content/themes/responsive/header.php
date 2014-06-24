@@ -40,7 +40,7 @@ if ( !defined('ABSPATH')) exit;
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
 
-<?php wp_enqueue_style('responsive-style', get_stylesheet_uri(), false, '1.8.8');?>
+<?php wp_enqueue_style('responsive-style', get_stylesheet_uri(), true, '1.8.8');?>
 <?php if ( is_category() || is_single() || is_search()) { ?>
 <style type="text/css">
 	.menu { display: block !important; }
@@ -126,7 +126,7 @@ if ( !defined('ABSPATH')) exit;
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) return;
 			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=493040587425313&version=v2.0";
+			js.async = true; js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=493040587425313&version=v2.0";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>

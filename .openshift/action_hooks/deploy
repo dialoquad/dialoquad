@@ -17,9 +17,6 @@ if [ ! -d $OPENSHIFT_DATA_DIR/blogs.dir ]; then
 fi
 
 ln -sf ${OPENSHIFT_DATA_DIR}blogs.dir ${OPENSHIFT_REPO_DIR}wp-content/
-echo "Moving data/uploads/ for CDN"
-rm -rf ${OPENSHIFT_REPO_DIR}wp-content/uploads
-mv ${OPENSHIFT_DATA_DIR}uploads   ${OPENSHIFT_REPO_DIR}wp-content/
 #ln -sf ${OPENSHIFT_DATA_DIR}uploads   ${OPENSHIFT_REPO_DIR}wp-content/
 
 
