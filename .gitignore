@@ -2,3 +2,4 @@ wp-content/uploads
 wp-content/cache
 *.swp
 *.sh
+!deploy.sh
