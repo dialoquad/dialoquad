@@ -64,7 +64,7 @@ if ( !defined('ABSPATH')) exit;
       							<?php the_title(); ?>
 
       					</a></div><div class="allpost-meta"><?php responsive_post_meta_data(); ?></div>
-						<div class="fb-like" id="facebook-like" data-href=<?php echo get_site_url();?> data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+          				<iframe id="facebook-like" src="//www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
       				</div>
 
       			</div></li>

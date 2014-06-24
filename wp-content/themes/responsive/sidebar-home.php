@@ -48,11 +48,11 @@ if ( !defined('ABSPATH')) exit;
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %s', 'responsive'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a></h1>
 
 					<?php wpe_excerpt('wpe_excerptlength_random', 'wpe_excerptmore');  $count++;?>
-					<?php $fblink = urlencode(get_permalink(get_the_ID()));?>
-					<iframe class="facebook-like" src="//www.facebook.com/plugins/like.php?href=<?php echo $fblink; ?>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=493040587425313" scrolling="no" frameborder="0" style="border:none;" allowTransparency="true"></iframe>				
+          			<iframe id="facebook-like" src="//www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				</div>
-			</div>
-		</div>
+
+
+		</div></div>
 		<?php } ?>
 
 
