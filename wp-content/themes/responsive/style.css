@@ -1933,8 +1933,6 @@ p.srp-widget-date{
 	clear: both;
 	display:block;
 
-	/* position: absolute; */
-	/* top: 0px; */
 }
 
 .post-entry p{
@@ -1960,7 +1958,7 @@ p.srp-widget-date{
 	/*clear: both;*/
 	color: #9f9f9f;
 	font-size: 12px;
-	margin-bottom: 2px;
+	margin-bottom: 3px;
 }
 
 .post-edit {
@@ -2105,7 +2103,7 @@ padding: 20px 20px 2px 20px;
 	margin-bottom: 1.0em;
 }
 
-.random #facebook-like-random {
+.random #facebook-like {
 	position: absolute;
 	bottom: 0px;
 	padding: 5px 15px 15px 15px;
@@ -2237,12 +2235,6 @@ padding: 20px 20px 2px 20px;
 	height: 26px !important;
 }
 
-.fb_iframe_widget iframe {
-	position: absolute;
-	bottom: 0px;
-	padding: 1px 0px;
-}
-
 .fb-like span {
 	height: 40px !important;
 }
@@ -2298,12 +2290,12 @@ padding: 20px 20px 2px 20px;
 	overflow:hidden; 
 	width:450px; 
 	height: 24px;
-	margin: 5px 0 4px 0;
+	margin: 5px 0 0 0;
 	display: block;
 }
 
 #facebook-like-random {
-	/* display: none; */
+	display: none;
 	border:none; 
 	clear: both;
 	overflow:hidden; 
