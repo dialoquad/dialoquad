@@ -72,6 +72,16 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_image_size( 'banner-thumb', 1280, 800, true ); // Unlimited Height Mode
 }
 
+// ** Set Version for Development css ** //
+
+function css_version( $args ) {
+	$args .= '?';
+	$args .= date('l jS \of F Y h:i:s A'); 
+	return $args;
+}
+
+add_filter( 'stylesheet_uri', 'css_version' );
+
 // ** Customize excerpt length ** //
 
 function wpe_excerptlength_category( $length ) {
