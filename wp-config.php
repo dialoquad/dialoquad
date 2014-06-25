@@ -15,7 +15,6 @@
  */
 
 
-
 // ** WP super cache setting ** //
 define('WP_CACHE', true); 
 
