@@ -12,6 +12,7 @@ ExpiresByType application/pdf "access plus 1 month"
 ExpiresByType text/x-javascript "access plus 1 month"
 ExpiresByType application/x-shockwave-flash "access plus 1 month"
 ExpiresByType image/x-icon "access plus 1 year"
+ExpiresDefault "access plus 1 year"
 </IfModule>
 ## EXPIRES CACHING ##
 

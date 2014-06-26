@@ -97,7 +97,7 @@ function wpe_excerptlength_random( $length ) {
 }
 
 function wpe_excerptlength_search( $length ) {  
-    return 400;
+    return 300;
 }
 
 function wpe_excerptmore( $more ) {

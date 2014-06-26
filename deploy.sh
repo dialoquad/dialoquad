@@ -27,6 +27,13 @@ push(){
 	git remote set-url --push origin no_push
 }
 
+
+force-push(){
+	git remote set-url --push origin ssh://539fc8cbe0b8cddb680000cd@dialoquad-four.rhcloud.com/~/git/dialoquad.git/
+	git push -f
+	git remote set-url --push origin no_push
+}
+
 #post-push hook scripts
 
 post-push(){
@@ -42,6 +49,10 @@ rhc ssh dialoquad --command 'mv app-root/data/wp-cache-config.php app-root/repo/
 if [ "$1" = "pre-push" ]; then
 	pre-push
 elif [ "$1" = "post-push" ]; then
+	post-push
+elif [ "$1" = "-f" ]; then
+	pre-push
+	force-push
 	post-push
 elif [ -z "$*" ]; then
 	pre-push

@@ -91,7 +91,7 @@ class SearchExcerpt {
                     if (($q = strpos($text, ' ', max(0, $p - 480))) !== false && 
                          $q < $p)
                     {
-                        $end = substr($text, $p, 640);
+                        $end = substr($text, $p, 1280);
                         if (($s = strrpos($end, ' ')) !== false && $s > 0) {
                             $ranges[$q] = $p + $s;
                             $length += $p + $s - $q;
@@ -104,7 +104,7 @@ class SearchExcerpt {
                         // for the case of asian text without whitespace
                         $q = _jamul_find_1stbyte($text, max(0, $p - 480));
                         $q = _jamul_find_delimiter($text, $q);
-                        $s = _jamul_find_1stbyte_reverse($text, $p + 640, $p);
+                        $s = _jamul_find_1stbyte_reverse($text, $p + 1280, $p);
                         $s = _jamul_find_delimiter($text, $s);
                         if (($s >= $p) && ($q <= $p)) {
                             $ranges[$q] = $s;
@@ -153,9 +153,6 @@ class SearchExcerpt {
 
         $text = (isset($newranges[0]) ? '' : '...&nbsp;').
             implode('&nbsp;...&nbsp;', $out).'&nbsp;...';
-        $text = preg_replace('/('.implode('|', $keys) .')/iu', 
-                             '<strong class="search-excerpt">\0</strong>', 
-                             $text);
         return "<p>$text</p>";
     }
 
@@ -163,6 +160,7 @@ class SearchExcerpt {
         static $filter_deactivated = false;
         global $more;
         global $wp_query;
+		global $myquery;
 
         // If we are not in a search - simply return the text unmodified.
         if (!is_search())
@@ -176,11 +174,21 @@ class SearchExcerpt {
 
         // Get the whole document, not just the teaser.
         $more = 1;
-        $query = SearchExcerpt::get_query($wp_query->query_vars['s']);
+        $myquery = SearchExcerpt::get_query($wp_query->query_vars['s']);
         $content = SearchExcerpt::get_content();
 
-        return SearchExcerpt::highlight_excerpt($query, $content);
+        return SearchExcerpt::highlight_excerpt($myquery, $content);
     }
+
+	function my_highlight($content){
+		global $myquery;
+        if (!is_search())
+            return $content;
+		else
+        	return preg_replace('/('.implode('|', $myquery) .')/iu', 
+                             '<strong class="search-excerpt">\0</strong>', 
+                             $content);
+	}
 }
 
 // The number of bytes used when WordPress looking around to find delimiters
@@ -272,10 +280,11 @@ function _jamul_truncate($string, $byte) {
 }
 
 
+
 // Add with priority=5 to ensure that it gets executed before wp_trim_excerpt
 // in default filters.
-add_filter('get_the_excerpt', array('SearchExcerpt', 'the_excerpt'), 5);
-
+add_filter('the_content', array('SearchExcerpt', 'the_excerpt'), 9);
+add_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 /*
 
 History:

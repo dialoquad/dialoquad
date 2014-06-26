@@ -48,6 +48,10 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 /** These settings can be configured for your local development environment
 	and will not affect your OpenShift configuration */
 } else {
+	/** Define site url **/
+	define('WP_HOME','http://localhost');
+	define('WP_SITEURL','http://localhost');
+
 	define('DB_NAME', 'dialoquad');
 
 	/** MySQL database username */

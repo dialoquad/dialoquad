@@ -135,7 +135,7 @@ if ( !defined('ABSPATH')) exit;
           <?php endif; ?>
         </div>
         <!-- end of .post-meta -->
-         <iframe id="facebook-like" src="//www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;share=true&amp;layout=standard&amp;width=390&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+         <iframe id="facebook-like" src="https://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;share=true&amp;layout=standard&amp;width=390&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
         <div class="post-entry">
           <div id="article-content">
             <?php the_content(__('Read more &#8250;', 'responsive')); ?>

@@ -50,8 +50,8 @@ if ( !defined('ABSPATH')) exit;
                         </span>
                     <?php endif; ?> 
                 </div><!-- end of .post-meta -->
-                <iframe id="facebook-like" src="//www.facebook.com/plugins/like.php?href=<?php the_permalink(); ?>&send=false&layout=standard&width=450&show_faces=true&action=like&colorscheme=light&font&height=80" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-                    <?php the_excerpt() ?>
+                <iframe id="facebook-like" src="https://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+					<?php wpe_excerpt('wpe_excerptlength_search', 'wpe_excerptmore');?>
                     <?php wp_link_pages(array('before' => '<div class="pagination">' . __('Pages:', 'responsive'), 'after' => '</div>')); ?>
                 </div><!-- end of .post-entry -->
                            
