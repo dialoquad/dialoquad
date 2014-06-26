@@ -101,7 +101,7 @@ class Ai1ec_Event extends Ai1ec_Base {
 
 	/**
 	 * Set the event is all day, during the specified number of days
-	 * 
+	 *
 	 * @param number $length
 	 */
 	public function set_all_day( $length = 1 ) {
@@ -711,6 +711,15 @@ class Ai1ec_Event extends Ai1ec_Base {
 			$value = $this->{ '_handle_property_destruct_' . $field }( $value );
 		}
 		return $value;
+	}
+
+	/**
+	 * Allow properties to be modified after cloning.
+	 *
+	 * @return void
+	 */
+	public function __clone() {
+		$this->_entity = clone $this->_entity;
 	}
 
 	/**

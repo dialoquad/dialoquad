@@ -14,6 +14,7 @@
  * @package WordPress
  */
 
+define('RELOCATE', true);
 
 // ** WP super cache setting ** //
 define('WP_CACHE', true); 

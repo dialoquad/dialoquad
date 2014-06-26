@@ -36,6 +36,17 @@ class Ai1ec_Event_Entity extends Ai1ec_Base {
 	}
 
 	/**
+	 * Handle cloning properly to resist property changes.
+	 *
+	 * @return void
+	 */
+	public function __clone() {
+		$this->_start = $this->_registry->get( 'date.time', $this->_start );
+		$this->_end   = $this->_registry->get( 'date.time', $this->_end );
+		$this->_post  = clone $this->_post;
+	}
+
+	/**
 	 * Change stored property.
 	 *
 	 * @param string $name  Name of property to change.

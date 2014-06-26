@@ -119,7 +119,7 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 	 * @return string
 	 */
 	public function get_css_url() {
-		$time = $this->db_adapter->get( self::QUERY_STRING_PARAM );
+		$time = (int) $this->db_adapter->get( self::QUERY_STRING_PARAM );
 		$template_helper = $this->_registry->get( 'template.link.helper' );
 		return add_query_arg(
 			array( self::QUERY_STRING_PARAM => $time, ),

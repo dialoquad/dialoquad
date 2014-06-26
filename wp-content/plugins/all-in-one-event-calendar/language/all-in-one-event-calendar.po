@@ -2,13 +2,13 @@
 # This file is distributed under the same license as the All-in-One Event Calendar by Time.ly package.
 msgid ""
 msgstr ""
-"Project-Id-Version: All-in-One Event Calendar by Time.ly 2.0.12\n"
+"Project-Id-Version: All-in-One Event Calendar by Time.ly 2.0.13\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/all-in-one-event-calendar\n"
-"POT-Creation-Date: 2014-06-11 07:28:05+00:00\n"
+"POT-Creation-Date: 2014-06-17 18:07:03+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-06-11 10:28+0300\n"
+"PO-Revision-Date: 2014-06-17 21:06+0300\n"
 "Last-Translator: Timely <support@time.ly>\n"
 "Language-Team:\n"
 
@@ -1007,6 +1007,137 @@ msgstr " – "
 msgid ", and "
 msgstr ", and "
 
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:24
+msgid ""
+"With the Super Widget, you can embed a calendar into a remote webpage (for "
+"example, a static HTML page hosted on a different server). Here's how:"
+msgstr ""
+"With the Super Widget, you can embed a calendar into a remote webpage (for "
+"example, a static HTML page hosted on a different server). Here's how:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:30
+msgid "Add this line just before the closing <code>&lt;/head&gt;</code> tag:"
+msgstr "Add this line just before the closing <code>&lt;/head&gt;</code> tag:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:40
+msgid ""
+"Insert this markup where you would like to embed the Super Widget (using "
+"default options):"
+msgstr ""
+"Insert this markup where you would like to embed the Super Widget (using "
+"default options):"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:48
+#: lib/html/element/setting/html.php:46
+msgid "Optional."
+msgstr "Optional."
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:52
+msgid "Add options to your Super Widget:"
+msgstr "Add options to your Super Widget:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:58
+#: cache/twig/8c/bf/5b95ce3485f4c39e2038e1d56aaecf6420406be9fa1abc03d9da396d6ce9.php:20
+msgid "Posterboard view:"
+msgstr "Posterboard view:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:62
+#: cache/twig/8c/bf/5b95ce3485f4c39e2038e1d56aaecf6420406be9fa1abc03d9da396d6ce9.php:24
+msgid "Stream view:"
+msgstr "Stream view:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:66
+#: lib/html/element/setting/html.php:39
+msgid "Month view:"
+msgstr "Month view:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:70
+#: lib/html/element/setting/html.php:40
+msgid "Week view:"
+msgstr "Week view:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:74
+#: lib/html/element/setting/html.php:41
+msgid "Day view:"
+msgstr "Day view:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:78
+#: lib/html/element/setting/html.php:42
+msgid "Agenda view:"
+msgstr "Agenda view:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:82
+#: lib/html/element/setting/html.php:44
+msgid "Default view as per settings:"
+msgstr "Default view as per settings:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:87
+#: lib/html/element/setting/html.php:53
+msgid "Filter by event category ID:"
+msgstr "Filter by event category ID:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:91
+#: lib/html/element/setting/html.php:54
+msgid "Filter by event category IDs (separate IDs by comma):"
+msgstr "Filter by event category IDs (separate IDs by comma):"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:96
+#: lib/html/element/setting/html.php:60
+msgid "Filter by event tag ID:"
+msgstr "Filter by event tag ID:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:100
+#: lib/html/element/setting/html.php:61
+msgid "Filter by event tag IDs (separate IDs by comma):"
+msgstr "Filter by event tag IDs (separate IDs by comma):"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:105
+#: lib/html/element/setting/html.php:62
+msgid "Filter by post ID:"
+msgstr "Filter by post ID:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:109
+#: lib/html/element/setting/html.php:63
+msgid "Filter by post IDs (separate IDs by comma):"
+msgstr "Filter by post IDs (separate IDs by comma):"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:114
+msgid "Hide title and navigation buttons:"
+msgstr "Hide title and navigation buttons:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:119
+msgid "Set a default start date: *"
+msgstr "Set a default start date: *"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:127
+msgid ""
+"* Provide a date in the same format specified by the <strong>Input dates in "
+"this format</strong> setting on the <strong>Adding/Editing Events</strong> "
+"tab."
+msgstr ""
+"* Provide a date in the same format specified by the <strong>Input dates in "
+"this format</strong> setting on the <strong>Adding/Editing Events</strong> "
+"tab."
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:133
+#: lib/html/element/setting/html.php:64
+msgid "Warning:"
+msgstr "Warning:"
+
+#: cache/twig/31/41/6a842b873aa15c2afe2fd664e027ecf1ba867877537f21b06052271bb848.php:137
+msgid ""
+"It is currently not supported to embed more than one calendar in the same "
+"page. Do not attempt to embed the calendar via Super Widget in a page that "
+"already displays the calendar."
+msgstr ""
+"It is currently not supported to embed more than one calendar in the same "
+"page. Do not attempt to embed the calendar via Super Widget in a page that "
+"already displays the calendar."
+
+#: cache/twig/33/1c/dabac328da20469e2616008dc56dce67c63be852b24506548f1b388569a9.php:53
+msgid "Dismiss"
+msgstr "Dismiss"
+
 #: lib/calendar-feed/ics.php:38
 msgid "ICS"
 msgstr "ICS"
@@ -1200,11 +1331,15 @@ msgstr ""
 "The plugin is installed, but has not been configured. Please log in as an "
 "Administrator to set it up."
 
-#: lib/exception/handler.php:260
+#: lib/exception/handler.php:176
+msgid "Disabled add-on \"%s\" due to an error"
+msgstr "Disabled add-on \"%s\" due to an error"
+
+#: lib/exception/handler.php:393
 msgid "All In One Event Calendar has been disabled due to an error:"
 msgstr "All In One Event Calendar has been disabled due to an error:"
 
-#: lib/exception/handler.php:268
+#: lib/exception/handler.php:401
 msgid ""
 "<p>If you corrected the error and wish to try reactivating the plugin, <a "
 "href=\"%s\">click here</a>.</p>"
@@ -1268,37 +1403,13 @@ msgstr ""
 "Insert one of these shortcodes into your page body to embed the calendar "
 "into any arbitrary WordPress Page:"
 
-#: lib/html/element/setting/html.php:39
-msgid "Month view:"
-msgstr "Month view:"
-
-#: lib/html/element/setting/html.php:40
-msgid "Week view:"
-msgstr "Week view:"
-
-#: lib/html/element/setting/html.php:41
-msgid "Day view:"
-msgstr "Day view:"
-
-#: lib/html/element/setting/html.php:42
-msgid "Agenda view:"
-msgstr "Agenda view:"
-
 #: lib/html/element/setting/html.php:43
 msgid "Some Other view:"
 msgstr "Some Other view:"
 
-#: lib/html/element/setting/html.php:44
-msgid "Default view as per settings:"
-msgstr "Default view as per settings:"
-
 #: lib/html/element/setting/html.php:45
 msgid "General form:"
 msgstr "General form:"
-
-#: lib/html/element/setting/html.php:46
-msgid "Optional."
-msgstr "Optional."
 
 #: lib/html/element/setting/html.php:47
 msgid ""
@@ -1328,14 +1439,6 @@ msgstr "zodiac-date-ranges"
 msgid "Filter by event category names/slugs (separate names by comma):"
 msgstr "Filter by event category names/slugs (separate names by comma):"
 
-#: lib/html/element/setting/html.php:53
-msgid "Filter by event category ID:"
-msgstr "Filter by event category ID:"
-
-#: lib/html/element/setting/html.php:54
-msgid "Filter by event category IDs (separate IDs by comma):"
-msgstr "Filter by event category IDs (separate IDs by comma):"
-
 #: lib/html/element/setting/html.php:55
 msgid "Filter by event tag name/slug:"
 msgstr "Filter by event tag name/slug:"
@@ -1355,26 +1458,6 @@ msgstr "performing arts"
 #: lib/html/element/setting/html.php:59
 msgid "Filter by event tag names/slugs (separate names by comma):"
 msgstr "Filter by event tag names/slugs (separate names by comma):"
-
-#: lib/html/element/setting/html.php:60
-msgid "Filter by event tag ID:"
-msgstr "Filter by event tag ID:"
-
-#: lib/html/element/setting/html.php:61
-msgid "Filter by event tag IDs (separate IDs by comma):"
-msgstr "Filter by event tag IDs (separate IDs by comma):"
-
-#: lib/html/element/setting/html.php:62
-msgid "Filter by post ID:"
-msgstr "Filter by post ID:"
-
-#: lib/html/element/setting/html.php:63
-msgid "Filter by post IDs (separate IDs by comma):"
-msgstr "Filter by post IDs (separate IDs by comma):"
-
-#: lib/html/element/setting/html.php:64
-msgid "Warning:"
-msgstr "Warning:"
 
 #: lib/html/element/setting/html.php:65
 msgid ""
@@ -1398,7 +1481,7 @@ msgstr "Enter custom font(s)"
 msgid "Length"
 msgstr "Length"
 
-#: lib/notification/admin.php:174
+#: lib/notification/admin.php:178
 msgid "All-in-One Event Calendar"
 msgstr "All-in-One Event Calendar"
 
@@ -2470,9 +2553,9 @@ msgstr "Today background"
 msgid "All-in-One Event Calendar by Time.ly"
 msgstr "All-in-One Event Calendar by Time.ly"
 
-#. #-#-#-#-#  all-in-one-event-calendar.pot (All-in-One Event Calendar by Time.ly 2.0.12)  #-#-#-#-#
+#. #-#-#-#-#  all-in-one-event-calendar.pot (All-in-One Event Calendar by Time.ly 2.0.13)  #-#-#-#-#
 #. Plugin URI of the plugin/theme
-#. #-#-#-#-#  all-in-one-event-calendar.pot (All-in-One Event Calendar by Time.ly 2.0.12)  #-#-#-#-#
+#. #-#-#-#-#  all-in-one-event-calendar.pot (All-in-One Event Calendar by Time.ly 2.0.13)  #-#-#-#-#
 #. Author URI of the plugin/theme
 msgid "http://time.ly/"
 msgstr "http://time.ly/"

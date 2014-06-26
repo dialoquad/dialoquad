@@ -148,7 +148,7 @@ class Image_Cleanup_File_Table extends WP_List_Table
 		$this->_column_headers = array($columns, $hidden, $sortable);
 		$this->pathinfo = wp_upload_dir();
 
-		$per_page = 200;
+		$per_page = 1000;
 	  	$current_page = $this->get_pagenum();
 	
 		$count = 0;

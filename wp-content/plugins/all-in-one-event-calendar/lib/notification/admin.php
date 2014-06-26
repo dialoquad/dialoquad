@@ -42,6 +42,10 @@ class Ai1ec_Notification_Admin extends Ai1ec_Notification {
 	 * @param string $message    Actual message.
 	 * @param string $class      Message box class.
 	 * @param int    $importance Optional importance parameter for the message.
+	 * Levels of importance are as following:
+	 *     - 0 - messages limited to Ai1EC pages;
+	 *     - 1 - messages limited to [0] and Plugins/Updates pages;
+	 *     - 2 - messages limited to [1] and Dashboard.
 	 * @param array  $recipients List of message recipients.
 	 * @param bool   $persistent If set to true, messages needs to be dismissed by user.
 	 *

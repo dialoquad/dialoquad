@@ -5,7 +5,7 @@ calendar, ical, iCalendar, all-in-one, events sync, events widget,
 calendar widget
 Requires WorPress at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 2.0.12
+Stable tag: 2.0.13
 License: GNU General Public License, version 3 (GPL-3.0)
 
 A calendar system with many views, upcoming events widget, color-coded
@@ -171,6 +171,14 @@ http://vimeo.com/55904173
 **[ai1ec post_id="1, 2"]**
 
 == Changelog ==
+
+= Version 2.0.13 =
+* Fixed week view where events spanning multiple days were incorrectly
+rendered;
+* Changed default single event URI to `/event` and make it possible to
+translate them (translation string - 'event')
+* Updated screenshots for base themes;
+* Fixed month view popup location;
 
 = Version 2.0.12 =
 * Fixed ICS import issue where feed meta information was duplicated

@@ -22,4 +22,13 @@ class Ai1ec_Exception extends Exception {
 		return $this->getMessage();
 	}
 
+	/**
+	 * Return the èath of the plugin to disable it.
+	 * If empty it disables core.
+	 * 
+	 * @return string
+	 */
+	public function plugin_to_disable() {
+		return '';
+	}
 }

@@ -14,11 +14,18 @@ class Ai1ec_Post_Content_Check extends Ai1ec_Base {
 	/**
 	 * Checks if post has content for default calendar page and if not sets one.
 	 *
-	 * @param WP_Post $post Post object.
+	 * @param WP_Post|null $post Post object.
 	 *
 	 * @return void Method does not return.
 	 */
-	public function check_content( WP_Post $post ) {
+	public function check_content( $post ) {
+		if (
+			null === $post ||
+			! is_object( $post ) ||
+			! isset( $post->post_content )
+		) {
+			return;
+		}
 		if (
 			empty( $post->post_content ) &&
 			is_page() &&
