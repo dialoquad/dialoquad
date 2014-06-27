@@ -69,7 +69,6 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'post-thumbnails' );
     add_image_size( 'allpost-thumb', 100, 100, true ); // Hard Crop Mode2
 	add_image_size( 'random-thumb', 369, 294, true ); // Soft Crop Mode3
-    //add_image_size( 'archive-thumb', 400, 285, true ); // Hard Crop Mode2
 	add_image_size( 'banner-thumb', 1280, 800, true ); // Unlimited Height Mode
 }
 
@@ -121,6 +120,21 @@ function wpe_excerpt( $length_callback = '', $more_callback = '' ) {
 	$output = '<p>' . $output . '</p>'; // maybe wpautop( $foo, $br )
     echo $output;
 }
+
+// ** Add Etags, Last modified, Expired tags **//
+function addh_custom_options ( $options ) {
+	return array_merge( $options, array(
+	    'add_etag_header' => true,
+	    'generate_weak_etag' => false,
+	    'add_last_modified_header' => true,
+	    'add_expires_header' => true,
+	    'add_cache_control_header' => true,
+	    'cache_max_age_seconds' => 86400,
+	    'cache_max_age_seconds_for_search_results' => 0,
+	) );
+}
+add_filter( 'addh_options', 'addh_custom_options', 10, 1 );
+
 
 // ** Customize tag cloud for tag fog ** //
 
