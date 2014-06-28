@@ -50,7 +50,7 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 	/** Define site url **/
 	define('WP_HOME','http://localhost');
 	define('WP_SITEURL','http://localhost');
-
+	
 	define('DB_NAME', 'dialoquad');
 
 	/** MySQL database username */

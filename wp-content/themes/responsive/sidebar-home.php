@@ -36,7 +36,7 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 	<div id="random-x6">
 
 <?php	$count = 1;
-$recentPosts = new WP_Query( array ( 'orderby' => 'date', 'posts_per_page' => '-1' ) );?>
+$recentPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-1' ) );?>
 
 
 

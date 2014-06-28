@@ -1726,6 +1726,13 @@ p.srp-widget-date{
 	font-family: "xinheiw4";
 }
 
+div.srp-thumbnail-box {
+	display: block;
+	vertical-align: top;
+	float: left;
+	height: 100px;
+	padding-right: 10px;
+}
 
 
 .page .post-title {
@@ -2254,6 +2261,19 @@ padding: 20px 20px 2px 20px;
 
 .srp-widget-excerpt {
 	font-size: 12px;
+	clear: both;
+}
+
+#widgets p.srp-widget-excerpt a {
+	margin-bottom: 0px;
+}
+
+
+#widgets a.srp-post-title-link {
+	margin-bottom: 0px;
+	height: 67px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .srp-content-box {
@@ -4232,21 +4252,21 @@ BDO[DIR="rtl"] {
 /* =Just Font
 -------------------------------------------------------------- */
 /*html {
-	opacity: 0;
+opacity: 0;
 }
 
 .jf-loading { 
-	opacity: 0;
+opacity: 0;
 }
 
 .jf-active { 
-	opacity: 1 !important;
+opacity: 1 !important;
 }
 
 .jf-inactive {
-	opacity: 1 !important;
+opacity: 1 !important;
 }
-*/
+ */
 /* =Media Print
 If you're working on a Child Theme, make sure that all
 media queries are included in your style.css
@@ -4345,6 +4365,10 @@ only screen and (min-device-pixel-ratio:1.5) {
 		width: 70% !important;
 	}
 
+	.srp-widget-excerpt {
+		display: none;
+	}
+
 	img {
 		height: auto !important;
 	}
@@ -4355,6 +4379,14 @@ only screen and (min-device-pixel-ratio:1.5) {
 
 	.grid.col-220.author{
 		width: 23.39% ;
+	}
+
+	div.srp-thumbnail-box {
+		height: 93px;
+	}
+
+	#widgets p.srp-widget-date {
+		font-size: 14px;
 	}
 
 }

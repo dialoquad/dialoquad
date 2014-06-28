@@ -1,5 +1,7 @@
 wp-content/uploads
 wp-content/cache
+wp-content/plugins/wp-minify-fix/cache
+wp-content/plugins/special-recent-posts/cache
 *.swp
 *.sh
 !deploy.sh

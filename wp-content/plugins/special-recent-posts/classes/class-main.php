@@ -889,6 +889,10 @@ class SpecialRecentPostsFree {
 						$srp_content .= $this->srp_create_tag('p', $date_format_mode, array('class' => 'srp-widget-date'));
 					}
 					
+
+					// EOF Content Box.
+					$srp_content .= "</div>";
+					
 					// Checking for Post Content Option.
 					if ('titleexcerpt' == $this->widget_args["post_content_mode"]) {
 						
@@ -934,10 +938,6 @@ class SpecialRecentPostsFree {
 						// Closing post excerpt container.
 						$srp_content .= "</p>";
 					}
-
-					// EOF Content Box.
-					$srp_content .= "</div>";
-					
 					// Adding a clear property for eventual floating elements.
 					$srp_content .= $this->srp_create_tag('div', null, array('style' => 'clear:both; height: 0px;'));
 				}

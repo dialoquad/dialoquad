@@ -493,7 +493,7 @@ class WPMinify {
   function fetch_content($url, $type = '') {
     $cache_file = $this->c->get_plugin_dir().'cache/'.md5($url).$type;
     $content = '';
-    if (file_exists($cache_file)) {
+    if (file_exists($cache_file) && getenv('OPENSHIFT_APP_NAME') != "") {
       // check cache expiration
       $this->refetch_cache_if_expired($url, $cache_file);
 
