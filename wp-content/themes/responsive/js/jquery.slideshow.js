@@ -4,7 +4,7 @@
 	
 		this.$el			= $( element );
 		
-		this.$preloader		= $('<div class="cn-loading">Loading...</div>');
+		this.$preloader		= this.$el.find('div.cn-loading');
 		
 		// images
 		this.$images		= this.$el.find('div.cn-images img').hide();
@@ -35,13 +35,12 @@
 			
 			this.current		= this.options.current;
 			
-			this.$preloader.appendTo( this.$el );
+			//this.$preloader.appendTo( this.$el );
 			
 			var instance		= this; 
 			
 			this._preloadImages( function() {
 				
-				instance.$preloader.hide();
 				
 				instance.$images.eq( instance.current ).show();
 				//instance.$captions.eq( instance.current ).show();
@@ -54,6 +53,7 @@
 				
 				instance._initEvents();
 			
+				instance.$preloader.hide();
 			});
 			
 			var $curImg;

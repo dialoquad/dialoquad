@@ -43,6 +43,7 @@ if ( !defined('ABSPATH')) exit;
     <div id="featured-image" class="grid col-940 fit">
       <div class="wrapper">
         <div id="cn-slideshow" class="cn-slideshow">
+		  <div class="cn-loading">Loading...</div>
           <div class="cn-images">
             <?php	$count = 1;
 		$recentPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-1' ) );?>
@@ -52,7 +53,7 @@ if ( !defined('ABSPATH')) exit;
             <?php if ( has_post_thumbnail()) : ?>
             <?php $src1 = wp_get_attachment_image_src( get_post_thumbnail_id($recentPosts->ID), $size='banner-thumb');
    $src2 = wp_get_attachment_image_src( get_post_thumbnail_id($recentPosts->ID), $size='allpost-thumb');?>
-            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" > <img src="<?php echo $src1[0]?>" alt="image0<?php echo $count; ?>" title="<?php the_title(); ?>" data-thumb="<?php echo $src2[0]?>" <?php if($count==1){echo 'style="display:block;"';}?> /> </a>
+            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" > <img src="<?php echo $src1[0]?>" alt="image0<?php echo $count; ?>" title="<?php the_title(); ?>" data-thumb="<?php echo $src2[0]?>" <?php if($count==1){echo 'style="display:block;opacity:0.3;"';}else{echo 'style="display:none;"';}?> /> </a>
             <div class="cn-captions">
               <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" ><?php wpe_excerpt('wpe_excerptlength_banner', 'wpe_excerptmore'); ?></a>
               <p>by:
