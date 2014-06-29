@@ -2097,6 +2097,15 @@ padding: 20px 20px 2px 20px;
 	padding: 0px 15px;
 }
 
+.random-wrapper#widgets .random .random-title-link a {
+	margin-bottom: 0px;
+}
+
+.random .random-title-link {
+	height: 45px;
+	margin-bottom: 12px;
+}
+
 .random a {
 	font-size: 12px;
 }
@@ -2115,6 +2124,12 @@ padding: 20px 20px 2px 20px;
 	bottom: 0px;
 	padding: 5px 15px 15px 15px;
 }
+
+.random-excerpt {
+	height: 96px;
+	overflow: hidden;
+}
+
 
 .author-wrapper {
 	margin-bottom: 30px;
@@ -2264,6 +2279,15 @@ padding: 20px 20px 2px 20px;
 	clear: both;
 }
 
+.srp-title {
+	height: 72px;
+}
+
+h4.srp-post-title {
+	overflow: hidden;
+	max-height: 67px;
+}
+
 #widgets p.srp-widget-excerpt a {
 	margin-bottom: 0px;
 }
@@ -2271,9 +2295,7 @@ padding: 20px 20px 2px 20px;
 
 #widgets a.srp-post-title-link {
 	margin-bottom: 0px;
-	height: 67px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	max-height: 67px;
 }
 
 .srp-content-box {

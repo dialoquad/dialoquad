@@ -68,7 +68,6 @@ if ( !defined('ABSPATH')) exit;
         </div>
         <!-- cn-slideshow --> 
       </div>
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> 
       <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/jquery.tmpl.min.js"></script> 
       <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/jquery.slideshow.js"></script> 
     </div>
@@ -77,6 +76,11 @@ if ( !defined('ABSPATH')) exit;
   </div>
   <!-- end of #featured --> 
 </div>
+<script type="text/javascript">
+   	jQuery(function() {
+		jQuery('#cn-slideshow').slideshow();
+	});
+</script> 
 <!-- end of .wide-container -->
 <a name="author"></a>
 <div class="wide-container">

@@ -22,14 +22,14 @@ fi
 }
 
 push(){
-	git remote set-url --push origin ssh://539fc8cbe0b8cddb680000cd@dialoquad-four.rhcloud.com/~/git/dialoquad.git/
+	git remote set-url --push origin ssh://53af5dd2500446ddea00097b@dialoquad-four.rhcloud.com/~/git/dialoquad.git/
 	git push
 	git remote set-url --push origin no_push
 }
 
 
 force-push(){
-	git remote set-url --push origin ssh://539fc8cbe0b8cddb680000cd@dialoquad-four.rhcloud.com/~/git/dialoquad.git/
+	git remote set-url --push origin ssh://53af5dd2500446ddea00097b@dialoquad-four.rhcloud.com/~/git/dialoquad.git/ 
 	git push -f
 	git remote set-url --push origin no_push
 }

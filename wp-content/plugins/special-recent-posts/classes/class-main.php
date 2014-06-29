@@ -877,6 +877,7 @@ class SpecialRecentPostsFree {
 
 					// Building linked post title HTML
 					$ptitlelink  =  $this->srp_create_tag('a', $this->extractTitle($post), array('class' => 'srp-post-title-link', 'href' => get_permalink($post->ID), 'title' => $post->post_title));
+
 					$srp_content .= $this->srp_create_tag('h4', $ptitlelink, $ptitle_heading_atts);
 					
 					// Checking if "post_date" option is on.

@@ -127,14 +127,9 @@ if ( !defined('ABSPATH')) exit;
 </div>
 <!-- end #footer -->
 
-
+<!-- Start of DQ custom footer code -->
 <!-- WP-Minify JS -->
-<?php if(is_home()): ?>
-<script type="text/javascript">
-   jQuery(function() {
-		jQuery('#cn-slideshow').slideshow();
-	});
-</script> 
-<?php endif;?>
+<!-- End of DQ custom footer code -->
+
 <?php wp_footer(); ?>
 </body></html>

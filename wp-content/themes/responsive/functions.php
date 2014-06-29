@@ -92,7 +92,7 @@ function wpe_excerptlength_banner( $length ) {
 }
 
 function wpe_excerptlength_random( $length ) {  
-    return 75;
+    return 125;
 }
 
 function wpe_excerptlength_search( $length ) {  
