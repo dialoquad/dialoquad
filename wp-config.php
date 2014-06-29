@@ -23,6 +23,11 @@ define('WP_CACHE', true);
 
 /** These settings are automatically used on your OpenShift Gear*/
 if (getenv('OPENSHIFT_APP_NAME') != "") {
+	/** Define site url **/
+	define('WP_HOME','http://www.dialoquad.net');
+	
+	define('WP_SITEURL','http://www.dialoquad.net');
+
 	/** The name of the database for WordPress */
 	define('DB_NAME', getenv('OPENSHIFT_APP_NAME'));
 
@@ -49,6 +54,7 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 } else {
 	/** Define site url **/
 	define('WP_HOME','http://localhost');
+	
 	define('WP_SITEURL','http://localhost');
 	
 	define('DB_NAME', 'dialoquad');
