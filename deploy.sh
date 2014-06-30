@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#Initialize env var
+
+gitaddr=$(rhc apps | grep "Git URL:" | head -n 1 | awk '{print $3}')
+sshaddr=$(rhc apps | grep "SSH:" | head -n 1 | awk '{print $2}')
+mysqlattr='-u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -P "$OPENSHIFT_MYSQL_DB_PORT"'
+
+
+#pre-push hook scripts
 
 pre-push(){
 if rhc ssh dialoquad --command '[ -d app-root/repo/wp-content/uploads ]'
@@ -22,16 +30,26 @@ fi
 }
 
 push(){
-	git remote set-url --push origin ssh://53af5dd2500446ddea00097b@dialoquad-four.rhcloud.com/~/git/dialoquad.git/
+	git remote set-url --push origin "$gitaddr" 
 	git push
 	git remote set-url --push origin no_push
 }
 
 
 force-push(){
-	git remote set-url --push origin ssh://53af5dd2500446ddea00097b@dialoquad-four.rhcloud.com/~/git/dialoquad.git/ 
+	git remote set-url --push "$gitaddr" 
 	git push -f
 	git remote set-url --push origin no_push
+}
+
+clean-push(){
+	git checkout --orphan deploy
+	git commit -m "Deploy Commit"
+	git remote set-url --push origin "$gitaddr"
+	git push origin deploy
+	git remote set-url --push origin no_push
+	git checkout master
+	git branch -d deploy
 }
 
 #post-push hook scripts
@@ -43,8 +61,80 @@ echo "Restoring cache setting files/"
 rhc ssh dialoquad --command 'mv app-root/data/wp-cache-config.php app-root/repo/wp-content/'
 }
 
+#mysql scripts
 
-#pre-push hook scripts
+mysql-remote-clean(){
+	if rhc ssh dialoquad --command '[ -e app-root/data/dialoquad.sql ]'; then
+		echo "Warning: Remote mysql dump existed!"
+		echo "Do you wish to delete app-root/data/dialoquad.sql ?"
+		select yn in "Yes" "No"; do
+			case $yn in
+		    	Yes ) rhc ssh dialoquad --command 'rm app-root/data/dialoquad.sql'
+					break
+					;;
+				No ) exit 0
+					;;
+			esac
+		done
+	fi
+	
+}
+
+mysql-download(){
+	echo "Cleaning remote folder for mysql dump"
+	mysql-remote-clean
+	if rhc ssh dialoquad --command "mysqldump ${mysqlattr} dialoquad --add-drop-table > ./app-root/data/dialoquad.sql"; then
+		echo "Dumping database remotely"
+	else
+		exit 1
+	fi
+	echo "Downloading database dumped file"
+	scp "$sshaddr":app-root/data/dialoquad.sql ./
+	echo "Importing into local mysql"
+	if mysql -e 'drop database dialoquad;'; then 
+		echo "Database dropped"
+	else
+		exit 1
+	fi
+	if mysql -e 'create database dialoquad;'; then
+		echo "Database created for import"
+	else
+		exit 1
+	fi
+	if mysql dialoquad < dialoquad.sql; then
+		echo "Successfully imported database"
+	else
+		exit 1
+	fi
+	echo "Cleaning local sql file"
+	rm -f dialoquad.sql
+
+}
+
+mysql-upload(){
+	echo "Cleaning local sql and start dumping database"
+	rm -f dialoquad.sql
+	mysqldump dialoquad --add-drop-table > dialoquad.sql
+	mysql-remote-clean
+	echo "Uploading database"
+	scp dialoquad.sql "$sshaddr":app-root/data
+	if rhc ssh dialoquad --command "mysql ${mysqlattr} -e 'drop database dialoquad'"; then
+		echo "Dropped database dialoquad"
+	else
+		exit 1
+	fi
+	if rhc ssh dialoquad --command "mysql ${mysqlattr} -e 'create database dialoquad'"; then
+		echo "Created database dialoquad for import"
+	else
+		exit 1
+	fi
+	if rhc ssh dialoquad --command "mysql ${mysqlattr} dialoquad < app-root/data/dialoquad.sql"; then
+		echo "Successfully import database"
+	else
+		exit 1
+	fi
+	rm -f dialoquad.sql
+}
 
 if [ "$1" = "pre-push" ]; then
 	pre-push
@@ -54,6 +144,16 @@ elif [ "$1" = "-f" ]; then
 	pre-push
 	force-push
 	post-push
+elif [ "$1" = "clean" ]; then
+	pre-push
+	clean-push
+	post-push
+elif [ "$1" = "mysql" ]; then
+	if [ "$2" = "upload" ]; then
+		mysql-upload
+	elif [ "$2" = "download" ]; then
+		mysql-download
+	fi
 elif [ -z "$*" ]; then
 	pre-push
 	push
