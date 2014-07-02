@@ -197,6 +197,70 @@ function my_wp_generate_tag_cloud( $return, $tags, $args = '' ) {
 	return $return;
 }
 
+// ** Relate Post Query Generated Function **//
+
+function relate_query(){
+   	global $yarpp, $wp_query, $cache_status;
+	$args = array();
+	if ($yarpp->get_option('cross_relate')) {
+		$args['post_type'] = $yarpp->get_post_types();
+	} else {
+		$args['post_type'] = array('post');
+	}
+
+	if (is_numeric($reference_ID)) {
+    	$reference_ID = (int) $reference_ID;
+	} else {
+    	$reference_ID = get_the_ID();
+	}
+
+	if ($the_post = wp_is_post_revision($reference_ID)) $reference_ID = $the_post;
+
+	$yarpp->setup_active_cache($args);
+
+	$options = array(
+    	'domain',
+    	'limit',
+    	'template',
+    	'order',
+    	'promote_yarpp',
+    	'optin'
+	);
+	
+	extract($yarpp->parse_args($args, $options));
+
+	$cache_status = $yarpp->active_cache->enforce($reference_ID);
+	if ($cache_status === YARPP_DONT_RUN) return;
+	if ($cache_status !== YARPP_NO_RELATED) $yarpp->active_cache->begin_yarpp_time($reference_ID, $args);
+
+	$yarpp->save_post_context();
+
+	$wp_query = new WP_Query();
+	$relatePosts = $wp_query;
+
+	if ($cache_status !== YARPP_NO_RELATED) {
+    	$orders = explode(' ', $order);
+    	$relatePosts->query(
+        	array(
+            	'p'         => $reference_ID,
+            	'orderby'   => $orders[0],
+            	'order'     => $orders[1],
+            	'showposts' => $limit,
+            	'post_type' => (isset($args['post_type']) ? $args['post_type'] : $yarpp->get_post_types())
+        	)
+    	);
+	}
+
+    $yarpp->prep_query($yarpp->current_query->is_feed);
+
+    $relatePosts->posts = apply_filters('yarpp_results', $relatePosts->posts, array(
+        'function'      => 'display_related',
+        'args'          => $args,
+        'related_ID'    => $reference_ID)
+    );
+ 	
+	return $relatePosts;
+}
 
 add_filter( 'wp_generate_tag_cloud', 'my_wp_generate_tag_cloud', null , 3 );
 

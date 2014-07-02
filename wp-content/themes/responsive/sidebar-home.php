@@ -35,13 +35,26 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 	</div>
 	<div id="random-x6">
 
-<?php	$count = 1;
-$recentPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-1' ) );?>
-
-
-
-		<?php while ($recentPosts->have_posts()) : $recentPosts->the_post(); ?>
-		<?php if( $count>6 ) { break;}?>
+<?php $randPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-1', 'showposts' => '6' ) );?>
+<?php $count = 1;?>
+<?php global $yarpp, $cache_status;?>
+<?php $recentPosts = relate_query();?>
+<?php //$recentPosts = new WP_Query();$recentPosts = $randPosts;?>
+		<?php while ( $count <=6 ) :?>
+			<?php if($recentPosts->have_posts()) :?> 
+				<?php $recentPosts->the_post();?>
+			<?php else :?>
+				<?php if($recentPosts == $relatedPosts){ break;} ?>
+				<?php unset($wp_query);?>
+				<?php unset($recentPosts);?>
+				<?php if ($cache_status === YARPP_NO_RELATED) {
+            		// Uh, do nothing. Stay very still.
+        		} else {
+            		$yarpp->active_cache->end_yarpp_time();
+        		}?>
+				<?php $yarpp->restore_post_context();?>
+				<?php $recentPosts = $randPosts?>
+			<?php endif?>
 		<?php if( has_post_thumbnail() ) { ?>
 		<div class="grid col-300<?php if($count%3 == 0){echo ' fit';}?>">
 			<div class="random-wrapper" id="widgets">
@@ -67,7 +80,6 @@ $recentPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-
 
 
 		<?php endwhile; ?>
-
 
 	</div>
 </div><!-- end of .narrow-container -->
