@@ -35,26 +35,33 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 	</div>
 	<div id="random-x6">
 
+
+<?php /*Session stored existing post info for non-repeat*/ ?>
+<?php session_start(); ?>
+<?php $_SESSION['exist_posts'] = array(get_the_ID()); ?>
 <?php $randPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-1', 'showposts' => '6' ) );?>
 <?php $count = 1;?>
 <?php global $yarpp, $cache_status;?>
 <?php $recentPosts = relate_query();?>
-<?php //$recentPosts = new WP_Query();$recentPosts = $randPosts;?>
+		
 		<?php while ( $count <=6 ) :?>
 			<?php if($recentPosts->have_posts()) :?> 
 				<?php $recentPosts->the_post();?>
 			<?php else :?>
 				<?php if($recentPosts == $randPosts){break;}?>
-				<?php unset($wp_query);?>
+
+				<?php /*Restore and clean related query resource*/ ?>
 				<?php unset($recentPosts);?>
-				<?php if ($cache_status === YARPP_NO_RELATED) {
-            		// Uh, do nothing. Stay very still.
-        		} else {
-            		$yarpp->active_cache->end_yarpp_time();
-        		}?>
-				<?php $yarpp->restore_post_context();?>
+				<?php restore_related_resource();?>
 				<?php $recentPosts = $randPosts?>
 			<?php endif?>
+
+			<?php /*Session check for non-repeat*/ ?>
+				<?php if(in_array(get_the_ID(), $_SESSION['exist_posts'])):
+					continue;
+				else:
+					$_SESSION['exist_posts'][] = get_the_ID();
+				endif?>
 		<?php if( has_post_thumbnail() ) { ?>
 		<div class="grid col-300<?php if($count%3 == 0){echo ' fit';}?>">
 			<div class="random-wrapper" id="widgets">
@@ -65,30 +72,26 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
    					</a>
  					<?php endif;?>
 					<h1 class="widget-title">
-					<div class="random-title-link dotdotdot">
-						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %s', 'responsive'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a>
+						<div class="random-title-link dotdotdot">
+							<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__('Permanent Link to %s', 'responsive'), the_title_attribute('echo=0')); ?>"><?php the_title(); ?></a>
 					</div></h1>
 					<div class="random-excerpt dotdotdot">
-					<?php wpe_excerpt('wpe_excerptlength_random', 'wpe_excerptmore');  $count++;?>
+						<?php wpe_excerpt('wpe_excerptlength_random', 'wpe_excerptmore');  $count++;?>
 					</div>
           			<iframe id="facebook-like" src="https://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				</div>
-
-
-		</div></div>
+			</div>
+		</div>
 		<?php } ?>
 
 
 		<?php endwhile; ?>
+
+		<?php /*Restore and clean related query resource*/ ?>
 		<?php if($recentPosts != $randPosts):?>
-		<?php unset($wp_query);?>
-		<?php unset($recentPosts);?>
-		<?php if ($cache_status === YARPP_NO_RELATED) {
-            // Uh, do nothing. Stay very still.
-        } else {
-            $yarpp->active_cache->end_yarpp_time();
-        }?>
+		<?php restore_related_resource();?>
 		<?php endif?>
+		<?php session_destroy();?>
 	</div>
 </div><!-- end of .narrow-container -->
 

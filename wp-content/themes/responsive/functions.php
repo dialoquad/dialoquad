@@ -262,6 +262,17 @@ function relate_query(){
 	return $relatePosts;
 }
 
+function restore_related_resource(){
+	global $yarpp, $wp_query, $cache_status;
+	unset($wp_query);
+ 	if ($cache_status === YARPP_NO_RELATED) {
+        // Uh, do nothing. Stay very still.
+    } else {
+        $yarpp->active_cache->end_yarpp_time();
+    }
+ 	$yarpp->restore_post_context();
+}
+
 add_filter( 'wp_generate_tag_cloud', 'my_wp_generate_tag_cloud', null , 3 );
 
 require ( get_template_directory() . '/includes/functions.php' );
