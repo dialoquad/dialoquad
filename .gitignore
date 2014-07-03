@@ -4,4 +4,5 @@ wp-content/plugins/wp-minify-fix/cache
 wp-content/plugins/special-recent-posts/cache
 *.swp
 *.sh
+*.gz
 !deploy.sh
