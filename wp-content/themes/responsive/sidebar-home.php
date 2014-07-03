@@ -44,7 +44,7 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 			<?php if($recentPosts->have_posts()) :?> 
 				<?php $recentPosts->the_post();?>
 			<?php else :?>
-				<?php if($recentPosts == $relatedPosts){ break;} ?>
+				<?php if($recentPosts == $randPosts){break;}?>
 				<?php unset($wp_query);?>
 				<?php unset($recentPosts);?>
 				<?php if ($cache_status === YARPP_NO_RELATED) {
@@ -80,7 +80,15 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 
 
 		<?php endwhile; ?>
-
+		<?php if($recentPosts != $randPosts):?>
+		<?php unset($wp_query);?>
+		<?php unset($recentPosts);?>
+		<?php if ($cache_status === YARPP_NO_RELATED) {
+            // Uh, do nothing. Stay very still.
+        } else {
+            $yarpp->active_cache->end_yarpp_time();
+        }?>
+		<?php endif?>
 	</div>
 </div><!-- end of .narrow-container -->
 
