@@ -29,27 +29,40 @@ else
 fi
 }
 
-push(){
+git-push(){
 	git remote set-url --push origin "$gitaddr" 
-	git push
+	git push origin $1 $2
 	git remote set-url --push origin no_push
 }
 
-
-force-push(){
-	git remote set-url --push "$gitaddr" 
-	git push -f
-	git remote set-url --push origin no_push
-}
 
 clean-push(){
-	git checkout --orphan deploy
+	rhc ssh dialoquad --command 'rm -rf git/dialoquad.git'
+	echo "Removed remote .git"
+
+	if rhc ssh dialoquad --command 'cd git/dialoquad.git; git init --bare'; then
+		echo "Init remote repostory"
+	else
+		post-push
+		exit 1
+	fi
+	push
+}
+
+push(){
+	git checkout --orphan tmp
 	git commit -m "Deploy Commit"
-	git remote set-url --push origin "$gitaddr"
-	git push origin deploy
-	git remote set-url --push origin no_push
+	git checkout deploy
+	if git merge tmp --no-commit --no-ff; then
+		echo "Merged change ready to deploy"	
+	else
+		git checkout master
+		git branch -D tmp
+		exit 1
+	fi
+	git-push 'deploy' $1
 	git checkout master
-	git branch -d deploy
+	git branch -D tmp
 }
 
 #post-push hook scripts
@@ -142,7 +155,7 @@ elif [ "$1" = "post-push" ]; then
 	post-push
 elif [ "$1" = "-f" ]; then
 	pre-push
-	force-push
+	push '-f'
 	post-push
 elif [ "$1" = "clean" ]; then
 	pre-push
