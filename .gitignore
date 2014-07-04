@@ -5,4 +5,6 @@ wp-content/plugins/special-recent-posts/cache
 *.swp
 *.sh
 *.gz
+.buildpath
+.project
 !deploy.sh
