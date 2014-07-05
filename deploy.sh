@@ -37,32 +37,31 @@ git-push(){
 
 
 clean-push(){
-	rhc ssh dialoquad --command 'rm -rf git/dialoquad.git'
+	rhc ssh dialoquad --command 'rm -rf git/dialoquad.git' >/dev/null 2>&1
 	echo "Removed remote .git"
 
-	if rhc ssh dialoquad --command 'cd git/dialoquad.git; git init --bare'; then
-		echo "Init remote repostory"
-	else
+	if ! rhc ssh dialoquad --command 'cd git/dialoquad.git; git init --bare'; then
 		post-push
 		exit 1
 	fi
-	push
+	git checkout --orphan deploy
+	git commit -am "Initial Commit" >/dev/null 2>&1
+	git-push 'deploy' $1
+	git checkout master
 }
 
 push(){
-	git checkout --orphan tmp
-	git commit -m "Deploy Commit"
 	git checkout deploy
-	if git merge tmp --no-commit --no-ff; then
+	if git cherry-pick -X theirs master; then
 		echo "Merged change ready to deploy"	
 	else
 		git checkout master
-		git branch -D tmp
+		git branch -D deploy
+		post-push
 		exit 1
 	fi
 	git-push 'deploy' $1
 	git checkout master
-	git branch -D tmp
 }
 
 #post-push hook scripts
