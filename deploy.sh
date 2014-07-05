@@ -178,6 +178,14 @@ archive(){
 	rm ./wp-content/dialoquad.sql
 }
 
+
+archive-all(){
+	DATE="$(date +%m-%d)"
+	mysqldump dialoquad --add-drop-table > ../dialoquad.sql
+	tar zcvf "${HOME}/Downloads/dialoquad_${DATE}.tar.gz" -C ../. dialoquad.sql dialoquad
+	rm ../dialoquad.sql
+}
+
 if [ "$1" = "pre-push" ]; then
 	pre-push
 elif [ "$1" = "post-push" ]; then
@@ -187,7 +195,11 @@ elif [ "$1" = "init" ]; then
 	init-push
 	post-push
 elif [ "$1" = "archive" ]; then
-	archive
+	if [ -z "$2" ]; then
+		archive
+	elif [ "$2" = "all" ]; then
+		archive-all	
+	fi
 elif [ "$1" = "mysql" ]; then
 	if [ "$2" = "upload" ]; then
 		mysql-upload

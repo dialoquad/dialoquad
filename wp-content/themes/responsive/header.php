@@ -43,6 +43,11 @@ if ( !defined('ABSPATH')) exit;
 <?php wp_enqueue_style('responsive-style', get_stylesheet_uri(), false, '1.8.8');?>
 
 <!-- Start of custom header code -->
+
+<!-- Metro bootstrap code -->
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/metro/iconFont.min.css">
+
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/jquery.dotdotdot.js"></script>
 <script type="text/javascript" language="javascript">
@@ -113,6 +118,7 @@ if ( !defined('ABSPATH')) exit;
     </div><!-- cn-bar -->
 </script>
 <?php endif;?>
+
 <!-- End of custom header code -->
 
 <?php wp_head(); ?>

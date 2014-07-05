@@ -1307,7 +1307,7 @@ form div {
 
 }
 
-#nav-author a{
+#dqnav-author a{
 	background-image: url(icons/author.png);
 	background-repeat: no-repeat;
 	background-position: 3px 0px;
@@ -1319,7 +1319,7 @@ form div {
 	margin-top: 0;
 }
 
-#nav-headline a{
+#dqnav-headline a{
 	background-image: url(icons/headline.png);
 	background-repeat: no-repeat;
 	background-position: 8px 7px;
@@ -1331,7 +1331,7 @@ form div {
 	margin-top: 0;
 }
 
-#nav-random a{
+#dqnav-random a{
 	background-image: url(icons/polaroid.png);
 	background-repeat: no-repeat;
 	background-position: 8px 7px;
@@ -1343,7 +1343,7 @@ form div {
 	margin-top: 0;
 }
 
-#nav-footer a{
+#dqnav-footer a{
 	background-image: url(icons/footer.png);
 	background-repeat: no-repeat;
 	background-position: 7px 7px;
@@ -1355,7 +1355,7 @@ form div {
 	margin-top: 0;
 }
 
-.sectionDivider h1, .sectionDivider #nav-wrapper {
+.sectionDivider h1, .sectionDivider #dqnav-wrapper {
 	font-family: 'FrutigerLTCom-Light';
 	line-height: 20px;
 	/*text-transform: uppercase;*/
@@ -1366,7 +1366,7 @@ form div {
 	margin-bottom: -30px;
 }
 
-.sectionDivider h1 span, .sectionDivider .icon-nav-box{
+.sectionDivider h1 span, .sectionDivider .icons-dqnav-box{
 	position: relative;
 	padding: 0 30px;
 	top: -26px;
@@ -1378,7 +1378,7 @@ form div {
 }
 
 
-.icon-nav {
+.icons-dqnav {
 
 	border-radius: 34px;
 	border: 1px solid #999;
@@ -1386,19 +1386,19 @@ form div {
 	background: #fff;
 }
 
-.icon-nav-box {
+.icons-dqnav-box {
 	top: -35px !important;
 	display: inline-block;
 	padding: 0px !important;
 	margin: 0 6px;
 }
 
-.icon-nav a {
+.icons-dqnav a {
 	opacity: 0.8;
 	margin: 0 auto;
 }
 
-.icon-nav:hover {
+.icons-dqnav:hover {
 	opacity: 0.6;
 	-webkit-transition: all 0.2s linear;
 	-moz-transition: all 0.2s linear;
@@ -1406,11 +1406,11 @@ form div {
 	transition: all 0.2s linear;
 }
 
-.sectionDivider #nav-wrapper {
+.sectionDivider #dqnav-wrapper {
 	margin-bottom: 0px;
 }
 
-.sectionDivider .icon-nav {
+.sectionDivider .icons-dqnav {
 
 }
 
@@ -2574,8 +2574,15 @@ h4.srp-post-title {
 .top-menu li a {
 	border-left: 1px solid #ccc;
 	color: #333;
-	font-size: 11px;
+	font-size: 12px;
 	padding: 0 4px 0 8px;
+}
+
+.top-menu li a::before {
+	margin-right: 5px;
+	font-size: 11px;
+	top: 1px;
+	position: relative;
 }
 
 .top-menu > li:first-child > a {
@@ -2583,11 +2590,11 @@ h4.srp-post-title {
 }
 
 .top-menu li a:hover {
-	color: #333;
+	color: #666;
 }
 
 .top-menu li ul.sub-menu {
-	left: -10px;
+	left: 5px;
 	max-height:0px;
 	overflow:hidden;
 	width: 70px;
@@ -3780,7 +3787,7 @@ p.comment-form-comment {
 	color: #333;
 }
 
-.page-id-275 ul {
+.page-id-275 #content-archive ul {
 	list-style: none;
 	list-style-type: none;
 	margin: 0;
@@ -4747,7 +4754,7 @@ only screen and (min-device-pixel-ratio:1.5) {
 		min-height: 440px !important;
 	}
 
-	.icon-nav-box {
+	.icons-dqnav-box {
 		margin: 0px 0px;
 	}
 

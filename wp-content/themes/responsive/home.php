@@ -25,15 +25,15 @@ if ( !defined('ABSPATH')) exit;
  
 <div class="wide-container">
   <div class="sectionDivider">
-    <div id="nav-wrapper">
-    <div class="icon-nav-box">
-      <div id="nav-author" class="icon-nav">
+    <div id="dqnav-wrapper">
+    <div class="icons-dqnav-box">
+      <div id="dqnav-author" class="icons-dqnav">
          <a href="#author">Mt. Rushmore</a> 
       </div>
       </div>
-      <div class="icon-nav-box"><div id="nav-headline" class="icon-nav"> <a href="#headline">DQ Headline</a> </div></div>
-     <div class="icon-nav-box"> <div id="nav-random" class="icon-nav"> <a href="#random">Postlaroid</a> </div></div>
-      <div class="icon-nav-box"><div id="nav-footer" class="icon-nav"> <a href="#wfooter">Athlete's footer</a> </div></div>
+      <div class="icons-dqnav-box"><div id="dqnav-headline" class="icons-dqnav"> <a href="#headline">DQ Headline</a> </div></div>
+     <div class="icons-dqnav-box"> <div id="dqnav-random" class="icons-dqnav"> <a href="#random">Postlaroid</a> </div></div>
+      <div class="icons-dqnav-box"><div id="dqnav-footer" class="icons-dqnav"> <a href="#wfooter">Athlete's footer</a> </div></div>
     </div>
   </div>
   <div id="featured" class="grid col-940"> 

@@ -82,6 +82,40 @@ function css_version( $args ) {
 
 add_filter( 'stylesheet_uri', 'css_version' );
 
+
+// ** Customize top-menu navigation bar ** //
+
+class regex_parser {
+
+	private $i, $tag;
+	public function parse($source) {
+		$this->i = 0;
+		$this->tag = array('icon-grid', 'icon-list', 'icon-user-2', '', '', '', '', '', 'icon-info', 'icon-search');
+		return preg_replace_callback('/(<a.*)(>.*<\/a>)/', array($this, 'on_match'), $source);
+	}
+
+	private function on_match($m) {
+		// Return what you want the replacement to be.
+		$result = $m[1] . ' class="' . $this->tag[$this->i] .'"' . $m[2];
+		$this->i++;
+		return $result;
+	}
+
+}
+
+function dq_top_nav_menu( $items, $args ) {
+	if( $args-> theme_location == 'top-menu'){
+		
+		$parser = new regex_parser();
+		return $parser-> parse($items);
+
+	}else{
+		return $items;
+	}
+}
+
+add_filter( 'wp_nav_menu_items', 'dq_top_nav_menu', null, 2);
+
 // ** Customize excerpt length ** //
 
 function wpe_excerptlength_category( $length ) {
@@ -226,7 +260,7 @@ function relate_query(){
     	'promote_yarpp',
     	'optin'
 	);
-	
+
 	extract($yarpp->parse_args($args, $options));
 
 	$cache_status = $yarpp->active_cache->enforce($reference_ID);
@@ -258,7 +292,7 @@ function relate_query(){
         'args'          => $args,
         'related_ID'    => $reference_ID)
     );
- 	
+
 	return $relatePosts;
 }
 
