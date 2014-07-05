@@ -52,33 +52,7 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 /** These settings can be configured for your local development environment
 	and will not affect your OpenShift configuration */
 } else {
-	/** Define site url **/
-	define('WP_HOME','http://localhost');
-	
-	define('WP_SITEURL','http://localhost');
-	
-	define('DB_NAME', 'dialoquad');
-
-	/** MySQL database username */
-	define('DB_USER', 'the_account');
-
-	/** MySQL database password */
-	define('DB_PASSWORD', 'the_password');
-
-	/** MySQL hostname */
-	define('DB_HOST', 'localhost:3306');
-	
-	//Added by WP-Cache Manager
-	define( 'WPCACHEHOME', '/home/user_account/dialoquad/app-root/dialoquad/wp-content/plugins/wp-super-cache/' );
-	
-	//Enable Linux to write files
-	define('FS_METHOD','direct');	 
-	
-	/** Debug mode **/	
-	define('WP_DEBUG', true);
-
-	/** Generate inplace deubg log **/
-	define('WP_DEBUG_DISPLAY', true);
+	include_once(ABSPATH . 'wp-config-local.php');
 }
 
 
