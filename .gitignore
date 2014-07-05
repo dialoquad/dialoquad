@@ -3,9 +3,12 @@ wp-content/uploads
 wp-content/plugins/wp-minify-fix/cache
 wp-content/plugins/special-recent-posts/cache
 wp-content/mu-plugins/special-recent-posts/cache/
+wp-config-local.php
+wp-content/wp-cache-config.php
 *.swp
 *.sh
 *.gz
 .buildpath
 .project
+.settings
 !deploy.sh
