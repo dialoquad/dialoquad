@@ -39,7 +39,7 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 <?php /*Session stored existing post info for non-repeat*/ ?>
 <?php session_start(); ?>
 <?php $_SESSION['exist_posts'] = array(get_the_ID()); ?>
-<?php $randPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-1', 'showposts' => '6' ) );?>
+<?php $randPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-1', 'showposts' => '7' ) );?>
 <?php $count = 1;?>
 <?php global $yarpp, $cache_status;?>
 <?php $recentPosts = relate_query();?>

@@ -10,6 +10,20 @@ mysqlattr='-u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PAS
 #pre-push hook scripts
 
 pre-push(){
+if ! git diff-index --quiet HEAD --; then
+	echo "Warning:unstaged changed files"
+	echo "Do you wish to add to latest commit ?"
+	select yn in "Yes" "No"; do
+		case $yn in
+		    Yes ) git commit -a --amend --no-edit
+				break
+				;;
+			No ) exit 0
+				;;
+		esac
+	done
+fi
+
 if rhc ssh dialoquad --command '[ -d app-root/repo/wp-content/uploads ]'
 then	
 	echo "Found uploads folder"
@@ -29,14 +43,24 @@ else
 fi
 }
 
+#post-push hook scripts
+
+post-push(){
+	echo "Cleaning app-root/repo/wp-content/uploads and restoring data/uploads/ for CDN"
+	rhc ssh dialoquad --command 'rm -rf app-root/repo/wp-content/uploads && mv app-root/data/uploads app-root/repo/wp-content/'
+	echo "Restoring cache setting files/"
+	rhc ssh dialoquad --command 'mv app-root/data/wp-cache-config.php app-root/repo/wp-content/'
+}
+
 git-push(){
 	git remote set-url --push origin "$gitaddr" 
 	git push origin $1 $2
-	git remote set-url --push origin no_push
+	git remote set-url --push  origin no_push
 }
 
+#remove rhc git repostory and do full-upload
 
-clean-push(){
+init-push(){
 	rhc ssh dialoquad --command 'rm -rf git/dialoquad.git' >/dev/null 2>&1
 	echo "Removed remote .git"
 
@@ -50,13 +74,14 @@ clean-push(){
 	git checkout master
 }
 
+#cherry-pick to deploy branch and push for deployment
+
 push(){
 	git checkout deploy
 	if git cherry-pick -X theirs master; then
 		echo "Merged change ready to deploy"	
 	else
 		git checkout master
-		git branch -D deploy
 		post-push
 		exit 1
 	fi
@@ -64,16 +89,8 @@ push(){
 	git checkout master
 }
 
-#post-push hook scripts
 
-post-push(){
-echo "Cleaning app-root/repo/wp-content/uploads and restoring data/uploads/ for CDN"
-rhc ssh dialoquad --command 'rm -rf app-root/repo/wp-content/uploads && mv app-root/data/uploads app-root/repo/wp-content/'
-echo "Restoring cache setting files/"
-rhc ssh dialoquad --command 'mv app-root/data/wp-cache-config.php app-root/repo/wp-content/'
-}
-
-#mysql scripts
+#check if delete .sql file on remote data folder
 
 mysql-remote-clean(){
 	if rhc ssh dialoquad --command '[ -e app-root/data/dialoquad.sql ]'; then
@@ -91,6 +108,8 @@ mysql-remote-clean(){
 	fi
 	
 }
+
+#download and dump into local mysql
 
 mysql-download(){
 	echo "Cleaning remote folder for mysql dump"
@@ -123,6 +142,8 @@ mysql-download(){
 
 }
 
+#dump local database and upload and import
+
 mysql-upload(){
 	echo "Cleaning local sql and start dumping database"
 	rm -f dialoquad.sql
@@ -148,24 +169,35 @@ mysql-upload(){
 	rm -f dialoquad.sql
 }
 
+#create database and image archive tar.gz
+
+archive(){
+	DATE="$(date +%m-%d)"
+	mysqldump dialoquad --add-drop-table > ./wp-content/dialoquad.sql
+	tar zcvf "${HOME}/Downloads/db_uploads_${DATE}.tar.gz" -C ./wp-content/ dialoquad.sql uploads
+	rm ./wp-content/dialoquad.sql
+}
+
 if [ "$1" = "pre-push" ]; then
 	pre-push
 elif [ "$1" = "post-push" ]; then
 	post-push
-elif [ "$1" = "-f" ]; then
+elif [ "$1" = "init" ]; then
 	pre-push
-	push '-f'
+	init-push
 	post-push
-elif [ "$1" = "clean" ]; then
-	pre-push
-	clean-push
-	post-push
+elif [ "$1" = "archive" ]; then
+	archive
 elif [ "$1" = "mysql" ]; then
 	if [ "$2" = "upload" ]; then
 		mysql-upload
 	elif [ "$2" = "download" ]; then
 		mysql-download
 	fi
+elif [ "$1" = "-f" ]; then
+	pre-push
+	push '-f'
+	post-push
 elif [ -z "$*" ]; then
 	pre-push
 	push
