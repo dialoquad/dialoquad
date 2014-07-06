@@ -193,9 +193,6 @@ function my_widget_tag_cloud_args( $args ) {
 	return $args;
 }
 
-add_filter( 'widget_tag_cloud_args', 'my_widget_tag_cloud_args' );
-
-
 function my_wp_generate_tag_cloud( $return, $tags, $args = '' ) {
 
 	extract( $args, EXTR_SKIP );
@@ -259,6 +256,9 @@ function my_wp_generate_tag_cloud( $return, $tags, $args = '' ) {
 	$return = join( $separator, $a );
 	return $return;
 }
+
+add_filter( 'widget_tag_cloud_args', 'my_widget_tag_cloud_args' );
+add_filter( 'wp_generate_tag_cloud', 'my_wp_generate_tag_cloud', null , 3 );
 
 // ** Relate Post Query Generated Function **//
 
@@ -336,7 +336,20 @@ function restore_related_resource(){
  	$yarpp->restore_post_context();
 }
 
-add_filter( 'wp_generate_tag_cloud', 'my_wp_generate_tag_cloud', null , 3 );
+// ** Subscribe2 customization ** //
+
+function wp_mail_to_smtp(&$phpmailer) {
+	$phpmailer->Mailer = 'smtp';
+	$phpmailer->SMTPAuth = true;
+	$phpmailer->Host = 'smtp.mailgun.org';
+	$phpmailer->Port = '25';
+	$phpmailer->Username = 'postmaster@dialoquad.net';
+	$phpmailer->Password = 'trioplusone';
+}
+
+add_action('phpmailer_init', 'wp_mail_to_smtp');
+
+// ** Default template settings ** //
 
 require ( get_template_directory() . '/includes/functions.php' );
 require ( get_template_directory() . '/includes/theme-options.php' );
