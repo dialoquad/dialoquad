@@ -78,7 +78,7 @@ init-push(){
 
 push(){
 	git checkout deploy
-	if git merge --strategy=recursive -X theirs master; then
+	if git merge --strategy=recursive --no-edit -X theirs master; then
 		echo "Merged change ready to deploy"	
 	else
 		post-push

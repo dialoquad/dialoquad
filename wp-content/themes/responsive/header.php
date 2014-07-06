@@ -75,6 +75,8 @@ if ( !defined('ABSPATH')) exit;
 		$("div.input-control input").blur(function() {
 			$(this).parents(".input-control").css('border-color', '#d9d9d9');
 		});
+
+		$("a:contains('Joomla Turbo')").css('display','none');
 	});
 </script>
 <?php if ( is_category() || is_single() || is_search()) { ?>

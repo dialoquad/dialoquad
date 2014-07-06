@@ -121,7 +121,7 @@ $pendingErrorMessages = BlueHatNetworkSetting::get('pending_error_messages');
 						<table cellspacing="0" cellpadding="2" border="0">
 							<?php if($bhnObj->shouldOptimizeHtml() > 0) { ?>
 							<tr>
-								<td colspan="2" style="color: #696F74;"><?php echo BlueHatNetworkLanguage::sprintf('BHN_FREE_VERSION_INTRO_TXT', $helpUrl); ?>
+								<td colspan="2" style="color: #696F74;"><?php //echo BlueHatNetworkLanguage::sprintf('BHN_FREE_VERSION_INTRO_TXT', $helpUrl); ?>
 								<br /><br />
 								<?php echo BlueHatNetworkLanguage::sprintf('BHN_FREE_VERSION_CLICK_HERE_TO_ENABLE_ALL', 'javascript: BHN.enableFeatures();'); ?>
 								<br /><br />
