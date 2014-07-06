@@ -2343,6 +2343,8 @@ h4.srp-post-title {
 	margin: 20px 0 20px 0;
 }
 
+/* Facebook style */
+
 #facebook-like {
 	border:none; 
 	overflow:hidden; 
@@ -2383,6 +2385,16 @@ h4.srp-post-title {
 .textwidget #facebook-like{
 	width: 100% !important;
 	height: auto;
+}
+
+.textwidget #mailaddr.icon-mail {
+	font-size: 12px;
+}
+
+.textwidget #mailaddr.icon-mail::before {
+	font-size: 11px;
+	vertical-align: -10%;
+	margin-right: 3px;
 }
 
 .page-id-275 .allpost-content #facebook-like {
@@ -2548,6 +2560,61 @@ h4.srp-post-title {
 #ai1ec-calendar-view-container {
 	-webkit-transform: none !important;
 }
+
+/* Fiend-list widget */
+
+#widgets .friends {
+	/*float: left;*/
+}
+
+#widgets .friends a:hover {
+	opacity: 0.5;
+}
+
+#widgets .friends a {
+	display: block;
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+	background-size: Auto 48px;
+	height: 48px;
+	width: 100%;
+	margin: 0;
+	margin-top: 3%;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+
+#widgets #friends-container ul {
+	list-style-type:none;
+	padding-left: 0;
+}
+
+#widgets #friends-container ul:after {
+	content: " ";
+	display: block; 
+	height: 0; 
+	clear: both;
+}
+
+#widgets #friends-container li {
+	float:left;
+}
+
+#widgets #friends-hun a{
+	background-image: url(icons/hun.png);
+	background-position: 0 -5px ;
+	background-size: 44px 48px;
+	height: 48px;
+	width: 44px;
+}
+
+#widgets #friends-youwen a{
+	background-image: url(icons/youwen.png);
+	background-position: 0 -5px ;
+}
+
 /* =Titles
 -------------------------------------------------------------- */
 .featured-title {

@@ -87,33 +87,47 @@ add_filter( 'stylesheet_uri', 'css_version' );
 
 class regex_parser {
 
-	private $i, $tag;
+	private $i, $tag, $pattern, $delimeter;
+
+	public function __construct($pattern = '', $tag = array(), $delimeter = '') {
+		$this->pattern = $pattern;
+		$this->tag = $tag;
+		$this->delimeter = $delimeter;
+	}
+
 	public function parse($source) {
 		$this->i = 0;
-		$this->tag = array('icon-grid', 'icon-list', 'icon-user-2', '', '', '', '', '', 'icon-info', 'icon-search');
-		return preg_replace_callback('/(<a.*)(>.*<\/a>)/', array($this, 'on_match'), $source);
+		return preg_replace_callback($this->pattern, array($this, 'on_match'), $source);
 	}
 
 	private function on_match($m) {
 		// Return what you want the replacement to be.
-		$result = $m[1] . ' class="' . $this->tag[$this->i] .'"' . $m[2];
+		$result = $m[1] . $this->delimeter[0] . $this->tag[$this->i] . $this->delimeter[1] . $m[2] . $this->delimeter[2];
 		$this->i++;
 		return $result;
 	}
 }
 
-function dq_top_nav_menu( $items, $args ) {
-	if( $args-> theme_location == 'top-menu'){
-		
-		$parser = new regex_parser();
+function dq_nav_menu( $items, $args ) {
+	if( $args-> menu_class == 'top-menu'){
+		$pattern = '/(<a.*?)(>.*<\/a>)/';
+		$tag = array('icon-grid', 'icon-list', 'icon-user-2', '', '', '', '', '', 'icon-info', 'icon-search');
+		$delimeter = array(' class="','"','');
+		$parser = new regex_parser($pattern, $tag, $delimeter);
 		return $parser-> parse($items);
-
+	}elseif($args-> menu_class == 'menu-widget'){
+		$pattern = '/(<li.*?>)(<a.*?>.*<\/a>)/';
+		$tag = array('friends-youwen', 'friends-hun');
+		$delimeter = array('<div class="friends" id="','">', '</div>');
+		$parser = new regex_parser($pattern, $tag, $delimeter);
+		$items = '<div id="friends-container">' . $parser-> parse($items) . '</div>';
+		return $items;
 	}else{
 		return $items;
 	}
 }
 
-add_filter( 'wp_nav_menu_items', 'dq_top_nav_menu', null, 2);
+add_filter( 'wp_nav_menu', 'dq_nav_menu', null, 2);
 
 
 // ** Customize search box ** //
