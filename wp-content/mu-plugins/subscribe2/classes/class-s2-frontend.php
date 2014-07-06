@@ -16,7 +16,9 @@ class s2_frontend extends s2class {
 			}
 		}
 
-		$this->confirmation_sent = "<p class=\"s2_message\">" . __('A confirmation message is on its way!', 'subscribe2') . "</p>";
+		$this->confirmation_sent = "<p class=\"s2_message\">" . __('a confirmation message is on its way!', 'subscribe2') . "</p>";
+
+		$this->delete_subscribe = "<p class=\"s2_message\">" . __('Successfully unsubscribed. Thank you!', 'subscribe2') . "</p>";
 
 		$this->already_subscribed = "<p class=\"s2_error\">" . __('That email address is already subscribed.', 'subscribe2') . "</p>";
 
@@ -207,14 +209,39 @@ class s2_frontend extends s2class {
 						if ( false == $this->is_public($this->email) ) {
 							$this->s2form = $this->form . $this->not_subscribed;
 						} else {
-							$status = $this->send_confirm('del');
+							$status = 1;
+							//$status = $this->send_confirm('del');
 							// set a variable to denote that we've already run, and shouldn't run again
+							
+							
+							$this->message = apply_filters('s2_unsubscribe_confirmed', $this->deleted);
+							$this->delete($this->email);
+							if ( $this->subscribe2_options['admin_email'] == 'unsubs' || $this->subscribe2_options['admin_email'] == 'both' ) {
+								( '' == get_option('blogname') ) ? $subject = "" : $subject = "[" . stripslashes(html_entity_decode(get_option('blogname'), ENT_QUOTES)) . "] ";
+								$subject .= __('New Unsubscription', 'subscribe2');
+								$subject = html_entity_decode($subject, ENT_QUOTES);
+								$message = $this->email . " " . __('unsubscribed from email notifications!', 'subscribe2');
+								$role = array('fields' => array('user_email'), 'role' => 'administrator');
+								$wp_user_query = get_users( $role );
+								foreach ($wp_user_query as $user) {
+									$recipients[] = $user->user_email;
+								}
+								$recipients = apply_filters('s2_admin_email', $recipients, 'unsubscribe');
+								$headers = $this->headers();
+								// send individual emails so we don't reveal admin emails to each other
+								foreach ( $recipients as $recipient ) {
+									@wp_mail($recipient, $subject, $message, $headers);
+								}
+							}
+
 							$this->filtered = 1;
-							if ( $status ) {
+							$this->s2form = $this->delete_subscribe;
+							
+							/*if ( $status ) {
 								$this->s2form = $this->confirmation_sent;
 							} else {
 								$this->s2form = $this->error;
-							}
+							}*/
 						}
 						$this->action = 'unsubscribe';
 					}
@@ -226,7 +253,7 @@ class s2_frontend extends s2class {
 
 	/**
 	Display form when deprecated <!--subscribe2--> is used
-	*/
+	 */
 	function filter($content = '') {
 		if ( '' == $content || !strstr($content, '<!--subscribe2-->') ) { return $content; }
 
@@ -237,7 +264,7 @@ class s2_frontend extends s2class {
 	Overrides the default query when handling a (un)subscription confirmation
 	This is basically a trick: if the s2 variable is in the query string, just grab the first
 	static page and override it's contents later with title_filter()
-	*/
+	 */
 	function query_filter() {
 		// don't interfere if we've already done our thing
 		if ( 1 == $this->filtered ) { return; }
@@ -264,7 +291,7 @@ class s2_frontend extends s2class {
 
 	/**
 	Overrides the page title
-	*/
+	 */
 	function title_filter($title) {
 		// don't interfere if we've already done our thing
 		if ( in_the_loop() ) {
@@ -282,7 +309,7 @@ class s2_frontend extends s2class {
 
 	/**
 	Confirm request from the link emailed to the user and email the admin
-	*/
+	 */
 	function confirm($content = '') {
 		global $wpdb;
 
@@ -362,7 +389,7 @@ class s2_frontend extends s2class {
 
 	/**
 	Add hook for Minimeta Widget plugin
-	*/
+	 */
 	function add_minimeta() {
 		if ( $this->subscribe2_options['s2page'] != 0 ) {
 			echo "<li><a href=\"" . get_permalink($this->subscribe2_options['s2page']) . "\">" . __('[Un]Subscribe to Posts', 'subscribe2') . "</a></li>\r\n";
@@ -371,7 +398,7 @@ class s2_frontend extends s2class {
 
 	/**
 	Add jQuery code and CSS to front pages for ajax form
-	*/
+	 */
 	function add_ajax() {
 		// enqueue the jQuery script we need and let WordPress handle the dependencies
 		wp_enqueue_script('jquery-ui-dialog');
@@ -385,7 +412,7 @@ class s2_frontend extends s2class {
 
 	/**
 	Write Subscribe2 form js code dynamically so we can pull WordPress functions
-	*/
+	 */
 	function add_s2_ajax() {
 		echo "<script type=\"text/javascript\">\r\n";
 		echo "//<![CDATA[\r\n";
@@ -415,7 +442,7 @@ class s2_frontend extends s2class {
 
 	/**
 	Check email is not from a barred domain
-	*/
+	 */
 	function is_barred($email = '') {
 		if ( '' == $email ) { return false; }
 
