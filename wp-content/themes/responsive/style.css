@@ -405,9 +405,9 @@ fieldset {
 	padding: 1em 2em;
 }
 
-select,
-input[type="text"], 
-input[type="password"] {
+/*input[type="text"], 
+input[type="password"],*/ 
+select{
     -moz-box-sizing: border-box;
 	-moz-border-radius: 2px;
 	-webkit-box-sizing: border-box;
@@ -481,8 +481,8 @@ input[type='password'] {
 
 /* =Buttons
 -------------------------------------------------------------- */
-button, 
-a.button,
+/*button, 
+a.button,*/
 input[type='reset'], 
 input[type='button'], 
 input[type='submit'] {
@@ -515,8 +515,8 @@ input[type='submit'] {
 	white-space: nowrap;
 }
 
-button:hover, 
-a.button:hover,
+/*button:hover, 
+a.button:hover,*/
 input[type='reset']:hover, 
 input[type='button']:hover, 
 input[type='submit']:hover {
@@ -2313,13 +2313,22 @@ h4.srp-post-title {
 
 /*Search head*/
 #search-head {
-	visibility:hidden;
 	clear: both;
 	padding: 0 0 50px 0;
+	position: relative;
+	min-height: 80px;
 }	
 
 #searchform {
+}
+
+#searchbox {
+	display:none;
+	position: absolute;
+	right: 0px;
+	top: -50px;
 	margin: 0;
+	width: auto;
 }
 
 #noresult {
@@ -2336,14 +2345,9 @@ h4.srp-post-title {
 	display: block;
 }
 
-#facebook-like-random {
-	display: none;
-	border:none; 
-	clear: both;
-	overflow:hidden; 
-	width:225; 
-	height: 24px;
-	margin: 5px 0 0 0;
+#facebook-like.fb-random {
+	width:225px; 
+	height: 40px;
 }
 
 #facebook-comment,#facebook-comment span,#facebook-comment span iframe {
@@ -3812,7 +3816,7 @@ p.comment-form-comment {
 
 .signature:after {
 	content:".";
-	diaply:block;
+	display:block;
 	clear:both;
 	visibility:hidden;
 }

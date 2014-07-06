@@ -46,7 +46,8 @@ if ( !defined('ABSPATH')) exit;
 
 <!-- Metro bootstrap code -->
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/metro/iconFont.min.css">
-
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/metro/metro-bootstrap.min.css">
+<script src="<?php echo get_stylesheet_directory_uri()?>/metro/metro.min.js"></script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/jquery.dotdotdot.js"></script>
@@ -56,16 +57,28 @@ if ( !defined('ABSPATH')) exit;
 		$('.srp-post-title').dotdotdot({wrap:'letter'});
 	});
 </script> 
+
+<script>
+	$(document).ready(function(){
+		$(".icon-search").click(function() {
+			$("#searchbox").slideToggle('fast');
+		});
+
+		$(".icon-user-2").parent().mouseenter(function() {
+			$("#searchbox:visible").slideToggle('fast');
+		});
+	});
+</script>
 <?php if ( is_category() || is_single() || is_search()) { ?>
 <style type="text/css">
 	.menu { display: block !important; }
-	#search-head { visibility:visible !important; }
+	#search-head #searchbox { display:block; }
 </style>
 <?php } ?>
 
 <?php if( is_home()) {?>
 <style type="text/css">
-	#search-head { visibility:visible !important; }
+	#search-head #searchbox { display:block; }
 </style>
 <?php } ?>
 
@@ -90,51 +103,50 @@ if ( !defined('ABSPATH')) exit;
     </style>
 </noscript>
 <script id="barTmpl" type="text/x-jquery-tmpl">
-    <div class="cn-bar">
-        <div class="cn-nav">
-			<a href="#" class="cn-nav-prev">
-                <span>Previous</span>
-				<div style="background-image:url(${prevSource});"></div> 
-			</a>
-			<a href="#" class="cn-nav-next">
-                <span>Next</span>
-				<div style="background-image:url(${nextSource});"></div>
-			</a>
-        </div><!-- cn-nav -->
-        <div class="cn-nav-content">
-            <div class="cn-nav-content-prev">
-                <span>上一則</span>
-                <h3>${prevTitle}</h3>
-            </div>
-            <div class="cn-nav-content-current">
-                <span>現正觀看</span>
-                <h2>${currentTitle}</h2>
-            </div>
-            <div class="cn-nav-content-next">
-                <span>下一則</span>
-                <h3>${nextTitle}</h3>
-            </div>
-        </div><!-- cn-nav-content -->
+<div class="cn-bar">
+    <div class="cn-nav">
+	<a href="#" class="cn-nav-prev">
+    <span>Previous</span>
+	<div style="background-image:url(${prevSource});"></div> 
+	</a>
+	<a href="#" class="cn-nav-next">
+    <span>Next</span>
+	<div style="background-image:url(${nextSource});"></div>
+	</a>
+    </div><!-- cn-nav -->
+    <div class="cn-nav-content">
+    <div class="cn-nav-content-prev">
+    <span>上一則</span>
+    <h3>${prevTitle}</h3>
+    </div>
+    <div class="cn-nav-content-current">
+    <span>現正觀看</span>
+    <h2>${currentTitle}</h2>
+    </div>
+    <div class="cn-nav-content-next">
+    <span>下一則</span>
+    <h3>${nextTitle}</h3>
+    </div>
+    </div><!-- cn-nav-content -->
     </div><!-- cn-bar -->
-</script>
+	</script>
 <?php endif;?>
 
 <!-- End of custom header code -->
 
 <?php wp_head(); ?>
 <script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', 'UA-39738806-1', 'dialoquad.net');
-	ga('send', 'pageview');
+ga('create', 'UA-39738806-1', 'dialoquad.net');
+ga('send', 'pageview');
 </script>
 
 
 </head>
-
 <body <?php body_class(); ?>>
 
 	<?php responsive_container(); // before container hook ?>
@@ -145,13 +157,13 @@ if ( !defined('ABSPATH')) exit;
     	<div id="header">
     		<div class="wide-container">
         		<?php if (has_nav_menu('top-menu', 'responsive')) { ?>
-	        	<?php wp_nav_menu(array(
-				'container'       => '',
-				'fallback_cb'	  =>  false,
-				'menu_class'      => 'top-menu',
-				'theme_location'  => 'top-menu')
-				); 
-				?>
+<?php wp_nav_menu(array(
+	'container'       => '',
+	'fallback_cb'	  =>  false,
+	'menu_class'      => 'top-menu',
+	'theme_location'  => 'top-menu')
+); 
+?>
         		<?php } ?>
 
     			<?php responsive_in_header(); // header hook ?>
@@ -172,21 +184,23 @@ if ( !defined('ABSPATH')) exit;
         		</div><!-- end of #logo -->  
 
     			<?php endif; // header image was removed (again) ?>
-    			<div id="search-head" class="widget-wrapper widget_search"><?php get_search_form(); ?></div>
+    			<div id="search-head" class="widget-wrapper widget_search metro">
+					<?php get_search_form(); ?>
+				</div>
      		</div><!-- end of .narrow-container -->
      		<div class="landing-box">
      			<div class="wide-container">
     				<?php get_sidebar('top'); ?>
 
 					<?php wp_nav_menu(array(
-				    'container'       => '',
+					'container'       => '',
 					'theme_location'  => 'header-menu')
 					); 
 					?>
 
             		<?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
-	            	<?php wp_nav_menu(array(
-				    'container'       => '',
+					<?php wp_nav_menu(array(
+					'container'       => '',
 					'menu_class'      => 'sub-header-menu',
 					'theme_location'  => 'sub-header-menu')
 					); 

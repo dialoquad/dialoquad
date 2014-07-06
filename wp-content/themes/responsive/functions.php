@@ -116,6 +116,19 @@ function dq_top_nav_menu( $items, $args ) {
 
 add_filter( 'wp_nav_menu_items', 'dq_top_nav_menu', null, 2);
 
+
+// ** Customize search box ** //
+
+function dq_search_form( $args ) {
+	$args = '<div class="input-control text" id="searchbox">' . $args . '</div>';
+	$args = preg_replace('/class="field" /','style="height:32px;"',$args);
+	$args = preg_replace('/<input type="submit"(.*) \/>/','<button type="submit"${1}></button>',$args);
+	$args = preg_replace('/class="submit"/','class="btn-search"',$args);
+	return $args;
+}
+
+add_filter( 'get_search_form', 'dq_search_form');
+
 // ** Customize excerpt length ** //
 
 function wpe_excerptlength_category( $length ) {

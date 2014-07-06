@@ -78,7 +78,7 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 					<div class="random-excerpt dotdotdot">
 						<?php wpe_excerpt('wpe_excerptlength_random', 'wpe_excerptmore');  $count++;?>
 					</div>
-          			<iframe id="facebook-like" src="https://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+          			<iframe id="facebook-like" class="fb-random" src="https://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 				</div>
 			</div>
 		</div>
