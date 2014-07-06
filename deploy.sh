@@ -78,10 +78,9 @@ init-push(){
 
 push(){
 	git checkout deploy
-	if git cherry-pick -X theirs master; then
+	if git cherry-pick --strategy=recursive -X theirs master; then
 		echo "Merged change ready to deploy"	
 	else
-		git checkout master
 		post-push
 		exit 1
 	fi

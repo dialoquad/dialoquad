@@ -67,6 +67,14 @@ if ( !defined('ABSPATH')) exit;
 		$(".icon-user-2").parent().mouseenter(function() {
 			$("#searchbox:visible").slideToggle('fast');
 		});
+
+		$("div.input-control input").focus(function() {
+			$(this).parents(".input-control").css('outline', '0').css('border-color', '#919191');
+		});
+		
+		$("div.input-control input").blur(function() {
+			$(this).parents(".input-control").css('border-color', '#d9d9d9');
+		});
 	});
 </script>
 <?php if ( is_category() || is_single() || is_search()) { ?>

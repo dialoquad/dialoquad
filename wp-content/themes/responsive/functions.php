@@ -100,7 +100,6 @@ class regex_parser {
 		$this->i++;
 		return $result;
 	}
-
 }
 
 function dq_top_nav_menu( $items, $args ) {
@@ -128,6 +127,23 @@ function dq_search_form( $args ) {
 }
 
 add_filter( 'get_search_form', 'dq_search_form');
+
+// ** Customize subscribe box ** //
+
+function dq_subscribe_form( $args ) {
+	$args = '<div class="metro">' . $args . '</div>' . '</div>';
+	$args = preg_replace('/(Your email:<\/label>)<br \/>/','${1}<div class="input-control text" id="subscribebox">',$args);
+	$args = preg_replace('/Enter email address.../','Email address...',$args);
+	$args = preg_replace('/onfocus.*}"/','placeholder="Email address..."',$args);
+	$args = preg_replace('/(<p>|<\/p>)/','',$args);
+	$args = preg_replace('/value="Email address..."/','style="width:74%;"',$args);
+	$args = preg_replace('/<input type="submit"(.*?)name="([a-z]*)"(.*?)\/>/','<button type="submit"${1}name="${2}" class="btn-${2}" title="${2}"${3}></button>',$args);
+	$args = preg_replace('/btn-subscribe/','${0} icon-feed" style="right:24px',$args);
+	$args = preg_replace('/btn-unsubscribe/','${0} icon-stop-2 style="right:2px',$args);
+	return $args;
+}
+
+add_filter('s2_form', 'dq_subscribe_form');
 
 // ** Customize excerpt length ** //
 
