@@ -1253,6 +1253,7 @@ form div {
 
 .landing-box {
 
+	/*
 	background-color: #585858;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#585858), to(#3d3d3d));
 	background-image: -webkit-linear-gradient(top, #585858, #3d3d3d);
@@ -1261,7 +1262,7 @@ form div {
 	background-image: -o-linear-gradient(top, #585858, #3d3d3d);
 	background-image: linear-gradient(top, #585858, #3d3d3d);
 	clear: both;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#585858, endColorstr=#3d3d3d);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#585858, endColorstr=#3d3d3d);*//
 	margin: 0 auto;
 }
 
@@ -2736,7 +2737,6 @@ h4.srp-post-title {
 	color: #666;
 	cursor: pointer;
 }
-
 .top-menu li ul.sub-menu {
 	left: 5px;
 	max-height:0px;
@@ -2801,7 +2801,7 @@ h4.srp-post-title {
 
 /* =Header Menu (Primary)
 -------------------------------------------------------------- */
-
+/*
 .menu {
 	background-color: #585858;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#585858), to(#3d3d3d));
@@ -2927,13 +2927,6 @@ h4.srp-post-title {
 	background-color: #343434;
 }
 
-.home .menu .current_page_item a {
-    background: none;
-	background-color: transparent;
-    background-image: none;
-    filter: none;
-}
-
 .menu li li {
 	background: #fff;
 	background-image: none;
@@ -2976,32 +2969,202 @@ h4.srp-post-title {
 }
 
 .menu > li:first-child > a {
-	border-left: none;
+border-left: none;
+}
+*/
+
+#cssmenu {
+	display: none;
+	background: #ffffff;
+	width: auto;
+	height: 48px;
+	padding-left: 20px;
+	border-bottom: 3px double #aba5a5;
+	border-top: 3px double #aba5a5;
+}
+#cssmenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	display: block;
+	white-space: nowrap;
+	zoom: 1;
 }
 
+#cssmenu ul:after {
+	content: ' ';
+	display: block;
+	font-size: 0;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+#cssmenu ul li {
+	display: inline-block;
+	padding: 0px 10px;
+	margin: 0;
+	overflow: hidden;
+	width: 11%;
+	background-image: url(images/bullets.png);
+	background-repeat: no-repeat;
+	background-position: 0px 20px;
+	/*float: left;*/
+	/* To make the width of the container exact. */
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	
+	-webkit-transition: width 1s;
+	-moz-transition: width 1s;
+	transition: width 1s;
+}
+#cssmenu.align-right ul li {
+	float: right;
+}
+#cssmenu.align-center ul {
+	text-align: center;
+}
+#cssmenu ul li a {
+	color: #aba5a5;
+	text-decoration: none;
+	display: block;
+	padding: 15px 0px;
+	font-family:'Source Sans Pro', sans-serif; 
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 14px;
+	position: relative;
+	white-space: nowrap;
+	overflow: hidden;    /* Required to make ellipsis work */
+	text-overflow: ellipsis;
+
+	/* Starting transition */    
+	left: 0%;
+	width: 100%;
+
+	/* Tweak 'till your heart's content */
+	
+	-webkit-transition: color .25s;
+	-moz-transition: color .25s;
+	-ms-transition: color .25s;
+	-o-transition: color .25s;
+	transition: color .25s;
+}
+#cssmenu ul li a:hover {
+	color: #333333;
+    width: 150%;
+}
+
+#cssmenu ul li.current-menu-parent a,
+#cssmenu ul li.current-menu-item a{
+	color: #AA7D55;
+}
+
+#cssmenu ul li.current-menu-parent a:before,
+#cssmenu ul li.current-menu-item a:before{
+	background: #AA7D55;
+	width:150%;
+}
+
+#cssmenu ul li:hover{
+	width: 16.6%;
+}
+
+#cssmenu ul li:hover + li{
+	width: 5.5%;
+}
+
+#cssmenu ul li:nth-last-child(2):hover + li {
+	width: 5.5%;
+}
+
+#cssmenu ul li:last-child {
+	width: 11%;
+}
+
+
+#cssmenu ul li a:hover:before {
+	width: 100%;
+}
+#cssmenu ul li a:after {
+	content: '';
+	display: block;
+	position: absolute;
+	right: -10px;
+	top: 19px;
+	height: 6px;
+	width: 6px;
+	background: #aba5a5;
+	opacity: .5;
+	overflow: visible;
+}
+
+
+#cssmenu .current-menu-parent a:before,
+#cssmenu .current-menu-item a:before,
+#cssmenu ul li a:before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 1px;
+	width: 0;
+	background: #333333;
+	overflow: visible;
+	-webkit-transition: width .25s;
+	-moz-transition: width .25s;
+	-ms-transition: width .25s;
+	-o-transition: width .25s;
+	transition: width .25s;
+}
+#cssmenu ul li.last > a:after,
+#cssmenu ul li:last-child > a:after {
+	display: none;
+}
+#cssmenu ul li.active a {
+	color: #333333;
+}
+#cssmenu ul li.active a:before {
+	width: 100%;
+}
+#cssmenu.align-right li.last > a:after,
+#cssmenu.align-right li:last-child > a:after {
+	display: block;
+}
+#cssmenu.align-right li:first-child a:after {
+	display: none;
+}
+
+.home #cssmenu {
+	display:none;
+}
 
 .page-id-274 #respond,.page-id-274 #widget-footer,.page-id-274 #random-x6,.page-id-274 #wrapper {
 	display: none !important; 
 }
 
-.page-id-274 .menu {
+.page-id-274 #cssmenu .menu {
 	display: block;
 	background-image: none;
 	background-color: transparent;
 }
 
-.page-id-274 .menu a {
+.page-id-274 #cssmenu ul.menu li a {
 	border: none;
 	color: #000;
     cursor:pointer;
 	display: inline;
 	font-size: 50px;
+	font-family: inherit;
 	font-weight: 700;
 	margin: 0;
 	padding: 0;
 	position: relative;
 	text-decoration: none;
 	text-shadow: none;
+	background: none;
 	background-position: -45px 45%;
 	background-repeat: no-repeat;
 	-webkit-transition: all 0.2s ease-in-out;
@@ -3010,25 +3173,36 @@ h4.srp-post-title {
 	transition: all 0.2s ease-in-out;
 }
 
-.page-id-274 .menu a:hover {
+.page-id-274 #cssmenu ul.menu li a:before,
+.page-id-274 #cssmenu ul.menu li a:after
+{
+	display: none;	
+}
+
+.page-id-274 #cssmenu .menu a:hover {
 	color: #AAA;
 	background: none;
 	background-color: none;
 	background-image: none;
 	padding-left: 60px;
     filter: none;
+	width: auto;
 	background: url(images/icon-arrow-right-lg.png) no-repeat left 45%;
 }
 
-.page-id-274 .menu li {
+.page-id-274 #cssmenu ul.menu li {
 	float: none;
 	height: 100px;
 	padding: 5px 0;
-
+	display: block;
+	width: auto !important;
 }
 
-.page-id-274 {
+.page-id-274 #cssmenu {
 	list-style: disc;
+	border: none;
+	height: auto;
+	display: block;
 }
 
 

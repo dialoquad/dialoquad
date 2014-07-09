@@ -81,7 +81,7 @@ if ( !defined('ABSPATH')) exit;
 </script>
 <?php if ( is_category() || is_single() || is_search()) { ?>
 <style type="text/css">
-	.menu { display: block !important; }
+	#cssmenu { display: block !important; }
 	#search-head #searchbox { display:block; }
 </style>
 <?php } ?>
@@ -201,13 +201,13 @@ ga('send', 'pageview');
      		<div class="landing-box">
      			<div class="wide-container">
     				<?php get_sidebar('top'); ?>
-
-					<?php wp_nav_menu(array(
-					'container'       => '',
-					'theme_location'  => 'header-menu')
-					); 
-					?>
-
+					<div id="cssmenu">
+						<?php wp_nav_menu(array(
+						'container'       => '',
+						'theme_location'  => 'header-menu')
+						); 
+						?>
+					</div>
             		<?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
 					<?php wp_nav_menu(array(
 					'container'       => '',
