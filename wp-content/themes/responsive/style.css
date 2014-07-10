@@ -2973,7 +2973,7 @@ border-left: none;
 }
 */
 
-#cssmenu {
+body:not(.page-id-274) #cssmenu {
 	display: none;
 	background: #ffffff;
 	width: auto;
@@ -2982,7 +2982,7 @@ border-left: none;
 	border-bottom: 3px double #aba5a5;
 	border-top: 3px double #aba5a5;
 }
-#cssmenu ul {
+body:not(.page-id-274) #cssmenu ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -2992,7 +2992,7 @@ border-left: none;
 	zoom: 1;
 }
 
-#cssmenu ul:after {
+body:not(.page-id-274) #cssmenu ul:after {
 	content: ' ';
 	display: block;
 	font-size: 0;
@@ -3000,7 +3000,7 @@ border-left: none;
 	clear: both;
 	visibility: hidden;
 }
-#cssmenu ul li {
+body:not(.page-id-274) #cssmenu ul li {
 	display: inline-block;
 	padding: 0px 10px;
 	margin: 0;
@@ -3019,13 +3019,13 @@ border-left: none;
 	-moz-transition: width 1s;
 	transition: width 1s;
 }
-#cssmenu.align-right ul li {
+body:not(.page-id-274) #cssmenu.align-right ul li {
 	float: right;
 }
-#cssmenu.align-center ul {
+body:not(.page-id-274) #cssmenu.align-center ul {
 	text-align: center;
 }
-#cssmenu ul li a {
+body:not(.page-id-274) #cssmenu ul li a {
 	color: #aba5a5;
 	text-decoration: none;
 	display: block;
@@ -3051,43 +3051,45 @@ border-left: none;
 	-o-transition: color .25s;
 	transition: color .25s;
 }
-#cssmenu ul li a:hover {
+
+body:not(.page-id-274) #cssmenu ul li a:hover {
 	color: #333333;
     width: 150%;
 }
 
-#cssmenu ul li.current-menu-parent a,
-#cssmenu ul li.current-menu-item a{
+body:not(.page-id-274) #cssmenu ul li.current-menu-parent a,
+body:not(.page-id-274) #cssmenu ul li.current-menu-item a{
 	color: #AA7D55;
 }
 
-#cssmenu ul li.current-menu-parent a:before,
-#cssmenu ul li.current-menu-item a:before{
+body:not(.page-id-274) #cssmenu ul li.current-menu-parent a:before,
+body:not(.page-id-274) #cssmenu ul li.current-menu-item a:before{
 	background: #AA7D55;
 	width:150%;
 }
 
-#cssmenu ul li:hover{
+body:not(.page-id-274) #cssmenu ul li:hover{
 	width: 16.6%;
 }
 
-#cssmenu ul li:hover + li{
+body:not(.page-id-274) #cssmenu ul li:hover + li{
 	width: 5.5%;
 }
 
-#cssmenu ul li:nth-last-child(2):hover + li {
+body:not(.page-id-274) #cssmenu ul li:nth-last-child(2):hover + li {
 	width: 5.5%;
 }
 
-#cssmenu ul li:last-child {
+body:not(.page-id-274) #cssmenu ul li:last-child {
 	width: 11%;
 }
 
 
-#cssmenu ul li a:hover:before {
+body:not(.page-id-274) #cssmenu ul li a:hover:before {
 	width: 100%;
 }
-#cssmenu ul li a:after {
+
+body:not(.page-id-274) #cssmenu ul li a:after {
 	content: '';
 	display: block;
 	position: absolute;
@@ -3101,9 +3103,9 @@ border-left: none;
 }
 
 
-#cssmenu .current-menu-parent a:before,
-#cssmenu .current-menu-item a:before,
-#cssmenu ul li a:before {
+body:not(.page-id-274) #cssmenu .current-menu-parent a:before,
+body:not(.page-id-274) #cssmenu .current-menu-item a:before,
+body:not(.page-id-274) #cssmenu ul li a:before {
 	content: '';
 	display: block;
 	position: absolute;
@@ -3119,21 +3121,21 @@ border-left: none;
 	-o-transition: width .25s;
 	transition: width .25s;
 }
-#cssmenu ul li.last > a:after,
-#cssmenu ul li:last-child > a:after {
+body:not(.page-id-274) #cssmenu ul li.last > a:after,
+body:not(.page-id-274) #cssmenu ul li:last-child > a:after {
 	display: none;
 }
-#cssmenu ul li.active a {
+body:not(.page-id-274) #cssmenu ul li.active a {
 	color: #333333;
 }
-#cssmenu ul li.active a:before {
+body:not(.page-id-274) #cssmenu ul li.active a:before {
 	width: 100%;
 }
-#cssmenu.align-right li.last > a:after,
-#cssmenu.align-right li:last-child > a:after {
+body:not(.page-id-274) #cssmenu.align-right li.last > a:after,
+body:not(.page-id-274) #cssmenu.align-right li:last-child > a:after {
 	display: block;
 }
-#cssmenu.align-right li:first-child a:after {
+body:not(.page-id-274) #cssmenu.align-right li:first-child a:after {
 	display: none;
 }
 
@@ -3151,6 +3153,22 @@ border-left: none;
 	background-color: transparent;
 }
 
+
+.page-id-274 #cssmenu ul.menu li i {
+	color: #000;
+	font-size: 45px;
+	font-weight: 700;
+	margin-right: 20px;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.page-id-274 #cssmenu ul.menu li i:hover {
+
+}
+	
 .page-id-274 #cssmenu ul.menu li a {
 	border: none;
 	color: #000;
@@ -3176,7 +3194,6 @@ border-left: none;
 .page-id-274 #cssmenu ul.menu li a:before,
 .page-id-274 #cssmenu ul.menu li a:after
 {
-	display: none;	
 }
 
 .page-id-274 #cssmenu .menu a:hover {
@@ -3196,6 +3213,7 @@ border-left: none;
 	padding: 5px 0;
 	display: block;
 	width: auto !important;
+	background-image: none;
 }
 
 .page-id-274 #cssmenu {

@@ -122,6 +122,15 @@ function dq_nav_menu( $items, $args ) {
 		$parser = new regex_parser($pattern, $tag, $delimeter);
 		$items = '<div id="friends-container">' . $parser-> parse($items) . '</div>';
 		return $items;
+	}elseif($args-> theme_location == 'header-menu'){
+		if( is_page(274)){	
+			$pattern = '/(<li.*?>)(<a.*?>.*<\/a>)/';
+			$tag = array('icon-compass', 'icon-location', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-comments-5');
+			$delimeter = array('<i class="', '"></i>','');
+			$parser = new regex_parser($pattern, $tag, $delimeter);
+			return $parser-> parse($items);
+		}
+		return $items;
 	}else{
 		return $items;
 	}
