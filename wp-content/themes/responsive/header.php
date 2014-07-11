@@ -32,8 +32,9 @@ if ( !defined('ABSPATH')) exit;
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
 
+<!-- favicons -->
+<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
 <link rel="apple-touch-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/touch-icon-iphone.png" /> 
 <link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_stylesheet_directory_uri(); ?>/touch-icon-ipad.png" /> 
 <link rel="apple-touch-icon" sizes="120x120" href="<?php echo get_stylesheet_directory_uri(); ?>/touch-icon-iphone-retina.png" />
@@ -83,6 +84,21 @@ if ( !defined('ABSPATH')) exit;
 		});
 
 		$("a:contains('Joomla Turbo')").css('display','none');
+
+		var timer = [];
+		var unhover = function(myvar){
+			myvar.is(".dqarrow") ? myvar.css('width','0px') : myvar.prev().css('width','0px');
+		}
+
+		$("#cssmenu ul.menu li a, #cssmenu ul.menu li .dqarrow").hover(function() {
+			var n = $(this).parent().index();
+			window.clearTimeout(timer[n]);
+			$(this).is(".dqarrow") ? $(this).css('width','57px') : $(this).prev().css('width','57px');
+		},function(){
+			var myvar = $(this);
+			var n = $(this).parent().index();
+			timer[n] = setTimeout(function(){unhover(myvar);},200);
+		});
 	});
 </script>
 <?php if ( is_category() || is_single() || is_search()) { ?>

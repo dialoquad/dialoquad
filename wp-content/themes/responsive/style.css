@@ -3157,6 +3157,7 @@ body:not(.page-id-274) #cssmenu.align-right li:first-child a:after {
 .page-id-274 #cssmenu ul.menu li i {
 	color: #000;
 	font-size: 45px;
+	vertical-align: -5%;
 	font-weight: 700;
 	margin-right: 20px;
 	-webkit-transition: all 0.2s ease-in-out;
@@ -3178,33 +3179,86 @@ body:not(.page-id-274) #cssmenu.align-right li:first-child a:after {
 	font-family: inherit;
 	font-weight: 700;
 	margin: 0;
-	padding: 0;
+	padding-left: 10px;
 	position: relative;
 	text-decoration: none;
 	text-shadow: none;
-	background: none;
-	background-position: -45px 45%;
-	background-repeat: no-repeat;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
 
-.page-id-274 #cssmenu ul.menu li a:before,
+.page-id-274 #cssmenu ul.menu li .dqarrow {
+	content: " ";
+	width: 0px;
+	height: 57px;
+	left: 0px;
+	cursor: pointer;
+	margin-right: -5px;
+	padding: 0;
+	vertical-align: -13%;
+	display: inline-block;	
+	background: url(images/icon-arrow-right-lg.png) no-repeat center center;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+@-webkit-keyframes jump{
+	0% {
+		opacity: 0.6;
+		height:55%;
+	}
+	50% {
+		opacity: 1;
+		height:70%;
+	}
+	100% {
+		opacity: 0.6;
+		height:55%;
+	}
+}
+
+
+@keyframes jump {
+	0% {
+		height:55%;
+	}
+	50% {
+		height:70%;
+	}
+	100% {
+		height:55%;
+	}
+}
+
+
+.page-id-274 #cssmenu ul.menu li .dqarrow:hover {
+	vertical-align: -13%;
+	-webkit-animation: jump 0.75s infinite; 
+	-moz-animation: jump 0.75s infinite;
+	animation: jump 0.75s infinite;
+	-webkit-transform: rotateZ(90deg);
+    -ms-transform: rotateZ(90deg);
+	transform: rotateZ(90deg);
+}
+
+
+.page-id-274 #cssmenu ul.menu li a:before:hover {
+
+}
+
+
 .page-id-274 #cssmenu ul.menu li a:after
 {
 }
 
 .page-id-274 #cssmenu .menu a:hover {
 	color: #AAA;
-	background: none;
-	background-color: none;
-	background-image: none;
-	padding-left: 60px;
     filter: none;
 	width: auto;
-	background: url(images/icon-arrow-right-lg.png) no-repeat left 45%;
 }
 
 .page-id-274 #cssmenu ul.menu li {

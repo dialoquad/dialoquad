@@ -126,7 +126,7 @@ function dq_nav_menu( $items, $args ) {
 		if( is_page(274)){	
 			$pattern = '/(<li.*?>)(<a.*?>.*<\/a>)/';
 			$tag = array('icon-compass', 'icon-location', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-comments-5');
-			$delimeter = array('<i class="', '"></i>','');
+			$delimeter = array('<i class="', '"></i><i class="dqarrow"></i>','');
 			$parser = new regex_parser($pattern, $tag, $delimeter);
 			return $parser-> parse($items);
 		}
