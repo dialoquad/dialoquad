@@ -73,6 +73,7 @@ if (!function_exists('responsive_setup')):
         register_nav_menus(array(
 			'top-menu'         => __('Top Menu', 'responsive'),
 	        'header-menu'      => __('Header Menu', 'responsive'),
+	        'category-menu'      => __('Category Menu', 'responsive'),
 	        'sub-header-menu'  => __('Sub-Header Menu', 'responsive'),
 			'footer-menu'      => __('Footer Menu', 'responsive')
 		    )

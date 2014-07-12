@@ -89,8 +89,16 @@ if ( !defined('ABSPATH')) exit;
 		var unhover = function(myvar){
 			myvar.is(".dqarrow") ? myvar.css('width','0px') : myvar.prev().css('width','0px');
 		}
+		
+		var icons= ['icon-compass', 'icon-location', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-comments-5'];	
 
-		$("#cssmenu ul.menu li a, #cssmenu ul.menu li .dqarrow").hover(function() {
+		$("#category-menu> ul> li> a").each(function(index){$(this).before('<i class="'+icons[index]+'"></i><i class="dqarrow"></i>');})
+
+		$("#category-menu> ul> li> .dqarrow").click(function() {
+			$(this).siblings("ul").slideToggle('fast');
+		});
+		
+		$("#category-menu> ul> li> a, #category-menu> ul> li> .dqarrow").hover(function() {
 			var n = $(this).parent().index();
 			window.clearTimeout(timer[n]);
 			$(this).is(".dqarrow") ? $(this).css('width','57px') : $(this).prev().css('width','57px');

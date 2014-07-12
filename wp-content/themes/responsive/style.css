@@ -2973,7 +2973,7 @@ border-left: none;
 }
 */
 
-body:not(.page-id-274) #cssmenu {
+#cssmenu {
 	display: none;
 	background: #ffffff;
 	width: auto;
@@ -2982,7 +2982,7 @@ body:not(.page-id-274) #cssmenu {
 	border-bottom: 3px double #aba5a5;
 	border-top: 3px double #aba5a5;
 }
-body:not(.page-id-274) #cssmenu ul {
+#cssmenu ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -2992,7 +2992,7 @@ body:not(.page-id-274) #cssmenu ul {
 	zoom: 1;
 }
 
-body:not(.page-id-274) #cssmenu ul:after {
+#cssmenu ul:after {
 	content: ' ';
 	display: block;
 	font-size: 0;
@@ -3000,7 +3000,7 @@ body:not(.page-id-274) #cssmenu ul:after {
 	clear: both;
 	visibility: hidden;
 }
-body:not(.page-id-274) #cssmenu ul li {
+#cssmenu ul li {
 	display: inline-block;
 	padding: 0px 10px;
 	margin: 0;
@@ -3019,13 +3019,13 @@ body:not(.page-id-274) #cssmenu ul li {
 	-moz-transition: width 1s;
 	transition: width 1s;
 }
-body:not(.page-id-274) #cssmenu.align-right ul li {
+#cssmenu.align-right ul li {
 	float: right;
 }
-body:not(.page-id-274) #cssmenu.align-center ul {
+#cssmenu.align-center ul {
 	text-align: center;
 }
-body:not(.page-id-274) #cssmenu ul li a {
+#cssmenu ul li a {
 	color: #aba5a5;
 	text-decoration: none;
 	display: block;
@@ -3052,44 +3052,44 @@ body:not(.page-id-274) #cssmenu ul li a {
 	transition: color .25s;
 }
 
-body:not(.page-id-274) #cssmenu ul li a:hover {
+#cssmenu ul li a:hover {
 	color: #333333;
     width: 150%;
 }
 
-body:not(.page-id-274) #cssmenu ul li.current-menu-parent a,
-body:not(.page-id-274) #cssmenu ul li.current-menu-item a{
+#cssmenu ul li.current-menu-parent a,
+#cssmenu ul li.current-menu-item a{
 	color: #AA7D55;
 }
 
-body:not(.page-id-274) #cssmenu ul li.current-menu-parent a:before,
-body:not(.page-id-274) #cssmenu ul li.current-menu-item a:before{
+#cssmenu ul li.current-menu-parent a:before,
+#cssmenu ul li.current-menu-item a:before{
 	background: #AA7D55;
 	width:150%;
 }
 
-body:not(.page-id-274) #cssmenu ul li:hover{
+#cssmenu ul li:hover{
 	width: 16.6%;
 }
 
-body:not(.page-id-274) #cssmenu ul li:hover + li{
+#cssmenu ul li:hover + li{
 	width: 5.5%;
 }
 
-body:not(.page-id-274) #cssmenu ul li:nth-last-child(2):hover + li {
+#cssmenu ul li:nth-last-child(2):hover + li {
 	width: 5.5%;
 }
 
-body:not(.page-id-274) #cssmenu ul li:last-child {
+#cssmenu ul li:last-child {
 	width: 11%;
 }
 
 
-body:not(.page-id-274) #cssmenu ul li a:hover:before {
+#cssmenu ul li a:hover:before {
 	width: 100%;
 }
 
-body:not(.page-id-274) #cssmenu ul li a:after {
+#cssmenu ul li a:after {
 	content: '';
 	display: block;
 	position: absolute;
@@ -3103,9 +3103,9 @@ body:not(.page-id-274) #cssmenu ul li a:after {
 }
 
 
-body:not(.page-id-274) #cssmenu .current-menu-parent a:before,
-body:not(.page-id-274) #cssmenu .current-menu-item a:before,
-body:not(.page-id-274) #cssmenu ul li a:before {
+#cssmenu .current-menu-parent a:before,
+#cssmenu .current-menu-item a:before,
+#cssmenu ul li a:before {
 	content: '';
 	display: block;
 	position: absolute;
@@ -3121,40 +3121,40 @@ body:not(.page-id-274) #cssmenu ul li a:before {
 	-o-transition: width .25s;
 	transition: width .25s;
 }
-body:not(.page-id-274) #cssmenu ul li.last > a:after,
-body:not(.page-id-274) #cssmenu ul li:last-child > a:after {
+#cssmenu ul li.last > a:after,
+#cssmenu ul li:last-child > a:after {
 	display: none;
 }
-body:not(.page-id-274) #cssmenu ul li.active a {
+#cssmenu ul li.active a {
 	color: #333333;
 }
-body:not(.page-id-274) #cssmenu ul li.active a:before {
+#cssmenu ul li.active a:before {
 	width: 100%;
 }
-body:not(.page-id-274) #cssmenu.align-right li.last > a:after,
-body:not(.page-id-274) #cssmenu.align-right li:last-child > a:after {
+#cssmenu.align-right li.last > a:after,
+#cssmenu.align-right li:last-child > a:after {
 	display: block;
 }
-body:not(.page-id-274) #cssmenu.align-right li:first-child a:after {
+#cssmenu.align-right li:first-child a:after {
 	display: none;
 }
 
-.home #cssmenu {
+.home#cssmenu {
 	display:none;
 }
 
-.page-id-274 #respond,.page-id-274 #widget-footer,.page-id-274 #random-x6,.page-id-274 #wrapper {
+/*.page-id-274 #respond,.page-id-274 #widget-footer,.page-id-274 #random-x6,.page-id-274 #wrapper{
 	display: none !important; 
-}
+}*/
 
-.page-id-274 #cssmenu .menu {
+#category-menu  {
 	display: block;
 	background-image: none;
 	background-color: transparent;
 }
 
 
-.page-id-274 #cssmenu ul.menu li i {
+#category-menu ul> li> i {
 	color: #000;
 	font-size: 45px;
 	vertical-align: -5%;
@@ -3166,11 +3166,11 @@ body:not(.page-id-274) #cssmenu.align-right li:first-child a:after {
 	transition: all 0.2s ease-in-out;
 }
 
-.page-id-274 #cssmenu ul.menu li i:hover {
+#category-menu ul li i:hover {
 
 }
 	
-.page-id-274 #cssmenu ul.menu li a {
+#category-menu> ul> li> a {
 	border: none;
 	color: #000;
     cursor:pointer;
@@ -3189,11 +3189,20 @@ body:not(.page-id-274) #cssmenu.align-right li:first-child a:after {
 	transition: all 0.2s ease-in-out;
 }
 
-.page-id-274 #cssmenu ul.menu li .dqarrow {
+#category-menu ul li ul li a{
+	display: block;
+}
+
+#category-menu ul li ul{
+	display: none;
+}
+
+#category-menu ul li .dqarrow {
 	content: " ";
 	width: 0px;
 	height: 57px;
 	left: 0px;
+	position: relative;
 	cursor: pointer;
 	margin-right: -5px;
 	padding: 0;
@@ -3209,33 +3218,36 @@ body:not(.page-id-274) #cssmenu.align-right li:first-child a:after {
 @-webkit-keyframes jump{
 	0% {
 		opacity: 0.6;
-		height:55%;
+		bottom:3px;
 	}
 	50% {
 		opacity: 1;
-		height:70%;
+		bottom:-3px;
 	}
 	100% {
 		opacity: 0.6;
-		height:55%;
+		bottom:3px;
 	}
 }
 
 
 @keyframes jump {
 	0% {
-		height:55%;
+		opacity: 0.6;
+		bottom:10px;
 	}
 	50% {
-		height:70%;
+		opacity: 1;
+		bottom:-10px;
 	}
 	100% {
-		height:55%;
+		opacity: 0.6;
+		bottom:10px;
 	}
 }
 
 
-.page-id-274 #cssmenu ul.menu li .dqarrow:hover {
+#category-menu> ul> li> .dqarrow:hover {
 	vertical-align: -13%;
 	-webkit-animation: jump 0.75s infinite; 
 	-moz-animation: jump 0.75s infinite;
@@ -3246,31 +3258,34 @@ body:not(.page-id-274) #cssmenu.align-right li:first-child a:after {
 }
 
 
-.page-id-274 #cssmenu ul.menu li a:before:hover {
+#category-menu ul li a:before:hover {
 
 }
 
 
-.page-id-274 #cssmenu ul.menu li a:after
+#category-menu ul li a:after
 {
 }
 
-.page-id-274 #cssmenu .menu a:hover {
+#category-menu  a:hover {
 	color: #AAA;
     filter: none;
 	width: auto;
 }
 
-.page-id-274 #cssmenu ul.menu li {
+#category-menu> ul> li {
 	float: none;
-	height: 100px;
 	padding: 5px 0;
 	display: block;
 	width: auto !important;
 	background-image: none;
 }
 
-.page-id-274 #cssmenu {
+#category-menu> ul> li> *:not(ul) {
+	height:50px;
+}
+
+#category-menu {
 	list-style: disc;
 	border: none;
 	height: auto;
