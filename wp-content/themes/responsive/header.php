@@ -107,6 +107,12 @@ if ( !defined('ABSPATH')) exit;
 			var n = $(this).parent().index();
 			timer[n] = setTimeout(function(){unhover(myvar);},200);
 		});
+
+		/*$('img').each(function(){
+			var w = $(this).width(); 
+			var h = $(this).height();
+			$(this).parent().css('width',w).css('height',h);
+	});*/
 	});
 </script>
 <?php if ( is_category() || is_single() || is_search()) { ?>

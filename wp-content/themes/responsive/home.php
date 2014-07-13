@@ -42,7 +42,7 @@ if ( !defined('ABSPATH')) exit;
     
     <div id="featured-image" class="grid col-940 fit">
       <div class="wrapper">
-        <div id="cn-slideshow" class="cn-slideshow">
+        <div id="cn-slideshow" class="cn-slideshow lifted-shadow">
 		  <div class="cn-loading">Loading...</div>
           <div class="cn-images">
             <?php	$count = 1;

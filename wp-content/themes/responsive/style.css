@@ -1273,7 +1273,6 @@ form div {
 
 .wide-container {
 	margin-top: 20px;
-	/*border-top: 1px #eee	solid;*/
 	clear: both;
 	overflow: hidden;
 	margin: 0px auto;
@@ -1604,14 +1603,8 @@ form div {
 /* =Featured Content
 -------------------------------------------------------------- */
 #featured {
-	/*-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	background-color: #fff;
-	border: 1px solid #e5e5e5;
-	border-radius: 4px;*/
-/*padding-bottom: 40px;*/
-
-width: 99.893617021277%;
+	width: 99.893617021277%;
+	margin-bottom: 5%;
 }
 
 #featured.grid, #featured .grid{
@@ -1770,6 +1763,12 @@ div.srp-thumbnail-box {
 	line-height: 3.4rem;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight:200;
+}
+
+.archive .post-entry a.alignleft,
+.archive .post-entry a img {
+	margin-bottom: 0px;
+	margin-top: 0px;
 }
 
 .page-id-275 #inner-content h1{
@@ -1940,7 +1939,6 @@ div.srp-thumbnail-box {
 .post-entry {
 	clear: both;
 	display:block;
-
 }
 
 .post-entry p{
@@ -1988,6 +1986,10 @@ div.srp-thumbnail-box {
 .attachment-entry {
 	clear: both;
 	text-align: center;
+}
+
+.archive .wide-container {
+	overflow: initial;
 }
 
 .archive .post-data {
@@ -2083,7 +2085,28 @@ padding: 20px 20px 2px 20px;
 .random {
 	min-height: 525px;
 	position: relative;
+}
+
+.random,
+.allpost-posts .allpost-thumb{
 	box-shadow: 0 1px 6px 0 rgba(0,0,0,0.4),0 0 0 transparent,0 0 0 transparent;
+    -webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-ms-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+.random:hover {
+	box-shadow: 0 1px 10px 0 rgba(0,0,0,0.8),0 0 0 transparent,0 0 0 transparent;
+}
+
+.allpost-posts:hover .allpost-thumb{
+	box-shadow: 0 1px 6px 0 rgba(0,0,0,1),0 0 0 transparent,0 0 0 transparent;
+}
+
+.allpost-posts:hover:before{
+	width: 100%;
 }
 
 .random p {
@@ -2400,6 +2423,7 @@ h4.srp-post-title {
 
 .page-id-275 .allpost-content #facebook-like {
 	height: 24px;
+	width: 100%;
 	line-height: 30px;
 	margin: 5px 0 0 0;
 	display: block;
@@ -3292,7 +3316,31 @@ border-left: none;
 	display: block;
 }
 
+.archive .post-entry {
+	height: 285px;
+}
 
+.archive .post-entry img,
+.category .post-entry img
+{
+	box-shadow: 0 1px 6px 0 rgba(0,0,0,0.4),0 0 0 transparent,0 0 0 transparent;
+    -webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-ms-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
+.archive div[id*='post-']:hover .post-entry a.alignleft> img{
+	box-shadow: 0 1px 10px 0 rgba(0,0,0,0.8),0 0 0 transparent,0 0 0 transparent;
+}
+
+.archive .post-entry>a:after,
+.category .post-entry>a:after
+{
+	content:"";
+	clear: both;
+}
 
 /* =Primary Main Menu IE Fixes
 -------------------------------------------------------------- */
@@ -3443,9 +3491,43 @@ TinyNav + SelectBox
     background: #fff;
     -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-
 }
+
+.lifted-shadow {
+	position:relative;       
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.lifted-shadow:hover:after,
+.lifted-shadow:hover:before {
+	-webkit-box-shadow: 0 0 40px rgba(0,0,0,1);
+	-moz-box-shadow: 0 0 40px rgba(0,0,0,1);
+	box-shadow: 0 0 40px 4px rgba(0,0,0,1);
+}
+	
+.lifted-shadow:after,
+.lifted-shadow:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0 0 40px rgba(0,0,0,0.7);
+	box-shadow: 0 0 40px 4px rgba(0,0,0,0.7);
+	top: 3.5%;
+	bottom: 0%;
+	left: 10px;
+	right: 10px;
+	-moz-border-radius: 50% / 10px;
+	border-radius: 50% / 10%;
+    -webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-ms-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
 .cn-loading{
     position: absolute;
     z-index:999;
@@ -4152,18 +4234,37 @@ p.comment-form-comment {
 }
 
 .allpost-thepost {
+	height: 30px;
 	line-height: 30px;
 	vertical-align: middle;
 }
 
 .allpost-posts {
-	overflow: hidden;
 	clear: both;
 	display: block;
-	height:120px;
+	margin-right: 40px;
+	margin-bottom: 40px;
 	position: relative;
 	vertical-align: middle;
 	line-height:120px; 
+}
+
+.allpost-posts:before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: -20px;
+	height: 1px;
+	width: 0;
+	background: #aaa;
+	overflow: visible;
+	-webkit-transition: width .25s;
+	-moz-transition: width .25s;
+	-ms-transition: width .25s;
+	-o-transition: width .25s;
+	transition: width .25s;
+
 }
 
 .allpost-thumb {
@@ -4177,19 +4278,23 @@ p.comment-form-comment {
 }
 
 .allpost-content {
-	float: left;
-	width: 490px;
-	padding-left: 30px;
+	padding: 5px 10px;
+	height: 100px;
+	overflow: hidden;
 }
 
 .allpost-meta {
 	color: #AAA;
 	line-height: 30px;
-	vertical-align: middle;
+	height: 30px;
 }
 
 .allpost-meta a {
 	color: #333;
+}
+
+.page-id-275 .wide-container {
+	overflow: initial;
 }
 
 .page-id-275 #content-archive ul {
@@ -4795,10 +4900,6 @@ only screen and (min-device-pixel-ratio:1.5) {
 		background-position: 0 -4px !important;
 	}
 
-	.allpost-content {
-		width: 70% !important;
-	}
-
 	.srp-widget-excerpt {
 		display: none;
 	}
@@ -4871,11 +4972,6 @@ only screen and (min-device-pixel-ratio:1.5) {
 
 	.page-id-275 #inner-content ul li {
 		width: 100% !important;
-	}
-
-
-	.allpost-content {
-		width:510px !important;
 	}
 
 	.archive .post-meta, .search .post-meta {
@@ -5038,22 +5134,13 @@ only screen and (min-device-pixel-ratio:1.5) {
 		width: 100% !important;
 	}
 
-	/*
-	#facebook-comment {
-	width: 100% !important;
-	}*/
+	.random {
+		min-height: 495px !important;
+	}
 
-.allpost-content {
-	width: 70% !important;
-}
-
-.random {
-	min-height: 495px !important;
-}
-
-.authoricon {
-	width: auto;
-}
+	.authoricon {
+		width: auto;
+	}
 
 }
 
@@ -5147,12 +5234,8 @@ only screen and (min-device-pixel-ratio:1.5) {
 		text-align: center;
 	}
 
-	.allpost-content {
-		width: 50% !important;
-	}
-
 	.allpost-posts {
-		height: 180px !important;
+		width: 100%;
 	}
 
 	.random {

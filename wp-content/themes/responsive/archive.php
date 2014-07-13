@@ -49,8 +49,8 @@ if ( !defined('ABSPATH')) exit;
                  	<h1 class="post-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php printf(__( 'Permanent Link to %s', 'responsive' ), the_title_attribute( 'echo=0' )); ?>"><?php the_title(); ?></a></h1>
                 	<div class="post-entry">
                     	<?php if ( has_post_thumbnail()) : ?>
-                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-                    		<?php the_post_thumbnail('thumbnail', array('class' => 'alignleft')); ?>
+                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="alignleft">
+                    		<?php the_post_thumbnail('thumbnail', array('class' => '')); ?>
                         </a>
                     	<?php endif; ?>
 

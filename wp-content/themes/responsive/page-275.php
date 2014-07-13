@@ -59,11 +59,11 @@ if ( !defined('ABSPATH')) exit;
    							<?php the_post_thumbnail('allpost-thumb'); ?>
    						</a>
  						<?php endif; ?></div><div class="allpost-content">
-    					<div class="allpost-thepost">
+    					<div class="allpost-thepost dotdotdot">
     						<a href="<?php the_permalink() ?>" rel="bookmark">
       							<?php the_title(); ?>
 
-      					</a></div><div class="allpost-meta"><?php responsive_post_meta_data(); ?></div>
+      					</a></div><div class="allpost-meta dotdotdot"><?php responsive_post_meta_data(); ?></div>
           				<iframe id="facebook-like" src="https://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
       				</div>
 
