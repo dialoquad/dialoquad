@@ -67,7 +67,7 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 			<div class="random-wrapper" id="widgets">
 				<div class="random">
 					<?php if ( has_post_thumbnail()) : ?>
-   					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+   					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="resize">
    						<?php the_post_thumbnail('random-thumb'); ?>
    					</a>
  					<?php endif;?>
@@ -79,6 +79,7 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 						<?php wpe_excerpt('wpe_excerptlength_random', 'wpe_excerptmore');  $count++;?>
 					</div>
           			<iframe id="facebook-like" class="fb-random" src="https://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+					<?php echo get_the_category();?>
 				</div>
 			</div>
 		</div>

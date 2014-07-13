@@ -90,7 +90,7 @@ if ( !defined('ABSPATH')) exit;
 			myvar.is(".dqarrow") ? myvar.css('width','0px') : myvar.prev().css('width','0px');
 		}
 		
-		var icons= ['icon-compass', 'icon-location', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-comments-5'];	
+		var icons= ['icon-compass', 'icon-location', 'icon-tv', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-type', 'icon-comments-5'];	
 
 		$("#category-menu> ul> li> a").each(function(index){$(this).before('<i class="'+icons[index]+'"></i><i class="dqarrow"></i>');})
 
@@ -107,12 +107,6 @@ if ( !defined('ABSPATH')) exit;
 			var n = $(this).parent().index();
 			timer[n] = setTimeout(function(){unhover(myvar);},200);
 		});
-
-		/*$('img').each(function(){
-			var w = $(this).width(); 
-			var h = $(this).height();
-			$(this).parent().css('width',w).css('height',h);
-	});*/
 	});
 </script>
 <?php if ( is_category() || is_single() || is_search()) { ?>
@@ -238,19 +232,19 @@ ga('send', 'pageview');
      			<div class="wide-container">
     				<?php get_sidebar('top'); ?>
 					<div id="cssmenu">
-						<?php wp_nav_menu(array(
-						'container'       => '',
-						'theme_location'  => 'header-menu')
-						); 
-						?>
+<?php wp_nav_menu(array(
+	'container'       => '',
+	'theme_location'  => 'header-menu')
+); 
+?>
 					</div>
             		<?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
-					<?php wp_nav_menu(array(
-					'container'       => '',
-					'menu_class'      => 'sub-header-menu',
-					'theme_location'  => 'sub-header-menu')
-					); 
-					?>
+<?php wp_nav_menu(array(
+	'container'       => '',
+	'menu_class'      => 'sub-header-menu',
+	'theme_location'  => 'sub-header-menu')
+); 
+?>
             		<?php } ?>
 				</div><!-- end of .wide-container -->
     		</div><!-- end of .landing-box -->

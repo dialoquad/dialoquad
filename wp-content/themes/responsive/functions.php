@@ -83,6 +83,29 @@ function css_version( $args ) {
 add_filter( 'stylesheet_uri', 'css_version' );
 
 
+// ** Customize category icons ** //
+
+function dq_category( $args ) {
+	$name = $args[0]-> name;
+	$icons = array(
+		"On the road" => "icon-compass",
+		"絕對位置，相對位置" => "icon-location",
+		"關於廣告行銷，我只是初學" => "icon-tv",
+		"少年Po的奇怪漂流" => "icon-air",
+		"小宇宙大爆炸" => "icon-lab",
+		"美好生活的簡單提案" => "icon-sun",
+		"我家有隻蠹書蟲" => "icon-book",
+		"我無意成為影痴，但是" => "icon-camera-3",
+		"故事都未完成" => "icon-puzzle",
+		"字型甚至是個學問" => "icon-type",
+		"客座徵文" => "icon-comments-5"
+	);
+	
+	return '<i class="' . $icons[$name] . ' caticon"' . 'title="' . $name .'"></i>';
+}
+
+add_filter('get_the_categories','dq_category');
+
 // ** Customize top-menu navigation bar ** //
 
 class regex_parser {
@@ -197,7 +220,6 @@ function wpe_excerpt( $length_callback = '', $more_callback = '' ) {
 	$output = '<p>' . $output . '</p>'; // maybe wpautop( $foo, $br )
     echo $output;
 }
-
 
 // ** Customize tag cloud for tag fog ** //
 

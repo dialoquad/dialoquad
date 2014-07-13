@@ -2154,6 +2154,13 @@ padding: 20px 20px 2px 20px;
 	overflow: hidden;
 }
 
+.random i.caticon {
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	padding: 5px 15px 15px 15px;
+}
+
 
 .author-wrapper {
 	margin-bottom: 30px;
@@ -2423,12 +2430,20 @@ h4.srp-post-title {
 
 .page-id-275 .allpost-content #facebook-like {
 	height: 24px;
-	width: 100%;
+	width: 72px;
 	line-height: 30px;
 	margin: 5px 0 0 0;
-	display: block;
+	display: inline-block;
+	vertical-align: top;
 	overflow: hidden;
 	clear: both;
+}
+
+.page-id-275 .allpost-content i.caticon {
+	font-size: 22px;
+	padding-top: 3px;
+	vertical-align: top;
+	display: inline-block;
 }
 
 #searchform input[type="text"]{
@@ -3002,7 +3017,7 @@ border-left: none;
 	background: #ffffff;
 	width: auto;
 	height: 48px;
-	padding-left: 20px;
+	padding: 0 10px 0 20px;
 	border-bottom: 3px double #aba5a5;
 	border-top: 3px double #aba5a5;
 }
@@ -3029,7 +3044,7 @@ border-left: none;
 	padding: 0px 10px;
 	margin: 0;
 	overflow: hidden;
-	width: 11%;
+	width: 9%;
 	background-image: url(images/bullets.png);
 	background-repeat: no-repeat;
 	background-position: 0px 20px;
@@ -3093,19 +3108,19 @@ border-left: none;
 }
 
 #cssmenu ul li:hover{
-	width: 16.6%;
+	width: 16%;
 }
 
 #cssmenu ul li:hover + li{
-	width: 5.5%;
+	width: 4.5%;
 }
 
 #cssmenu ul li:nth-last-child(2):hover + li {
-	width: 5.5%;
+	width: 4.5%;
 }
 
 #cssmenu ul li:last-child {
-	width: 11%;
+	width: 9%;
 }
 
 
