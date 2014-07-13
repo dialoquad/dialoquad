@@ -87,6 +87,8 @@ add_filter( 'stylesheet_uri', 'css_version' );
 
 function dq_category( $args ) {
 	$name = $args[0]-> name;
+	$category_id = get_cat_ID( $name );
+	$category_link = get_category_link( $category_id );
 	$icons = array(
 		"On the road" => "icon-compass",
 		"絕對位置，相對位置" => "icon-location",
@@ -101,7 +103,7 @@ function dq_category( $args ) {
 		"客座徵文" => "icon-comments-5"
 	);
 	
-	return '<i class="' . $icons[$name] . ' caticon"' . 'title="' . $name .'"></i>';
+	return '<a ' . (!is_category() ? 'href="'.$category_link.'"':'')  . 'class="' . $icons[$name] . ' caticon"' . 'title="' . $name .'">' . '</a>';
 }
 
 add_filter('get_the_categories','dq_category');

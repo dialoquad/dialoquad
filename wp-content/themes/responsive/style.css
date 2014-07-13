@@ -2154,13 +2154,18 @@ padding: 20px 20px 2px 20px;
 	overflow: hidden;
 }
 
-.random i.caticon {
+#widgets .random a.caticon {
+	color: #999;
 	right: 0px;
 	bottom: 0px;
+	font-size: 16px;
 	position: absolute;
-	padding: 5px 15px 15px 15px;
+	padding: 0px 15px;
 }
 
+#widgets .random a.caticon:hover {
+	color: #333;
+}
 
 .author-wrapper {
 	margin-bottom: 30px;
@@ -2439,12 +2444,18 @@ h4.srp-post-title {
 	clear: both;
 }
 
-.page-id-275 .allpost-content i.caticon {
-	font-size: 22px;
-	padding-top: 3px;
+.page-id-275 .allpost-content a.caticon {
+	color: #999;
+	font-size: 16px;
+	padding-top: 7px;
 	vertical-align: top;
 	display: inline-block;
 }
+
+.page-id-275 .allpost-content a.caticon:hover {
+	color: #333;
+}
+
 
 #searchform input[type="text"]{
 	width: 192px;
@@ -3333,10 +3344,10 @@ border-left: none;
 
 .archive .post-entry {
 	height: 285px;
+	position: relative;
 }
 
 .archive .post-entry img,
-.category .post-entry img
 {
 	box-shadow: 0 1px 6px 0 rgba(0,0,0,0.4),0 0 0 transparent,0 0 0 transparent;
     -webkit-transition: all 0.4s ease;
@@ -3351,10 +3362,30 @@ border-left: none;
 }
 
 .archive .post-entry>a:after,
-.category .post-entry>a:after
 {
 	content:"";
 	clear: both;
+}
+
+.archive .post-entry a.caticon {
+	color: #999;
+	right: 0px;
+	top: 0px;
+	font-size: 16px;
+	position: absolute;
+	padding: 0px 15px;
+}
+
+.archive .post-entry a.caticon:hover {
+	color: #333;
+}
+
+.category .post-entry a.caticon {
+	cursor: default;
+}
+
+.category .post-entry a.caticon:hover {
+	color: #999;
 }
 
 /* =Primary Main Menu IE Fixes
