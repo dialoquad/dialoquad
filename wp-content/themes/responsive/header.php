@@ -54,10 +54,10 @@ if ( !defined('ABSPATH')) exit;
 <!-- Metro bootstrap code -->
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/metro/iconFont.min.css">
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/metro/metro-bootstrap.min.css">
-<script src="<?php echo get_stylesheet_directory_uri()?>/metro/metro.min.js"></script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/jquery.dotdotdot.js"></script>
+
 <script type="text/javascript" language="javascript">
 	$(function() {
 		$('.dotdotdot').dotdotdot({wrap:'letter'});
@@ -65,7 +65,7 @@ if ( !defined('ABSPATH')) exit;
 	});
 </script> 
 
-<script>
+<script type="text/javascript" language="javascript">
 	$(document).ready(function(){
 		$(".icon-search").click(function() {
 			$("#searchbox").slideToggle('fast');
@@ -88,12 +88,8 @@ if ( !defined('ABSPATH')) exit;
 		var timer = [];
 		var unhover = function(myvar){
 			myvar.is(".dqarrow") ? myvar.css('width','0px') : myvar.prev().css('width','0px');
-		}
+		};
 		
-		var icons= ['icon-compass', 'icon-location', 'icon-tv', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-type', 'icon-comments-5'];	
-
-		$("#category-menu> ul> li> a").each(function(index){$(this).before('<i class="'+icons[index]+'"></i><i class="dqarrow"></i>');})
-
 		$("#category-menu> ul> li> .dqarrow").click(function() {
 			$(this).siblings("ul").slideToggle('fast');
 		});

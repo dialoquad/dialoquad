@@ -21,21 +21,24 @@ if ( !defined('ABSPATH')) exit;
 <div class="wide-container">
 	<div id="content-archive" class="grid col-940">
 		<div id="inner-content">
-  	        
-			<?php if (has_nav_menu('category-menu', 'responsive')) { ?>
+
+			<?php if (has_nav_menu('category-menu', 'responsive')):?>
 				<div id="category-menu">
 					<?php wp_nav_menu(array(
 					'container'       => '',
 					'fallback_cb'	  =>  false,
 					'menu_class'      => 'category-menu',
 					'theme_location'  => 'category-menu')
-					); 
-					}?>
+					);?>
 				</div>
+			<?php endif ?>
 		</div><!-- end of #inner-content --> 
-
 	</div>
 	<!-- end of #content-archive -->
 </div><!-- end of .narrow-container -->
+<script type="text/javascript" language="javascript">
+	var icons= ['icon-compass', 'icon-location', 'icon-tv', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-type', 'icon-comments-5'];	
+	$("#category-menu> ul> li> a").each(function(index){$(this).before('<i class="'+icons[index]+'"></i><i class="dqarrow"></i>');});
+</script>
 <?php get_sidebar('home'); ?>
 <?php get_footer(); ?>
