@@ -387,6 +387,29 @@ function wp_mail_to_smtp(&$phpmailer) {
 
 add_action('phpmailer_init', 'wp_mail_to_smtp');
 
+
+// ** Customize author post page **//
+
+function dq_remove_metaboxes(){
+	$role = wp_get_current_user()-> roles;
+	$target = array('administrator', 'editor');
+	if( count(array_intersect($role, $target)) <= 0 ) {
+		remove_meta_box('yarpp_relatedposts', 'post', 'normal');
+		remove_meta_box('yarpp_relatedposts', 'page', 'normal');
+	}
+}
+
+add_action( 'add_meta_boxes', 'dq_remove_metaboxes', 11 );
+
+// ** Remove auto-generated password warning ** //
+
+function remove_default_password_nag() {
+	global $user_ID;
+	delete_user_setting('default_password_nag', $user_ID);
+	update_user_option($user_ID, 'default_password_nag', false, true);
+}
+add_action('admin_init', 'remove_default_password_nag');
+
 // ** Default template settings ** //
 
 require ( get_template_directory() . '/includes/functions.php' );
