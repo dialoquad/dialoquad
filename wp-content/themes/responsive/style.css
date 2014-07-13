@@ -2154,6 +2154,51 @@ padding: 20px 20px 2px 20px;
 	overflow: hidden;
 }
 
+.random .relate-banner {
+	position: absolute;
+	top: 30px;
+	right: -5px;
+	color: #666;
+	background: rgba(255,255,255,0.8);
+	padding: 5px 10px 5px 0px;
+	font-family: "xinheiw3";
+	border-left: 3px solid #BE2832;
+	font-size: 12px;
+	line-height: 9px;
+	height: 20px;
+	vertical-align: top;
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4),0 0 0 transparent,0 0 0 transparent;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	
+}
+
+.random .relate-banner:before {
+	margin-right: 5px;
+	font-size: 28px;
+	color: #BE2832;
+	opacity: 0.8;
+}
+
+.random .relate-banner:after {
+	content:"";
+	width: 0px;
+	height: 0px;
+	border-bottom: 6px solid transparent;
+	border-left: 6px solid #BE2832;
+	position: absolute;
+	top: 20px;
+	right: 0px;
+	z-index: -10;
+}
+
+.random:hover .relate-banner {
+	color: #333;
+}
+
 #widgets .random a.caticon {
 	color: #999;
 	right: 0px;

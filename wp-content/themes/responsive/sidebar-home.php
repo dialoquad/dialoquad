@@ -35,15 +35,18 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 	</div>
 	<div id="random-x6">
 
-
 <?php /*Session stored existing post info for non-repeat*/ ?>
 <?php session_start(); ?>
 <?php $_SESSION['exist_posts'] = array(get_the_ID()); ?>
 <?php $randPosts = new WP_Query( array ( 'orderby' => 'rand', 'posts_per_page' => '-1', 'showposts' => '7' ) );?>
 <?php $count = 1;?>
 <?php global $yarpp, $cache_status;?>
-<?php $recentPosts = relate_query();?>
-		
+<?php if(is_single() || is_home()){
+	$recentPosts = relate_query();
+}else{
+	$recentPosts = $randPosts;
+}?>
+
 		<?php while ( $count <=6 ) :?>
 			<?php if($recentPosts->have_posts()) :?> 
 				<?php $recentPosts->the_post();?>
@@ -80,6 +83,9 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 					</div>
           			<iframe id="facebook-like" class="fb-random" src="https://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink(get_the_ID()));?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 					<?php echo get_the_category();?>
+					<?php if ($recentPosts != $randPosts){
+						echo '<div class="relate-banner icon-medal">相關推薦</div>';
+					}?>
 				</div>
 			</div>
 		</div>
