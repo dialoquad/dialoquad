@@ -185,6 +185,20 @@ archive-all(){
 	rm ../dialoquad.sql
 }
 
+#sync media folder with upload foler
+
+media-upload(){
+if rhc ssh dialoquad --command '[ -d app-root/repo/wp-content/uploads ]'
+then	
+	echo "Found uploads folder"
+	rsync -ravz ./wp-content/uploads "${sshaddr}:app-root/repo/wp-content/" 
+else
+	echo "Error /repo/wp-content/uploads folder doesn't exist"
+	exit 1
+fi
+
+}
+
 if [ "$1" = "pre-push" ]; then
 	pre-push
 elif [ "$1" = "post-push" ]; then
@@ -209,6 +223,10 @@ elif [ "$1" = "-f" ]; then
 	pre-push
 	push '-f'
 	post-push
+elif [ "$1" = "media" ]; then
+	if [ "$2" = "upload" ]; then
+		media-upload
+	fi
 elif [ -z "$*" ]; then
 	pre-push
 	push
