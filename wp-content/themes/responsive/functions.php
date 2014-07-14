@@ -385,8 +385,9 @@ function wp_mail_to_smtp(&$phpmailer) {
 	$phpmailer->Password = 'trioplusone';
 }
 
-add_action('phpmailer_init', 'wp_mail_to_smtp');
-
+if (getenv('OPENSHIFT_APP_NAME') != "") {
+	add_action('phpmailer_init', 'wp_mail_to_smtp');
+}
 
 // ** Customize author post page **//
 

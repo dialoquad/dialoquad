@@ -61,6 +61,11 @@
 			var oheight;
 			var opostition;
 			
+			$(window).bind("resize", function(){
+				var $topmar1  = -1*((instance.$images.eq(instance.current).height()-360)/2);
+				instance.$images.eq( instance.current ).removeAttr("style").css('width', '100%').css('top', $topmar1).css('display', 'block');
+			});			
+
 			$('div.cn-images').hover(function() {
 				var zoom = 1.2;
 				//Set the width and height according to the zoom percentage

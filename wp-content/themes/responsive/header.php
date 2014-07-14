@@ -58,15 +58,19 @@ if ( !defined('ABSPATH')) exit;
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/jquery.dotdotdot.js"></script>
 
-<script type="text/javascript" language="javascript">
-	$(function() {
-		$('.dotdotdot').dotdotdot({wrap:'letter'});
-		$('.srp-post-title').dotdotdot({wrap:'letter'});
-	});
-</script> 
+<!-- FishEye dock -->
+<script type="text/javascript" src="js/interface.js"></script>
 
+
+<!-- Document Ready scripts -->
 <script type="text/javascript" language="javascript">
-	$(document).ready(function(){
+$(document).ready(function(){
+		$(window).bind("load resize", function(){
+			$('.dotdotdot').dotdotdot({wrap:'letter'});
+			
+			$('.srp-post-title').dotdotdot({wrap:'letter'});
+		});
+		
 		$(".icon-search").click(function() {
 			$("#searchbox").slideToggle('fast');
 		});

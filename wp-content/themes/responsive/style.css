@@ -307,8 +307,8 @@ http://themeid.com/responsive-grid/
 }
 
 .fit {
-	margin-left: 0 !important;
-	margin-right: 0 !important;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 /* =Visibility
@@ -1478,6 +1478,10 @@ form div {
 
 #footer-wrapper .grid {
 	margin-bottom: 0;
+}
+
+#footer-wrapper .fit {
+	margin-right: 0;
 }
 
 
@@ -3437,7 +3441,7 @@ border-left: none;
 }
 
 .archive .post-entry {
-	height: 285px;
+	min-height: 285px;
 	position: relative;
 }
 
@@ -5079,9 +5083,29 @@ only screen and (min-device-pixel-ratio:1.5) {
 		width: 650px  !important;
 	}
 
-	.col-300,.grid.col-220.author,.col-220{ 
+	.col-300,.col-220{ 
 		width: 48.936170212766%;
 		margin-right: 1%;
+	}
+
+	.col-300 {
+		width: 31.914893617021%;
+	}
+	
+	.grid.col-220.author {
+		width: 125px;
+		height: 150px;
+		margin-right: 1%;
+	}
+	
+	.grid.col-220.author.fit {
+		margin-right: 0;
+	}
+	
+	.author-wrapper a {
+		width: 125px;
+		height: 125px;
+		background-size: 125px Auto;
 	}
 
 	div.powered {
@@ -5118,7 +5142,7 @@ only screen and (min-device-pixel-ratio:1.5) {
 	}
 
 	.authoricon {
-		width: 460px;
+		width: 520px;
 		margin: 0 auto;
 	}
 
@@ -5136,6 +5160,22 @@ only screen and (min-device-pixel-ratio:1.5) {
 
 	.respond-wrapper {
 		width: 100% !important;
+	}
+	
+	.lifted-shadow:after,
+	.lifted-shadow:before {
+		top: 1%;
+		-webkit-box-shadow: 0 0 20px 4px rgba(0,0,0,0.7);
+		-moz-box-shadow: 0 0 20px 4px rgba(0,0,0,0.7);
+		box-shadow: 0 0 20px 4px rgba(0,0,0,0.7);
+	}
+
+	.random {
+		min-height: 360px !important;
+	}
+
+	#category-menu> ul> li> a {
+		font-size: 40px;
 	}
 
 }
@@ -5271,10 +5311,6 @@ only screen and (min-device-pixel-ratio:1.5) {
 
 	.fb-comment-wrapper {
 		width: 100% !important;
-	}
-
-	.random {
-		min-height: 495px !important;
 	}
 
 	.authoricon {
