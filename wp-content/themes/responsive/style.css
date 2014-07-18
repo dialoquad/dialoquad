@@ -125,10 +125,18 @@ body {
 	-webkit-font-smoothing: antialiased;
 	background: 40px;
 	color: #333;
-	font-family: Arial, Helvetica, sans-serif, Microsoft JhengHei, "微軟正黑體", ;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	line-height: 1.6;
 	font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+body *{
+	font-family: Helvetica, Microsoft JhengHei, "微軟正黑體", Arial, sans-serif;
+	font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 }
 
@@ -1750,27 +1758,27 @@ width: 99.893617021277%;
 }
 
 h1.post-title{
-	font-family: "xinheiw8";
+/*	font-family: "xinheiw8";*/
 }
 
 h1.widget-title{
-	font-family: "xinheiw4";
+/*	font-family: "xinheiw4";*/
 }
 
 .radom p{
-	font-family: "xinheiw3";
+/*	font-family: "xinheiw3";*/
 }
 
 h4.srp-post-title{
-	font-family: "xinheiw4";
+/*	font-family: "xinheiw4";*/
 }
 
 p.srp-widget-excerpt{
-	font-family: "xinheiw3";
+/*	font-family: "xinheiw3";*/
 }
 
 p.srp-widget-date{
-	font-family: "xinheiw4";
+/*	font-family: "xinheiw4";*/
 }
 
 div.srp-thumbnail-box {
@@ -1995,15 +2003,15 @@ div.srp-thumbnail-box {
 }
 
 .post-entry p{
-	font-family: "xinheiw3";
+/*	font-family: "xinheiw3";*/
 }
 
 .post-entry h3{
-	font-family: "xinheiw6";
+/*	font-family: "xinheiw6";*/
 }
 
 .post-entry h3{
-	font-family: "xinheiw6";
+/*	font-family: "xinheiw6";*/
 }
 
 .post-entry h5{
@@ -2167,7 +2175,7 @@ padding: 20px 20px 2px 20px;
 	padding: 0px 15px;
 	font-size: 12px;
 	line-height: 2;
-	font-family: "xinheiw3";
+/*	font-family: "xinheiw3";*/
 }
 
 .random .widget-title {
@@ -2214,7 +2222,7 @@ padding: 20px 20px 2px 20px;
 	color: #666;
 	background: rgba(255,255,255,0.8);
 	padding: 5px 10px 5px 0px;
-	font-family: "xinheiw3";
+/*	font-family: "xinheiw3";*/
 	border-left: 3px solid #BE2832;
 	font-size: 12px;
 	line-height: 9px;
@@ -2373,7 +2381,7 @@ padding: 20px 20px 2px 20px;
 	margin: 7px 3px 0 0 !important;
 	color: #000;
 	padding: 2px 5px !important;
-	font-family: "xinheiw3";
+/*	font-family: "xinheiw3";*/
 	border-left: 3px solid #BE2832;
 	font-size: 14px!important;
 	line-height: 20px;
@@ -3719,7 +3727,7 @@ TinyNav + SelectBox
 	background: rgba(0,0,0,0.3);
 	color: #fff;
 	font-weight: bold;
-	font-family: "xinheiw6";
+/*	font-family: "xinheiw6";*/
 	/*margin: 60px 30px 0 0;*/
 	position: absolute;
 	left: 0;
@@ -4485,7 +4493,7 @@ p.comment-form-comment {
 	margin: 0;
 	padding: 0;
 	float:left;
-	font-family: "xinheiw3";
+/*	font-family: "xinheiw3";*/
 }
 
 .signature_descript {
