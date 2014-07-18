@@ -1,0 +1,9 @@
+{
+	"name": " wp-cli /wp-super-cache-cli",
+	"description": "A CLI interface for the WP Super Cache plugin",
+	"homepage": "https://github.com/wp-cli/wp-super-cache-cli",
+	"license": "GPL2",
+	"autoload": {
+		"files": [ "cli.php" ]
+	}
+}

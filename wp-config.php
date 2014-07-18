@@ -48,6 +48,9 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 
 	/** Generate inplace deubg log **/
 	define('WP_DEBUG_DISPLAY', false);
+	
+	/** Use for WP super-cache cli **/
+	define( 'WPCACHE_PHASE2', getenv('OPENSHIFT_REPO_DIR') . 'wp-content/plugins/wp-super-cache/wp-cache-phase2.php' );
 
 /** These settings can be configured for your local development environment
 	and will not affect your OpenShift configuration */

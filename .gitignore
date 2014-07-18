@@ -5,6 +5,7 @@ wp-content/plugins/special-recent-posts/cache
 wp-content/mu-plugins/special-recent-posts/cache/
 wp-config-local.php
 wp-content/wp-cache-config.php
+.wp-cli/bin/.bashrc
 *.swp
 *.sh
 *.gz
