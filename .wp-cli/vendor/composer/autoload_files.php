@@ -10,4 +10,5 @@ return array(
     $vendorDir . '/wp-cli/php-cli-tools/lib/cli/cli.php',
     $vendorDir . '/wp-cli/wp-cli/php/Spyc.php',
     $vendorDir . '/wp-cli/wp-super-cache-cli/cli.php',
+    $vendorDir . '/wp-cli/dq-cloudflare-cli/cli.php',
 );

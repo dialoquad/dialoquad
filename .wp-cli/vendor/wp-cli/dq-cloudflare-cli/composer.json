@@ -1,0 +1,9 @@
+{
+	"name": " dq-cloudflrae-cli",
+	"description": "A CLI interface for the Cloudflare plugin",
+	"homepage": "https://",
+	"license": "GPL2",
+	"autoload": {
+		"files": [ "cli.php" ]
+	}
+}

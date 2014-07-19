@@ -62,6 +62,7 @@ if rhc ssh dialoquad --command '[ -f ~/app-root/data/.bashrc ]'; then
 		echo "Cache Regenerated"
 	fi
 fi
+wp cloudflare dev off
 }
 
 git-push(){
