@@ -16,10 +16,7 @@ class WPCloudFlare_Command extends WP_CLI_Command {
 		
     	load_cloudflare_keys();
 		
-		if( $args[0] == ""){
-			set_dev_mode(esc_sql($cloudflare_api_key), esc_sql($cloudflare_api_email), $cloudflare_zone_name, 1);
-			WP_CLI::success( 'CloudFlare Development Mode On' );
-		}else if( $args[0] == "on" ){
+		if( $args[0] == "on" ){
 			set_dev_mode(esc_sql($cloudflare_api_key), esc_sql($cloudflare_api_email), $cloudflare_zone_name, 1);
 			WP_CLI::success( 'CloudFlare Development Mode On' );
 		}else if( $args[0] == "off" ){

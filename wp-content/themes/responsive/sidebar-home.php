@@ -26,7 +26,7 @@ if ( !defined('ABSPATH')) exit;
 remove_filter('the_content', array('SearchExcerpt', 'the_excerpt'), 9);
 remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 ?>
-<a name="random"></a>
+<a name="polaroid"></a>
 <div class="wide-container">
 	<div class="sectionDivider">
 		<h1>

@@ -59,18 +59,22 @@ if ( !defined('ABSPATH')) exit;
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/jquery.dotdotdot.js"></script>
 
 <!-- FishEye dock -->
-<script type="text/javascript" src="js/interface.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/interface.js"></script>
 
 
 <!-- Document Ready scripts -->
 <script type="text/javascript" language="javascript">
-$(document).ready(function(){
+(function( window, $, undefined ) {
+	$(document).ready(function(){
+
+		/* Dotdotdot for windows resizing */
 		$(window).bind("load resize", function(){
 			$('.dotdotdot').dotdotdot({wrap:'letter'});
-			
+
 			$('.srp-post-title').dotdotdot({wrap:'letter'});
 		});
-		
+
+
 		$(".icon-search").click(function() {
 			$("#searchbox").slideToggle('fast');
 		});
@@ -82,22 +86,24 @@ $(document).ready(function(){
 		$("div.input-control input").focus(function() {
 			$(this).parents(".input-control").css('outline', '0').css('border-color', '#919191');
 		});
-		
+
 		$("div.input-control input").blur(function() {
 			$(this).parents(".input-control").css('border-color', '#d9d9d9');
 		});
 
 		$("a:contains('Joomla Turbo')").css('display','none');
 
+
+		/* Category Navigation bar */
 		var timer = [];
 		var unhover = function(myvar){
 			myvar.is(".dqarrow") ? myvar.css('width','0px') : myvar.prev().css('width','0px');
 		};
-		
+
 		$("#category-menu> ul> li> .dqarrow").click(function() {
 			$(this).siblings("ul").slideToggle('fast');
 		});
-		
+
 		$("#category-menu> ul> li> a, #category-menu> ul> li> .dqarrow").hover(function() {
 			var n = $(this).parent().index();
 			window.clearTimeout(timer[n]);
@@ -107,8 +113,39 @@ $(document).ready(function(){
 			var n = $(this).parent().index();
 			timer[n] = setTimeout(function(){unhover(myvar);},200);
 		});
+
+
+		/* Dock -- Left */
+		$('#dock').Fisheye({
+			maxWidth: 60,
+			items: 'a',
+			itemsText: 'span',
+			container: '.dock-container',
+			itemWidth: 40,
+			itemPadding: 10,
+			proximity: 80,
+			halign : 'center'
+		});
+
+		/* Anchor slide */
+		$("a[href*=#]").on('click', function(event){
+			var href = $(this).attr("href");
+			if ( /(#.*)/.test(href) ){
+				var hash = href.match(/(#.*)/)[0];
+				var path = href.match(/([^#]*)/)[0];
+
+      			if (window.location.pathname == path || path.length == 0){
+        			event.preventDefault();
+					$link = $('[name="' + $.attr(this, 'href').substr(1) + '"]');
+        			$('html,body').animate({scrollTop:$link.offset().top}, 250, "swing");
+        			window.location.hash = hash;
+      			}
+    		}
+		});
 	});
+})( window, jQuery );
 </script>
+
 <?php if ( is_category() || is_single() || is_search()) { ?>
 <style type="text/css">
 	#cssmenu { display: block !important; }
@@ -211,7 +248,7 @@ ga('send', 'pageview');
 				<?php if ( get_header_image() != '' ) : ?>
 
         		<div id="logo">
-            		<a href="<?php echo home_url('/'); ?>" class="logo-img" ><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>"/></a><a href="<?php echo home_url('/'); ?>" class="logo-caption">Dialoquad</a>
+            		<a name="dqtop" href="<?php echo home_url('/'); ?>" class="logo-img" ><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>"/></a><a href="<?php echo home_url('/'); ?>" class="logo-caption">Dialoquad</a>
         		</div><!-- end of #logo -->
 
     			<?php endif; // header image was removed ?>

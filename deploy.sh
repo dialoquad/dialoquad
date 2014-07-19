@@ -58,7 +58,7 @@ rhc ssh dialoquad --command 'mv app-root/data/wp-cache-config.php app-root/repo/
 
 if rhc ssh dialoquad --command '[ -f ~/app-root/data/.bashrc ]'; then
 	echo "Found bashrc setting, loading..."
-	if rhc ssh dialoquad --command '. ~/app-root/data/.bashrc;wp --user=dialoquad --path=app-root/repo/ super-cache flush;wp --user=dialoquad --path=app-root/repo/ super-cache preload'; then
+	if rhc ssh dialoquad --command '. ~/app-root/data/.bashrc;wp --user=dialoquad --path=app-root/repo/ super-cache flush;wp --user=dialoquad --path=app-root/repo/ super-cache preload;wp --user=dialoquad --path=app-root/repo/ cloudflare dev'; then
 		echo "Cache Regenerated"
 	fi
 fi
