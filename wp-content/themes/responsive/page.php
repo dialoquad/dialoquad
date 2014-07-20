@@ -61,8 +61,19 @@ if ( !defined('ABSPATH')) exit;
     </div>
   </div>
   <!-- end of #post-<?php the_ID(); ?> -->
-  
-  <?php comments_template( '', true ); ?>
+
+	<a class="scroll-anchor" name="discuss" style="height:1px;display:block" data-text="Dialoguer"></a>
+	<div class="sectionDivider">
+    	<h1> <span>Dialoguer</span> </h1>
+	</div> 
+	<div class="comment-wrapper">
+		<div class="fb-comment-wrapper">
+			<div class="fb-comments" data-href="<?php echo get_permalink(get_the_ID());?>" data-width="450" data-numposts="5" data-colorscheme="light"></div>
+		</div>
+		<div class="respond-wrapper">
+			<?php comments_template( '', true ); ?>
+    	</div>
+	</div><!-- end of .comment-wrapper -->
   <?php endwhile; ?>
   <?php if (  $wp_query->max_num_pages > 1 ) : ?>
   <div class="navigation">
@@ -82,13 +93,13 @@ if ( !defined('ABSPATH')) exit;
   <p>
     <?php _e('Don&#39;t panic, we&#39;ll get through this together. Let&#39;s explore our options here.', 'responsive'); ?>
   </p>
-  <h6><?php printf( __('You can return %s or search for the page you were looking for.', 'responsive'),
-	            sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-		            esc_url( get_home_url() ),
-		            esc_attr__('Home', 'responsive'),
-		            esc_attr__('&larr; Home', 'responsive')
-	                )); 
-			 ?></h6>
+  	  <h6><?php printf( __('You can return %s or search for the page you were looking for.', 'responsive'),
+	      sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
+		  esc_url( get_home_url() ),
+		  esc_attr__('Home', 'responsive'),
+		  esc_attr__('&larr; Home', 'responsive')
+	  )); 
+?></h6>
   <?php get_search_form(); ?>
   <?php endif; ?>
 </div><!-- end of #inner content-->

@@ -24,6 +24,7 @@ if ( !defined('ABSPATH')) exit;
     <div id="featured-content" class="grid col-940">
         <div id="scrollbubble"><span id="scrollBubbleText"></span></div>
 
+		<a class="scroll-anchor" name="read" data-text="Read the Post"></a>
         <div id="inner-content">
 			<?php if (have_posts()) : ?>
 
@@ -80,10 +81,15 @@ if ( !defined('ABSPATH')) exit;
 
             	<div class="post-edit"><?php edit_post_link(__('Edit', 'responsive')); ?></div>             
             </div><!-- end of #post-<?php the_ID(); ?> -->
-            <div class="comment-wrapper">
-            	<script src="http://connect.facebook.net/zh_TW/all.js#xfbml=1"></script>
+
+
+			<a class="scroll-anchor" name="discuss" style="height:1px;display:block" data-text="Dialoguer"></a>
+  			<div class="sectionDivider">
+    			<h1> <span>Dialoguer</span> </h1>
+  			</div> 
+			<div class="comment-wrapper">
 				<div class="fb-comment-wrapper">
-					<fb:comments  id="facebook-comment" href="<?php echo get_permalink(get_the_ID());?>" num_posts="2"></fb:comments>
+					<div class="fb-comments" data-href="<?php echo get_permalink(get_the_ID());?>" data-width="450" data-numposts="5" data-colorscheme="light"></div>
 				</div>
 				<div class="respond-wrapper">
 					<?php comments_template( '', true ); ?>
@@ -117,7 +123,7 @@ if ( !defined('ABSPATH')) exit;
 			<?php endif; ?>  
        	</div><!-- end of #inner content-->
 
-    </div><!-- end of #content -->
-</div><!-- end of .narrow-container -->
+    </div><!-- end of featured-content -->
+</div><!-- end of .wide-container -->
 <?php get_sidebar('home'); ?>
 <?php get_footer(); ?>

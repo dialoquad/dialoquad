@@ -2526,8 +2526,14 @@ h4.srp-post-title {
 	/*width: 100% !important;*/
 }
 
+.comment-wrapper {
+	margin-top: 30px;	
+}
+
 .fb-comment-wrapper {
-	width: 60%;
+	margin: 0;
+	padding: 0;
+	width: 49%;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -4322,7 +4328,9 @@ a.cn-nav-next{
 }
 
 .respond-wrapper {
-	width: 39%;
+	width: 49%;
+	margin: 0;
+	padding: 0;
 	display: inline-block;
 }
 

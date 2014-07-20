@@ -225,15 +225,24 @@ ga('send', 'pageview');
 
 </head>
 <body <?php body_class(); ?>>
+<a class="scroll-anchor" name="dqtop" data-text="Back to Top"></a>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=493040587425313&version=v2.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 	<?php responsive_container(); // before container hook ?>
 	<div id="container" class="hfeed">
 
-    	<?php responsive_header(); // before header hook ?>
+    <?php responsive_header(); // before header hook ?>
 
-    	<div id="header">
-    		<div class="wide-container">
-        		<?php if (has_nav_menu('top-menu', 'responsive')) { ?>
+    <div id="header">
+    <div class="wide-container">
+    <?php if (has_nav_menu('top-menu', 'responsive')) { ?>
 <?php wp_nav_menu(array(
 	'container'       => '',
 	'fallback_cb'	  =>  false,
@@ -241,55 +250,55 @@ ga('send', 'pageview');
 	'theme_location'  => 'top-menu')
 ); 
 ?>
-        		<?php } ?>
+<?php } ?>
 
-    			<?php responsive_in_header(); // header hook ?>
+<?php responsive_in_header(); // header hook ?>
 
-				<?php if ( get_header_image() != '' ) : ?>
+<?php if ( get_header_image() != '' ) : ?>
 
-        		<div id="logo">
-            		<a name="dqtop" data-text="Back to Top" href="<?php echo home_url('/'); ?>" class="scroll-anchor logo-img" ><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>"/></a><a href="<?php echo home_url('/'); ?>" class="logo-caption">Dialoquad</a>
-        		</div><!-- end of #logo -->
+<div id="logo">
+    <a href="<?php echo home_url('/'); ?>" class="logo-img" ><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>"/></a><a href="<?php echo home_url('/'); ?>" class="logo-caption">Dialoquad</a>
+    </div><!-- end of #logo -->
 
-    			<?php endif; // header image was removed ?>
+    <?php endif; // header image was removed ?>
 
-    			<?php if ( !get_header_image() ) : ?>
+    <?php if ( !get_header_image() ) : ?>
 
-        		<div id="logo">
-            		<span class="site-name"><a href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home"><?php bloginfo('name'); ?></a></span>
-            		<span class="site-description"><?php bloginfo('description'); ?></span>
-        		</div><!-- end of #logo -->  
+    <div id="logo">
+    <span class="site-name"><a href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home"><?php bloginfo('name'); ?></a></span>
+    <span class="site-description"><?php bloginfo('description'); ?></span>
+    </div><!-- end of #logo -->  
 
-    			<?php endif; // header image was removed (again) ?>
-    			<div id="search-head" class="widget-wrapper widget_search metro">
-					<?php get_search_form(); ?>
-				</div>
-     		</div><!-- end of .narrow-container -->
-     		<div class="landing-box">
-     			<div class="wide-container">
-    				<?php get_sidebar('top'); ?>
-					<div id="cssmenu">
+    <?php endif; // header image was removed (again) ?>
+    <div id="search-head" class="widget-wrapper widget_search metro">
+	<?php get_search_form(); ?>
+	</div>
+    </div><!-- end of .narrow-container -->
+    <div class="landing-box">
+    <div class="wide-container">
+    <?php get_sidebar('top'); ?>
+	<div id="cssmenu">
 <?php wp_nav_menu(array(
 	'container'       => '',
 	'theme_location'  => 'header-menu')
 ); 
 ?>
-					</div>
-            		<?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
+</div>
+    <?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
 <?php wp_nav_menu(array(
 	'container'       => '',
 	'menu_class'      => 'sub-header-menu',
 	'theme_location'  => 'sub-header-menu')
 ); 
 ?>
-            		<?php } ?>
-				</div><!-- end of .wide-container -->
-    		</div><!-- end of .landing-box -->
-    	</div>
-    	<!-- end of #header -->
+<?php } ?>
+</div><!-- end of .wide-container -->
+    </div><!-- end of .landing-box -->
+    </div>
+    <!-- end of #header -->
 
-    	<?php responsive_header_end(); // after header hook ?>
+    <?php responsive_header_end(); // after header hook ?>
 
-		<?php responsive_wrapper(); // before wrapper ?>
-    	<div id="wrapper" class="clearfix">
-    		<?php responsive_in_wrapper(); // wrapper hook ?>
+	<?php responsive_wrapper(); // before wrapper ?>
+    <div id="wrapper" class="clearfix">
+    <?php responsive_in_wrapper(); // wrapper hook ?>
