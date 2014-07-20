@@ -1276,7 +1276,7 @@ form div {
 
 
 .page-id-274 .landing-box {
-	background: none	;
+	background: none;
 }
 
 .wide-container {
@@ -1408,6 +1408,7 @@ form div {
 	left: 0px;
 	margin-left: 3px;
 	margin-top: -200px;
+	display: none;
 }
 .dock-container {
 	padding-top: 20px;
@@ -1822,6 +1823,7 @@ div.srp-thumbnail-box {
 .page .post-entry  p{
 	margin: 1.6em auto;
 }
+
 
 .archive .post.type-post h1,.search .post.type-post h1{
 	font-family: 'FrutigerLTCom-Light';
@@ -2560,13 +2562,20 @@ h4.srp-post-title {
 
 .page-id-275 .allpost-content #facebook-like {
 	height: 24px;
-	width: 72px;
+	width: auto;
 	line-height: 30px;
 	margin: 5px 0 0 0;
 	display: inline-block;
 	vertical-align: top;
-	overflow: hidden;
-	clear: both;
+	float: left;
+}
+
+.page-id-275 .allpost-content #facebook-like:after,
+.page-id-275 .allpost-content a.caticon:after {
+	content:".";
+	display:block;
+	clear:both;
+	visibility:hidden;
 }
 
 .page-id-275 .allpost-content a.caticon {
@@ -2575,6 +2584,7 @@ h4.srp-post-title {
 	padding-top: 7px;
 	vertical-align: top;
 	display: inline-block;
+	float: left;
 }
 
 .page-id-275 .allpost-content a.caticon:hover {
@@ -4930,7 +4940,13 @@ div.acx_fsmi_float_fix.widget-acx-social-icons-widget-3-widget {
 
 .clearfix:after,
 #container:after,
-.widget-wrapper:after {
+.widget-wrapper:after,
+.wide-container:after,
+#content-archive:after {
+	content:".";
+	display:block;
+	clear:both;
+	visibility:hidden;
     clear: both;
 }
 

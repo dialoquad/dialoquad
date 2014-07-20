@@ -24,7 +24,7 @@ if ( !defined('ABSPATH')) exit;
 <?php get_header(); ?>
 
 <div class="wide-container">
-	<a name="meme"></a>
+	<a class="scroll-anchor" name="meme" data-text="Meme"></a>
   	<div class="sectionDivider">
     	<h1> <span>Meme</span> </h1>
   	</div>
@@ -74,7 +74,7 @@ if ( !defined('ABSPATH')) exit;
 			});
 		</script> 
 		<!-- end of .wide-container -->
-		<a name="author"></a>
+		<a class="scroll-anchor" name="author" data-text="Mt. Rushmore"></a>
 		<div class="wide-container">
   			<div class="sectionDivider">
     			<h1> <span>Mt. Rushmore</span> </h1>
@@ -108,7 +108,7 @@ if ( !defined('ABSPATH')) exit;
 		</div>
 		<!-- end of .narrow-container -->
 
-		<a name="headline"></a>
+		<a class="scroll-anchor" name="headline" data-text="DQ Headline"></a>
 		<div class="wide-container">
   			<div class="sectionDivider">
     			<h1> <span>DQ Headline</span> </h1>

@@ -134,24 +134,4 @@ if ( !defined('ABSPATH')) exit;
 
 
 <?php wp_footer(); ?>
-<div class="dock" id="dock">
-  <div class="dock-container">
-	<div class="icons-dqnav">
-  <a class="dock-item" href="#dqtop"><img src="<?php echo get_stylesheet_directory_uri()?>/icons/up.png" alt="Back To Top" /><span>Back To Top</span></a> 
-	</div>
-	<div class="icons-dqnav">
-  <a class="dock-item" href="#meme"><img src="<?php echo get_stylesheet_directory_uri()?>/icons/picture.png" alt="Meme" /><span>Meme</span></a> 
-	</div>
-	<div class="icons-dqnav">
-  <a class="dock-item" href="#author"><img src="<?php echo get_stylesheet_directory_uri()?>/icons/author.png" alt="Mt. Rushmore" /><span>Mt. Rushmore</span></a> 
-	</div>
-	<div class="icons-dqnav">
-  <a class="dock-item" href="#headline"><img src="<?php echo get_stylesheet_directory_uri()?>/icons/headline.png" alt="DQ headline" /><span>DQ Headline</span></a> 
-	</div>
-	<div class="icons-dqnav">
-  <a class="dock-item" href="#polaroid"><img src="<?php echo get_stylesheet_directory_uri()?>/icons/polaroid.png" alt="postlaroid" /><span>Postlaroid</span></a> 
-	</div>
-	<div class="icons-dqnav">
-  <a class="dock-item" href="#wfooter"><img src="<?php echo get_stylesheet_directory_uri()?>/icons/footer.png" alt="athele-footer" /><span>Athelete footer</span></a> 
-	</div>
 </body></html>

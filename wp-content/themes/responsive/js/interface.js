@@ -620,10 +620,11 @@
 			maxWidth: options.maxWidth
 				};
 				$.iFisheye.positionContainer(el, 0);
+				el.fisheyeCfg.pos = $.iUtil.getPosition(el);
 				$(window).bind('resize', function () {
-					el.fisheyeCfg.pos = $.iUtil.getPosition(el);
 					$.iFisheye.positionContainer(el, 0);
 					$.iFisheye.positionItems(el)
+					el.fisheyeCfg.pos = $.iUtil.getPosition(el);
 				});
 				$.iFisheye.positionItems(el);
 				el.fisheyeCfg.items.bind('mouseover', function () {
@@ -634,7 +635,7 @@
 				$(document).bind('mousemove', function (e) {
 					var pointer = $.iUtil.getPointer(e);
 					var toAdd = 0;
-					if (el.fisheyeCfg.halign && el.fisheyeCfg.halign == 'center') var posy = pointer.y - el.fisheyeCfg.pos.y - (el.offsetHeight + el.fisheyeCfg.itemPadding - el.fisheyeCfg.itemWidth * el.fisheyeCfg.items.size()) / 2 - el.fisheyeCfg.itemWidth / 2;
+					if (el.fisheyeCfg.halign && el.fisheyeCfg.halign == 'center') var posy = pointer.y - el.fisheyeCfg.pos.y + el.fisheyeCfg.itemPadding * 2 - (el.offsetHeight  - (el.fisheyeCfg.itemWidth + el.fisheyeCfg.itemPadding * 2) * el.fisheyeCfg.items.size()) / 2 - el.fisheyeCfg.itemWidth / 2;
 					else if (el.fisheyeCfg.halign && el.fisheyeCfg.halign == 'right') var posx = pointer.x - el.fisheyeCfg.pos.x - el.offsetWidth + el.fisheyeCfg.itemWidth * el.fisheyeCfg.items.size();
 					else var posx = pointer.x - el.fisheyeCfg.pos.x;
 					var posx = Math.pow(pointer.x - el.fisheyeCfg.pos.x - el.offsetWidth / 2, 2);
@@ -658,10 +659,12 @@
 		},
 		positionContainer: function (el, toAdd) {
 			if (el.fisheyeCfg.halign)
-				if (el.fisheyeCfg.halign == 'center') el.fisheyeCfg.container.get(0).style.top = (el.offsetHeight - el.fisheyeCfg.itemWidth * el.fisheyeCfg.items.size()) / 2 - toAdd / 2 + 'px';
+				if (el.fisheyeCfg.halign == 'center') el.fisheyeCfg.container.get(0).style.top = 0 + 'px';//(el.offsetHeight - el.fisheyeCfg.itemWidth * el.fisheyeCfg.items.size()) / 2 - toAdd / 2 + 'px';
 				else if (el.fisheyeCfg.halign == 'left') el.fisheyeCfg.container.get(0).style.left = -toAdd / el.fisheyeCfg.items.size() + 'px';
 				else if (el.fisheyeCfg.halign == 'right') el.fisheyeCfg.container.get(0).style.left = (el.offsetWidth - el.fisheyeCfg.itemWidth * el.fisheyeCfg.items.size()) - toAdd / 2 + 'px';
-			el.fisheyeCfg.container.get(0).style.height = (el.fisheyeCfg.itemWidth + el.fisheyeCfg.itemPadding * 2)  * el.fisheyeCfg.items.size() + toAdd + 'px'
+			el.fisheyeCfg.container.get(0).style.height = (el.fisheyeCfg.itemWidth + el.fisheyeCfg.itemPadding * 2)  * el.fisheyeCfg.items.size() + toAdd + 'px';
+			el.fisheyeCfg.container.get(0).parentNode.style.marginTop = -1 * ((el.fisheyeCfg.itemWidth + el.fisheyeCfg.itemPadding * 2)  * el.fisheyeCfg.items.size() + toAdd)/2 + 'px';
+			el.fisheyeCfg.container.get(0).parentNode.style.display = 'block';
 		},
 		positionItems: function (el) {
 			el.fisheyeCfg.items.each(function (nr) {

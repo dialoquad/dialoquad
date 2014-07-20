@@ -50,19 +50,23 @@ fi
 
 #post-push hook scripts
 
+preload(){
+	rhc ssh dialoquad --command '. ~/app-root/data/.bashrc;wp --user=dialoquad --path=app-root/repo/ super-cache preload';
+}
+
 post-push(){
 echo "Cleaning app-root/repo/wp-content/uploads and restoring data/uploads/ for CDN"
-rhc ssh dialoquad --command 'rm -rf app-root/repo/wp-content/uploads && mv app-root/data/uploads app-root/repo/wp-content/'
+rhc ssh dialoquad --command 'rm -rf app-root/repo/wp-content/uploads;mv app-root/data/uploads app-root/repo/wp-content/'
 echo "Restoring cache setting files/"
 rhc ssh dialoquad --command 'mv app-root/data/wp-cache-config.php app-root/repo/wp-content/'
 
 if rhc ssh dialoquad --command '[ -f ~/app-root/data/.bashrc ]'; then
 	echo "Found bashrc setting, loading..."
-	if rhc ssh dialoquad --command '. ~/app-root/data/.bashrc;wp --user=dialoquad --path=app-root/repo/ super-cache flush;wp --user=dialoquad --path=app-root/repo/ super-cache preload;wp --user=dialoquad --path=app-root/repo/ cloudflare dev'; then
-		echo "Cache Regenerated"
+	if rhc ssh dialoquad --command '. ~/app-root/data/.bashrc;wp --user=dialoquad --path=app-root/repo/ super-cache flush;wp --user=dialoquad --path=app-root/repo/ cloudflare dev on'; then
+		echo "Cache Cleared"
 	fi
+	preload
 fi
-wp cloudflare dev off
 }
 
 git-push(){
@@ -240,6 +244,8 @@ elif [ "$1" = "media" ]; then
 	if [ "$2" = "upload" ]; then
 		media-upload
 	fi
+elif [ "$1" = "preload" ]; then
+	preload
 elif [ -z "$*" ]; then
 	pre-push
 	push

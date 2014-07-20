@@ -26,7 +26,7 @@ if ( !defined('ABSPATH')) exit;
 remove_filter('the_content', array('SearchExcerpt', 'the_excerpt'), 9);
 remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 ?>
-<a name="polaroid"></a>
+<a class="scroll-anchor" name="polaroid" data-text="Postlaroid"></a>
 <div class="wide-container">
 	<div class="sectionDivider">
 		<h1>
@@ -102,7 +102,7 @@ remove_filter('wp_trim_excerpt', array('SearchExcerpt', 'my_highlight'));
 	</div>
 </div><!-- end of .narrow-container -->
 
-<a name="wfooter"></a>
+<a class="scroll-anchor" name="wfooter" data-text="Athlete footer"></a>
 <div class="wide-container">
 	<div class="sectionDivider">
 		<h1>

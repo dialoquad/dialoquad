@@ -411,9 +411,57 @@ function remove_default_password_nag() {
 }
 add_action('admin_init', 'remove_default_password_nag');
 
+// ** Icons DQ Navigation ** //
+
+function insert_dq_nav_icons($htmlString){
+  	$dom = new DOMDocument;
+	$dom->loadHTML(mb_convert_encoding($htmlString, 'HTML-ENTITIES', 'UTF-8'));
+	$xPath = new DOMXPath($dom);
+	$icons= array('icon-compass', 'icon-location', 'icon-tv', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-type', 'icon-comments-5');	
+	$nodes = $xPath->query("//*[@id='category-menu']/ul/li/a");
+	foreach($nodes as $key=> $node){
+		$icon = $dom->createElement('i');
+		$arrow = $dom->createElement('i');
+		$icon->setAttribute('class', $icons[$key]);
+		$arrow->setAttribute('class', 'dqarrow');
+		$node->parentNode->insertBefore($icon, $node);
+		$node->parentNode->insertBefore($arrow, $node);
+	}
+	$dom->formatOutput = true;
+	return $dom->saveHTML();
+}
+
+// ** Dock code ** //
+
+function get_dq_dock($htmlString){
+  	$dom = new DOMDocument;
+	$dom->loadHTML('<html><body>'.$htmlString.'</body></html>');
+	$xPath = new DOMXPath($dom);
+	$nodes = $xPath->query("//*[contains(@class, 'scroll-anchor')]");
+	foreach($nodes as $node){
+	    $name = $node->getAttribute('name');
+	    $text = $node->getAttribute('data-text');
+		$dock_item .= '<div class="icons-dqnav">' . '<a class="dock-item" href="#' . $name . '"><img src="' . get_stylesheet_directory_uri() . '/icons/' . $name . '.png" alt="' . $text . '" /><span>' . $text . '</span></a>' . '</div>';
+	}
+	return '<div class="dock" id="dock"><div class="dock-container">' . $dock_item . '</div></div>';
+}
+
+function my_dq_all_filter($buffer) {
+	$buffer = insert_dq_nav_icons($buffer);
+	return $buffer . get_dq_dock($buffer);
+}
+
+function buffer_start() { ob_start("my_dq_all_filter"); }
+function buffer_end() { ob_end_flush(); }
+
+add_action('wp_head', 'buffer_start');
+add_action('wp_footer', 'buffer_end');
+
+
 // ** Default template settings ** //
 
 require ( get_template_directory() . '/includes/functions.php' );
 require ( get_template_directory() . '/includes/theme-options.php' );
 require ( get_template_directory() . '/includes/hooks.php' );
 require ( get_template_directory() . '/includes/version.php' );
+

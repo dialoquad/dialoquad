@@ -36,9 +36,5 @@ if ( !defined('ABSPATH')) exit;
 	</div>
 	<!-- end of #content-archive -->
 </div><!-- end of .narrow-container -->
-<script type="text/javascript" language="javascript">
-	var icons= ['icon-compass', 'icon-location', 'icon-tv', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-type', 'icon-comments-5'];	
-	$("#category-menu> ul> li> a").each(function(index){$(this).before('<i class="'+icons[index]+'"></i><i class="dqarrow"></i>');});
-</script>
 <?php get_sidebar('home'); ?>
 <?php get_footer(); ?>
