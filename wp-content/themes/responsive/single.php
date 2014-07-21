@@ -69,14 +69,15 @@ if ( !defined('ABSPATH')) exit;
 
                 </div><!-- end of .post-entry -->
 
-                <div class="navigation">
+                <div class="navigation dotdotdot">
 			        <div class="previous"><?php previous_post_link( '&#8249; %link' ); ?></div>
                     <div class="next"><?php next_post_link( '%link &#8250;' ); ?></div>
 		        </div><!-- end of .navigation -->
 
                 <div class="post-data">
-				    <?php the_tags(__('Tagged with:', 'responsive') . ' ', ', ', '<br />'); ?> 
-					<?php printf(__('Posted in %s', 'responsive'), get_the_category_list(', ')); ?> 
+				    <?php printf(__('Tagged with:', 'responsive')); ?>
+					<?php echo '<div class="tagcloud">' . dq_the_tags() . '</div>'; ?> 
+					<?php printf(__('Posted in %s', 'responsive'), dq_the_category()); ?> 
                 </div><!-- end of .post-data -->             
 
             	<div class="post-edit"><?php edit_post_link(__('Edit', 'responsive')); ?></div>             

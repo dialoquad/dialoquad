@@ -150,9 +150,6 @@ if ( !defined('ABSPATH')) exit;
           					</div>
         				</div>
         				<!-- end of .navigation -->
-        				<div class="post-data">
-          					<?php the_tags(__('Tagged with:', 'responsive') . ' ', ', ', '<br />'); ?>
-          					<?php printf(__('Posted in %s', 'responsive'), get_the_category_list(', ')); ?> </div>
         				<!-- end of .post-data -->
 
         				<div class="post-edit">

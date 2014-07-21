@@ -2406,6 +2406,7 @@ padding: 20px 20px 2px 20px;
 	border-left: 3px solid #BE2832;
 	font-size: 14px!important;
 	line-height: 20px;
+	white-space: nowrap;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
@@ -2413,6 +2414,13 @@ padding: 20px 20px 2px 20px;
 	transition: all 0.2s ease-in-out;
 }
 
+.tagcloud:after {
+	content:".";
+	visibility: hidden;
+	overflow: hidden;
+	display:block;
+	clear:both;
+}
 
 /*Facebook Like Button*/
 .fb-like span iframe {
@@ -3357,10 +3365,6 @@ border-left: none;
 	transition: all 0.2s ease-in-out;
 }
 
-#category-menu ul li i:hover {
-
-}
-	
 #category-menu> ul> li> a {
 	border: none;
 	color: #000;
@@ -3449,15 +3453,6 @@ border-left: none;
 }
 
 
-#category-menu ul li a:before:hover {
-
-}
-
-
-#category-menu ul li a:after
-{
-}
-
 #category-menu  a:hover {
 	color: #AAA;
     filter: none;
@@ -3526,6 +3521,25 @@ border-left: none;
 
 .category .post-entry a.caticon:hover {
 	color: #999;
+}
+
+.single #category-menu> ul> li> ul> li a {
+	color: #AA7D55;
+	font-size: 16px;
+}
+
+.single #category-menu> ul {
+	padding-left: 0px;
+}
+
+.single #category-menu> ul> li> *:not(ul) {
+	height: 36px;
+	font-size: 32px;
+	background-size: 32px;
+}
+
+.single #category-menu> ul> li> i:first-child {
+	margin-right: 10px;
 }
 
 /* =Primary Main Menu IE Fixes
@@ -4169,9 +4183,11 @@ a.cn-nav-next{
 	display: block;
 	font-size: 13px;
 	height: 28px;
+	width: 100%;
 	line-height: 28px;
 	margin: 20px 0;
-	padding: 0 5px;
+	padding: 0px;
+	position: relative;
 }
 
 .navigation a {
@@ -4186,10 +4202,14 @@ a.cn-nav-next{
 
 .navigation .previous {
 	float: left;
+	position: absolute;
+	left: 0px;
 }
 
 .navigation .next {
 	float: right;
+	position: absolute;
+	right: 0px;
 }
 
 .navigation .bracket {

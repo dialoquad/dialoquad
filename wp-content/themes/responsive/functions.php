@@ -103,7 +103,7 @@ function dq_category( $args ) {
 		"客座徵文" => "icon-comments-5"
 	);
 	
-	return '<a ' . (!is_category() ? 'href="'.$category_link.'"':'')  . 'class="' . $icons[$name] . ' caticon"' . 'title="' . $name .'">' . '</a>';
+	return '<a ' . (!is_category() ? 'href="'.$category_link.'"':'')  . 'class="' . $icons[$name] . ' caticon" ' . 'title="' . $name .'">' . '</a>';
 }
 
 add_filter('get_the_categories','dq_category');
@@ -228,6 +228,9 @@ function wpe_excerpt( $length_callback = '', $more_callback = '' ) {
 function my_widget_tag_cloud_args( $args ) {
 	$args['largest'] = 10;
 	$args['smallest'] = 2;
+	$args['number'] = 70;
+	if($args['single'] == null)
+		$args['order'] = 'RAND';
 	return $args;
 }
 
@@ -417,12 +420,24 @@ function insert_dq_nav_icons($htmlString){
   	$dom = new DOMDocument;
 	$dom->loadHTML(mb_convert_encoding($htmlString, 'HTML-ENTITIES', 'UTF-8'));
 	$xPath = new DOMXPath($dom);
-	$icons= array('icon-compass', 'icon-location', 'icon-tv', 'icon-air', 'icon-lab', 'icon-sun', 'icon-book', 'icon-camera-3', 'icon-puzzle', 'icon-type', 'icon-comments-5');	
+	$icons = array(
+		"On the road" => "icon-compass",
+		"絕對位置，相對位置" => "icon-location",
+		"關於廣告行銷，我只是初學" => "icon-tv",
+		"少年Po的奇怪漂流" => "icon-air",
+		"小宇宙大爆炸" => "icon-lab",
+		"美好生活的簡單提案" => "icon-sun",
+		"我家有隻蠹書蟲" => "icon-book",
+		"我無意成為影痴，但是" => "icon-camera-3",
+		"故事都未完成" => "icon-puzzle",
+		"字型甚至是個學問" => "icon-type",
+		"客座徵文" => "icon-comments-5"
+	);
 	$nodes = $xPath->query("//*[@id='category-menu']/ul/li/a");
 	foreach($nodes as $key=> $node){
 		$icon = $dom->createElement('i');
 		$arrow = $dom->createElement('i');
-		$icon->setAttribute('class', $icons[$key]);
+		$icon->setAttribute('class', $icons[$node->nodeValue]);
 		$arrow->setAttribute('class', 'dqarrow');
 		$node->parentNode->insertBefore($icon, $node);
 		$node->parentNode->insertBefore($arrow, $node);
@@ -457,6 +472,94 @@ function buffer_end() { ob_end_flush(); }
 add_action('wp_head', 'buffer_start');
 add_action('wp_footer', 'buffer_end');
 
+
+// ** Customized Category ** //
+
+function submenu_limit( $items, $args ) {
+	if ( empty($args->submenu) )
+		return $items;
+	$parent_id = array_pop( wp_filter_object_list( $items, array( 'title' => $args->submenu ), 'and', 'ID' ) );
+	$children  = submenu_get_children_ids( $parent_id, $items );
+	$children[] = $parent_id;
+	foreach ( $items as $key => $item ) {
+		if ( ! in_array( $item->ID, $children ) )
+			unset($items[$key]);
+	}
+	return $items;
+}
+
+function submenu_get_children_ids( $id, $items ) {
+	$ids = wp_filter_object_list( $items, array( 'menu_item_parent' => $id ), 'and', 'ID' );
+	foreach ( $ids as $id ) {
+		$ids = array_merge( $ids, submenu_get_children_ids( $id, $items ) );
+	}
+	return $ids;
+}
+
+function dq_the_category(){
+	$category =  get_the_category();
+	$name = preg_replace('/<a.*?title="(.*)".*?<\/a>/','${1}',$category);
+	$menu = wp_nav_menu(array(
+		'container'       => '',
+		'fallback_cb'	  =>  false,
+		'menu_class'      => 'category-menu',
+		'theme_location'  => 'category-menu',
+		'submenu' => $name,
+		'echo' => false)
+	);
+
+	return '<div id="category-menu" class="dotdotdot">' . $menu . '</div>';
+}
+
+add_filter( 'wp_nav_menu_objects', 'submenu_limit', 10, 2 );
+
+//** Customize single the_tags **//
+
+function dq_the_tags(){
+	$defaults = array(
+		'smallest' => 8, 'largest' => 22, 'unit' => 'pt', 'number' => 45, 'single' => true,
+		'format' => 'flat', 'separator' => "\n", 'orderby' => 'name', 'order' => 'ASC',
+		'exclude' => '', 'include' => '', 'link' => 'view', 'taxonomy' => 'post_tag', 'post_type' => '', 'echo' => true
+	);
+	$args = wp_parse_args( $args, $defaults );
+
+	$terms = get_the_terms( 0, 'post_tag' );
+	$tags = array();
+	foreach ( $terms as $key => $term )
+		$tags[ $key ] = $term;
+
+	if ( empty( $tags ) || is_wp_error( $tags ) )
+		return;
+
+	foreach ( $tags as $key => $tag ) {
+		if ( 'edit' == $args['link'] )
+			$link = get_edit_term_link( $tag->term_id, $tag->taxonomy, $args['post_type'] );
+		else
+			$link = get_term_link( intval($tag->term_id), $tag->taxonomy );
+		if ( is_wp_error( $link ) )
+			return false;
+
+		$tags[ $key ]->link = $link;
+		$tags[ $key ]->id = $tag->term_id;
+	}
+
+	$return = wp_generate_tag_cloud( $tags, $args ); // Here's where those top tags get sorted according to $args
+
+	/**
+	 * Filter the tag cloud output.
+	 *
+	 * @since 2.3.0
+	 *
+	 * @param string $return HTML output of the tag cloud.
+	 * @param array  $args   An array of tag cloud arguments.
+	 */
+	$return = apply_filters( 'wp_tag_cloud', $return, $args );
+
+	if ( 'array' == $args['format'] || empty($args['echo']) )
+		return $return;
+
+	return $return;
+}	
 
 // ** Default template settings ** //
 

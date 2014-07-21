@@ -107,7 +107,7 @@ if ( !defined('ABSPATH')) exit;
 		$("#category-menu> ul> li> a, #category-menu> ul> li> .dqarrow").hover(function() {
 			var n = $(this).parent().index();
 			window.clearTimeout(timer[n]);
-			$(this).is(".dqarrow") ? $(this).css('width','57px') : $(this).prev().css('width','57px');
+			$(this).is(".dqarrow") ? $(this).css('width',$(this).css('height')) : $(this).prev().css('width',$(this).css('height'));
 		},function(){
 			var myvar = $(this);
 			var n = $(this).parent().index();

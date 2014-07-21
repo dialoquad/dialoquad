@@ -148,7 +148,15 @@ class WPSuperCache_Command extends WP_CLI_Command {
 			WP_CLI::success( 'Scheduled preload for next cron run.' );
 		}
 	}
+	
+	function htaccess( $args = array(), $assoc_args = array() ) {
+		if(wpsc_update_htaccess()){
+			WP_CLI::success( 'Successfully updated .htaccess file.' );
+		}else{
+			WP_CLI::error( 'Updated failed.' );
+		}
 
+	}
 	/**
 	 * Outputs the status of preloading
 	 *
