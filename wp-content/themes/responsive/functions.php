@@ -228,7 +228,7 @@ function wpe_excerpt( $length_callback = '', $more_callback = '' ) {
 function my_widget_tag_cloud_args( $args ) {
 	$args['largest'] = 10;
 	$args['smallest'] = 2;
-	$args['number'] = 70;
+	$args['number'] = 55;
 	if($args['single'] == null)
 		$args['order'] = 'RAND';
 	return $args;
@@ -559,7 +559,17 @@ function dq_the_tags(){
 		return $return;
 
 	return $return;
-}	
+}
+
+// ** Tag Cloud shortcode ** //
+function dq_tagcloud_shortcode($atts)
+{
+	$out = '<div class="tagcloud">';
+	$out .= wp_tag_cloud(array('number' => 0, 'echo' => false));
+	$out .='</div>';
+	return $out;
+}
+add_shortcode('tagcloud','dq_tagcloud_shortcode');
 
 // ** Default template settings ** //
 

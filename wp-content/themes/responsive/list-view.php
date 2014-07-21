@@ -2,7 +2,9 @@
 
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
-
+/*
+ * Template Name: List View
+ **/
 /**
 * page-275 Template
 *

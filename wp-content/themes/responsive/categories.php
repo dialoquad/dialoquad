@@ -3,6 +3,10 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
+/*
+ *Template Name: Categories 
+ */
+
 /**
 * page-274 Template
 *

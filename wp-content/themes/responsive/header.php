@@ -94,27 +94,6 @@ if ( !defined('ABSPATH')) exit;
 		$("a:contains('Joomla Turbo')").css('display','none');
 
 
-		/* Category Navigation bar */
-		var timer = [];
-		var unhover = function(myvar){
-			myvar.is(".dqarrow") ? myvar.css('width','0px') : myvar.prev().css('width','0px');
-		};
-
-		$("#category-menu> ul> li> .dqarrow").click(function() {
-			$(this).siblings("ul").slideToggle('fast');
-		});
-
-		$("#category-menu> ul> li> a, #category-menu> ul> li> .dqarrow").hover(function() {
-			var n = $(this).parent().index();
-			window.clearTimeout(timer[n]);
-			$(this).is(".dqarrow") ? $(this).css('width',$(this).css('height')) : $(this).prev().css('width',$(this).css('height'));
-		},function(){
-			var myvar = $(this);
-			var n = $(this).parent().index();
-			timer[n] = setTimeout(function(){unhover(myvar);},200);
-		});
-
-
 		/* Dock -- Left */
 		$('#dock').Fisheye({
 			maxWidth: 60,
@@ -153,12 +132,9 @@ if ( !defined('ABSPATH')) exit;
 </style>
 <?php } ?>
 
-<?php if( is_home()) {?>
-<style type="text/css">
-	#search-head #searchbox { display:block; }
-</style>
+<?php if ( is_page(274) ) { ?>
+<?php require_once( get_template_directory() . '/head-category.php' );?>
 <?php } ?>
-
 <?php if ( is_page() ) { ?>
 <style type="text/css">
 	.breadcrumb-list,.post-meta,#respond { 
@@ -166,47 +142,12 @@ if ( !defined('ABSPATH')) exit;
 	}
 </style>
 <?php } ?>
-<?php if ( is_single() ) { ?>
+<?php if(is_single()){ ?>
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/bubble.js?ver=1.0"></script> 
-<?php } ?>
-<?php if(is_single() || is_home()){ ?>
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/speaker.js?ver=1.0"></script> 
 <?php } ?>
 <?php if(is_home()): ?>
-<noscript>
-    <style>
-        .cn-images img{position: relative;display: block;border-bottom: 5px solid #d0ab47;} 
-        .cn-slideshow{height: auto;}
-    </style>
-</noscript>
-<script id="barTmpl" type="text/x-jquery-tmpl">
-<div class="cn-bar">
-    <div class="cn-nav">
-	<a href="#" class="cn-nav-prev">
-    <span>Previous</span>
-	<div style="background-image:url(${prevSource});"></div> 
-	</a>
-	<a href="#" class="cn-nav-next">
-    <span>Next</span>
-	<div style="background-image:url(${nextSource});"></div>
-	</a>
-    </div><!-- cn-nav -->
-    <div class="cn-nav-content">
-    <div class="cn-nav-content-prev">
-    <span>上一則</span>
-    <h3>${prevTitle}</h3>
-    </div>
-    <div class="cn-nav-content-current">
-    <span>現正觀看</span>
-    <h2>${currentTitle}</h2>
-    </div>
-    <div class="cn-nav-content-next">
-    <span>下一則</span>
-    <h3>${nextTitle}</h3>
-    </div>
-    </div><!-- cn-nav-content -->
-    </div><!-- cn-bar -->
-	</script>
+<?php require_once( get_template_directory() . '/head-home.php' );?>
 <?php endif;?>
 
 <!-- End of custom header code -->

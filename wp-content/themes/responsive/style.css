@@ -2859,8 +2859,11 @@ h4.srp-post-title {
 	text-shadow: 2px 2px 1px #fff;
 }
 
-.widget-title, 
-.widget-title-home h3 {
+.widget-title,
+.widget-title-home h3,
+#widgets .widget-title-home h3, 
+#widgets .widget-title-home h3 a {
+	color: #444;
 	display: block;
 	font-size: 24px;
 	line-height: 23px;
