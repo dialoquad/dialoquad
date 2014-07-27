@@ -3,22 +3,18 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 
-/**
-* Pages Template
-*
-*
-* @file           page.php
-* @package        Responsive 
-* @author         Emil Uzelac 
-* @copyright      2003 - 2013 ThemeID
-* @license        license.txt
-* @version        Release: 1.0
-* @filesource     wp-content/themes/responsive/page.php
-* @link           http://codex.wordpress.org/Theme_Development#Pages_.28page.php.29
-* @since          available since Release 1.0
-*/
+/*
+ * Template Name: Tag-Fog 
+ *
+ * Tag-Fog Template
+ *
+ * @file           tag-fog.php
+ */
+
 ?>
 <?php get_header(); ?>
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/tag-fog.js"></script>
+
 <div class="narrow-container">
 	<div id="featured-content" class="grid col-940">
         <div id="inner-content">
@@ -44,7 +40,14 @@ if ( !defined('ABSPATH')) exit;
     			<!-- end of .post-meta -->
     			<?php endif; ?>
     			<div class="post-entry">
+				<p class="brownian"><a>Brownian Motion</a></p>
+				<p class="fog-restore"><a>Restore</a></p>
+				<div class="tagcloud">
       				<?php the_content(__('Read more &#8250;', 'responsive')); ?>
+<canvas id="canvas" width="600" height="400" style="background:transparent;" ></canvas>
+				</div>
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/box2d.js"></script>
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/box2d-helpers.js"></script>
       				<?php wp_link_pages(array('before' => '<div class="pagination">' . __('Pages:', 'responsive'), 'after' => '</div>')); ?>
     			</div>
     			<!-- end of .post-entry -->
@@ -93,20 +96,19 @@ if ( !defined('ABSPATH')) exit;
   			<p>
     		<?php _e('Don&#39;t panic, we&#39;ll get through this together. Let&#39;s explore our options here.', 'responsive'); ?>
   			</p>
-  	  		<h6><?php printf( __('You can return %s or search for the page you were looking for.', 'responsive'),
-	      		sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-		  		esc_url( get_home_url() ),
-		  		esc_attr__('Home', 'responsive'),
-		  		esc_attr__('&larr; Home', 'responsive')
+  	  			<h6><?php printf( __('You can return %s or search for the page you were looking for.', 'responsive'),
+	      			sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
+		  			esc_url( get_home_url() ),
+		  			esc_attr__('Home', 'responsive'),
+		  			esc_attr__('&larr; Home', 'responsive')
 	  			)); 
-				?></h6>
+?></h6>
   			<?php get_search_form(); ?>
   			<?php endif; ?>
 		</div><!-- end of #inner content-->
-    </div><!-- end of #content -->
-</div><!-- end of .narrow-container -->
-<?php if ( !is_page(274) ): ?>
-<?php get_sidebar('home'); ?>
-<?php endif; ?>
-<?php get_footer(); ?>
 
+	</div>
+	<!-- end of #content-archive -->
+</div><!-- end of .wide-container -->
+<?php get_sidebar('home'); ?>
+<?php get_footer(); ?>

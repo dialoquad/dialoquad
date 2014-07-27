@@ -564,9 +564,7 @@ function dq_the_tags(){
 // ** Tag Cloud shortcode ** //
 function dq_tagcloud_shortcode($atts)
 {
-	$out = '<div class="tagcloud">';
 	$out .= wp_tag_cloud(array('number' => 0, 'echo' => false));
-	$out .='</div>';
 	return $out;
 }
 add_shortcode('tagcloud','dq_tagcloud_shortcode');

@@ -135,6 +135,10 @@ if ( !defined('ABSPATH')) exit;
 <?php if ( is_page(274) ) { ?>
 <?php require_once( get_template_directory() . '/head-category.php' );?>
 <?php } ?>
+
+<?php if ( is_page('tag-fog') ) { ?>
+<?php } ?>
+
 <?php if ( is_page() ) { ?>
 <style type="text/css">
 	.breadcrumb-list,.post-meta,#respond { 
@@ -145,6 +149,7 @@ if ( !defined('ABSPATH')) exit;
 <?php if(is_single()){ ?>
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/bubble.js?ver=1.0"></script> 
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/speaker.js?ver=1.0"></script> 
+<?php require_once( get_template_directory() . '/head-category.php' );?>
 <?php } ?>
 <?php if(is_home()): ?>
 <?php require_once( get_template_directory() . '/head-home.php' );?>

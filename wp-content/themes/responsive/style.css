@@ -2385,6 +2385,13 @@ padding: 20px 20px 2px 20px;
 	float: left;
 }
 
+#canvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+	display: none;
+}
 
 /*Tag Cloud*/
 .tagcloud a:hover {
@@ -2392,6 +2399,40 @@ padding: 20px 20px 2px 20px;
 	border-left-color: #126299;
 	color: #fff;
 	opacity: 1 !important;
+}
+
+.brownian {
+	text-decoration:underline;
+	padding-left: 2px;
+	font-size: 12px;
+	display: inline-block;
+}
+
+.fog-restore {
+	text-decoration:underline;
+	padding-left: 10px;
+	font-size: 12px;
+	display: inline-block;
+}
+
+
+.brownian:hover,
+.fog-restore:hover{
+	cursor: pointer;
+}
+
+.page-template-tag-fog-php #inner-content> div[id*='post-'] {
+	/*padding-bottom: 100px;*/
+}
+
+.page-template-tag-fog-php #featured-content {
+	background: transparent;
+}
+
+.post-entry .tagcloud{
+	position: relative;
+	padding-left: 20px;
+	padding-top: 20px;
 }
 
 .tagcloud a {
@@ -2414,12 +2455,38 @@ padding: 20px 20px 2px 20px;
 	transition: all 0.2s ease-in-out;
 }
 
+
 .tagcloud:after {
-	content:".";
+	content: ".";
 	visibility: hidden;
+	display: block;
+	clear: both;
 	overflow: hidden;
-	display:block;
-	clear:both;
+}
+
+.widget-wrapper.widget_tag_cloud h3{
+	position: relative;
+}
+
+.widget-wrapper h3 a:before{
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 1px;
+	width: 0;
+	background: #333333;
+	overflow: visible;
+	-webkit-transition: width .25s;
+	-moz-transition: width .25s;
+	-ms-transition: width .25s;
+	-o-transition: width .25s;
+	transition: width .25s;
+}
+
+.widget-wrapper:hover h3 a:before{
+	width: 100%;
 }
 
 /*Facebook Like Button*/
@@ -2864,7 +2931,8 @@ h4.srp-post-title {
 #widgets .widget-title-home h3, 
 #widgets .widget-title-home h3 a {
 	color: #444;
-	display: block;
+	display: inline-block;
+	white-space: nowrap;
 	font-size: 24px;
 	line-height: 23px;
 	margin: 0;

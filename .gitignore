@@ -6,6 +6,7 @@ wp-content/mu-plugins/special-recent-posts/cache/
 wp-config-local.php
 wp-content/wp-cache-config.php
 .wp-cli/bin/.bashrc
+dialoquad.sublime-project
 *.swp
 *.sh
 *.gz
