@@ -2,13 +2,11 @@
 
 #Initialize env var
 
-gitaddr=$(rhc apps | grep "Git URL:" | head -n 1 | awk '{print $3}')
-sshaddr=$(rhc apps | grep "SSH:" | head -n 1 | awk '{print $2}')
-mysqlattr='-u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -P "$OPENSHIFT_MYSQL_DB_PORT"'
 
 #pre-push hook scripts
 
 pre-push(){
+sshaddr=$(rhc apps | grep "SSH:" | head -n 1 | awk '{print $2}')
 if ! git diff-index --quiet HEAD --; then
 	echo "Warning:unstaged changed files"
 	echo "Do you wish to add to latest commit ?"
@@ -50,6 +48,14 @@ fi
 
 #post-push hook scripts
 
+regenerate(){
+if rhc ssh dialoquad --command '[ -f ~/app-root/data/.bashrc ]'; then
+	echo "Found bashrc setting, loading..."
+	rhc ssh dialoquad --command '. ~/app-root/data/.bashrc;wp --user=dialoquad --path=app-root/repo/ super-cache flush;wp --user=dialoquad --path=app-root/repo/ cloudflare dev on;wp --user=dialoquad --path=app-root/repo/ super-cache htaccess;'
+	preload
+fi
+}
+
 preload(){
 	rhc ssh dialoquad --command '. ~/app-root/data/.bashrc;wp --user=dialoquad --path=app-root/repo/ super-cache preload';
 }
@@ -59,15 +65,11 @@ echo "Cleaning app-root/repo/wp-content/uploads and restoring data/uploads/ for 
 rhc ssh dialoquad --command 'rm -rf app-root/repo/wp-content/uploads;mv app-root/data/uploads app-root/repo/wp-content/'
 echo "Restoring cache setting files/"
 rhc ssh dialoquad --command 'mv app-root/data/wp-cache-config.php app-root/repo/wp-content/'
-
-if rhc ssh dialoquad --command '[ -f ~/app-root/data/.bashrc ]'; then
-	echo "Found bashrc setting, loading..."
-	rhc ssh dialoquad --command '. ~/app-root/data/.bashrc;wp --user=dialoquad --path=app-root/repo/ super-cache flush;wp --user=dialoquad --path=app-root/repo/ cloudflare dev on;wp --user=dialoquad --path=app-root/repo/ super-cache htaccess;'
-	preload
-fi
+regenerate
 }
 
 git-push(){
+gitaddr=$(rhc apps | grep "Git URL:" | head -n 1 | awk '{print $3}')
 git remote set-url --push origin "$gitaddr" 
 git push origin $1 $2
 git remote set-url --push  origin no_push
@@ -126,6 +128,8 @@ fi
 #download and dump into local mysql
 
 mysql-download(){
+sshaddr=$(rhc apps | grep "SSH:" | head -n 1 | awk '{print $2}')
+mysqlattr='-u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -P "$OPENSHIFT_MYSQL_DB_PORT"'
 echo "Cleaning remote folder for mysql dump"
 mysql-remote-clean
 if rhc ssh dialoquad --command "mysqldump ${mysqlattr} dialoquad --add-drop-table > ./app-root/data/dialoquad.sql"; then
@@ -159,6 +163,8 @@ rm -f dialoquad.sql
 #dump local database and upload and import
 
 mysql-upload(){
+sshaddr=$(rhc apps | grep "SSH:" | head -n 1 | awk '{print $2}')
+mysqlattr='-u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -P "$OPENSHIFT_MYSQL_DB_PORT"'
 echo "Cleaning local sql and start dumping database"
 rm -f dialoquad.sql
 mysqldump dialoquad --add-drop-table > dialoquad.sql
@@ -194,15 +200,16 @@ archive(){
 
 
 archive-all(){
-DATE="$(date +%m-%d)"
-mysqldump dialoquad --add-drop-table > ../dialoquad.sql
-tar zcvf "${HOME}/Downloads/dialoquad_${DATE}.tar.gz" -C ../. dialoquad.sql dialoquad
-rm ../dialoquad.sql
+	DATE="$(date +%m-%d)"
+	mysqldump dialoquad --add-drop-table > ../dialoquad.sql
+	tar zcvf "${HOME}/Downloads/dialoquad_${DATE}.tar.gz" -C ../. dialoquad.sql dialoquad
+	rm ../dialoquad.sql
 }
 
 #sync media folder with upload foler
 
 media-upload(){
+sshaddr=$(rhc apps | grep "SSH:" | head -n 1 | awk '{print $2}')
 if rhc ssh dialoquad --command '[ -d app-root/repo/wp-content/uploads ]'
 then	
 	echo "Found uploads folder"
@@ -212,6 +219,15 @@ else
 	exit 1
 fi
 
+}
+
+mobile(){
+	ipaddr=$(ifconfig | grep "inet addr:192" | awk '{print $2}' | cut -c 6-)
+	sed -i "3,6s/localhost/${ipaddr}/g" ./wp-config-local.php;
+}
+
+localhost(){
+	sed -i "3,6s/192.168.0.[0-9]*/localhost/g" ./wp-config-local.php;
 }
 
 if [ "$1" = "pre-push" ]; then
@@ -244,6 +260,12 @@ elif [ "$1" = "media" ]; then
 	fi
 elif [ "$1" = "preload" ]; then
 	preload
+elif [ "$1" = "regenerate" ]; then
+	regenerate
+elif [ "$1" = "localhost" ]; then
+	localhost
+elif [ "$1" = "mobile" ]; then
+	mobile
 elif [ -z "$*" ]; then
 	pre-push
 	push

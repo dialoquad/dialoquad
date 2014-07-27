@@ -93,34 +93,38 @@ if ( !defined('ABSPATH')) exit;
 
 		$("a:contains('Joomla Turbo')").css('display','none');
 
+		<?php if (!is_handheld()) { ?>
+	    
+			/* Dock -- Left */
+			$('#dock').Fisheye({
+				maxWidth: 60,
+				items: 'a',
+				itemsText: 'span',
+				container: '.dock-container',
+				itemWidth: 40,
+				itemPadding: 10,
+				proximity: 80,
+				halign : 'center'
+			});
 
-		/* Dock -- Left */
-		$('#dock').Fisheye({
-			maxWidth: 60,
-			items: 'a',
-			itemsText: 'span',
-			container: '.dock-container',
-			itemWidth: 40,
-			itemPadding: 10,
-			proximity: 80,
-			halign : 'center'
-		});
+			/* Anchor slide */
+			$("a[href*=#]").on('click', function(event){
+				var href = $(this).attr("href");
+				if ( /(#.*)/.test(href) ){
+					var hash = href.match(/(#.*)/)[0];
+					var path = href.match(/([^#]*)/)[0];
 
-		/* Anchor slide */
-		$("a[href*=#]").on('click', function(event){
-			var href = $(this).attr("href");
-			if ( /(#.*)/.test(href) ){
-				var hash = href.match(/(#.*)/)[0];
-				var path = href.match(/([^#]*)/)[0];
+      				if (window.location.pathname == path || path.length == 0){
+        				event.preventDefault();
+						$link = $('[name="' + $.attr(this, 'href').substr(1) + '"]');
+        				$('html,body').animate({scrollTop:$link.offset().top}, 250, "swing");
+        				window.location.hash = hash;
+      				}
+    			}
+			});
 
-      			if (window.location.pathname == path || path.length == 0){
-        			event.preventDefault();
-					$link = $('[name="' + $.attr(this, 'href').substr(1) + '"]');
-        			$('html,body').animate({scrollTop:$link.offset().top}, 250, "swing");
-        			window.location.hash = hash;
-      			}
-    		}
-		});
+		<?php }?>
+
 	});
 })( window, jQuery );
 </script>

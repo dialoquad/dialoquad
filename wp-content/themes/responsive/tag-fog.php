@@ -13,8 +13,9 @@ if ( !defined('ABSPATH')) exit;
 
 ?>
 <?php get_header(); ?>
+<?php if (!is_handheld()) { ?>
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/tag-fog.js"></script>
-
+<?php }?>
 <div class="narrow-container">
 	<div id="featured-content" class="grid col-940">
         <div id="inner-content">
@@ -40,14 +41,18 @@ if ( !defined('ABSPATH')) exit;
     			<!-- end of .post-meta -->
     			<?php endif; ?>
     			<div class="post-entry">
+				<?php if (!is_handheld()) { ?>
 				<p class="brownian"><a>Brownian Motion</a></p>
 				<p class="fog-restore"><a>Restore</a></p>
+				<?php }?>
 				<div class="tagcloud">
       				<?php the_content(__('Read more &#8250;', 'responsive')); ?>
 <canvas id="canvas" width="600" height="400" style="background:transparent;" ></canvas>
 				</div>
+				<?php if (!is_handheld()) { ?>
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/box2d.js"></script>
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/box2d-helpers.js"></script>
+				<?php }?>
       				<?php wp_link_pages(array('before' => '<div class="pagination">' . __('Pages:', 'responsive'), 'after' => '</div>')); ?>
     			</div>
     			<!-- end of .post-entry -->
