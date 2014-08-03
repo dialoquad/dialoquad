@@ -18,11 +18,11 @@ if ( !defined('ABSPATH')) exit;
 			myvar.is(".dqarrow") ? myvar.css('width','0px') : myvar.prev().css('width','0px');
 		};
 
-		$("#category-menu> ul> li> .dqarrow").click(function() {
+		$("*[id^=category-menu]> ul> li> .dqarrow").click(function() {
 			$(this).siblings("ul").slideToggle('fast');
 		});
 
-		$("#category-menu> ul> li> a, #category-menu> ul> li> .dqarrow").hover(function() {
+		$("*[id^=category-menu]> ul> li> a, *[id^=category-menu]> ul> li> .dqarrow").hover(function() {
 			var n = $(this).parent().index();
 			window.clearTimeout(timer[n]);
 			$(this).is(".dqarrow") ? $(this).css('width',$(this).css('height')) : $(this).prev().css('width',$(this).css('height'));

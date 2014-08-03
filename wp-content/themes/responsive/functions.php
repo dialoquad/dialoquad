@@ -17,7 +17,8 @@ if ( !defined('ABSPATH')) exit;
 function dq_all_avatar(){
   	global $wpua_functions;
 	$blogusers = get_users( array('orderby' => 'post_count', 'order' => 'DSC', 'role' => 'author') );
-	foreach ( $blogusers as $user ) {
+	$output = '<i class="nav previous icon-arrow-left-2"></i>';
+	foreach ( $blogusers as $index=> $user ) {
   		$output.= '<div class="author-avatar"><div class="author-img">' . $wpua_functions->get_wp_user_avatar($user->user_email, '225');
 		$user_info = '<div id="author-links">';
  	    $user_info .= '<div class="widget-title-home"><h3><a href="' . esc_url(get_bloginfo('url') . '/?author=' . $user->ID) . '">所有文章';	
@@ -36,10 +37,11 @@ function dq_all_avatar(){
 		$tags = dq_the_tags(array('author_id' => $user->ID));
 
 		$output .= '</div><div class="author-info">' . $user_info;
-		$output .= '<div id="category-menu">' . '<div class="widget-title-home"><h3>' . $user->data->display_name . '的分類文章</h3></div>' . $menu . '</div></div>';
+		$output .= '<div id="category-menu-' . $index . '">' . '<div class="widget-title-home"><h3>' . $user->data->display_name . '的分類文章</h3></div>' . $menu . '</div></div>';
 		$output .= '<div id="author-tagcloud" class="tagcloud">' . '<div class="widget-title-home"><h3>' . $user->data->display_name . '的標籤</h3></div>' . $tags . '</div>';
 		$output .= '</div></div>';
 	}
+	$output .= '<i class="nav next icon-arrow-right-2"></i>';
 	return $output;
 }
 
@@ -460,7 +462,7 @@ function dq_nav_menu( $items, $args ) {
 			"字型甚至是個學問" => "icon-type",
 			"客座徵文" => "icon-comments-5"
 		);
-		$nodes = $xPath->query("//*[@id='category-menu']/ul/li/a");
+		$nodes = $xPath->query("//*[starts-with(@id,'category-menu')]/ul/li/a");
 		foreach($nodes as $key=> $node){
 			$icon = $dom->createElement('i');
 			$arrow = $dom->createElement('i');
