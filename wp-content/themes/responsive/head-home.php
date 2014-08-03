@@ -9,42 +9,65 @@ if ( !defined('ABSPATH')) exit;
 ?>
 
 <script type="text/javascript" language="javascript">
-var pos = {left:0};
+var pos = {left:0,index:0};
 (function( window, $, undefined ) {
 	$(document).ready(function(){
-		$.fn.toggleClick = function(){
-			var functions = arguments;
-			var iteration = 0;
-			return this.click(function(){
-				functions[iteration].apply(this,arguments);
-				iteration = (iteration + 1) % functions.length;
-			});
-		};
-
+		<?php if(! is_handheld()){
+			echo 'var animation = "swing";';
+		}else{
+			echo 'var animation = 0;';
+		}
+		?>
 		var fn1 = function(){
+			$(this).parent().siblings().andSelf().children('.author-img').unbind('click');
 			pos.left = $(this).position().left;
-			$(this).animate({'margin-left': -pos.left},'swing',null,fn3);
-			$(this).parent().siblings().fadeToggle('swing');
+				$(this).animate({'margin-left': -pos.left},animation,null,fn3);
+			$(this).parent().siblings(".author-avatar").slice(pos.index,pos.index+3).fadeToggle(animation);
+			$(this).parent().siblings(".nav").toggle(animation);
 		};
 
 		var fn2 = function(){
-			$(this).animate({'margin-left': pos.left},'swing',null,fn4);
-			$(this).parent().children(".author-info").fadeToggle('swing');
+			$(this).unbind('click');
+				$(this).css('position','absolute').animate({'margin-left': pos.left},animation,null,fn4);
+			$(this).parent().children(".author-info").css('margin-left',240).fadeToggle(animation);
 		};
 
 		var fn3 = function(){
 			$(this).css('margin-left',0);
-			$(this).parent().children(".author-info").fadeToggle('swing');
+			$(this).parent().children(".author-info").css('margin-left',0).fadeToggle(null,animation,function(){
+				$(this).siblings(".author-img").click(fn2);
+			});
 			//$(this).parent().siblings().toggle();
 		};
 		
 		var fn4 = function(){
-			$(this).css('margin-left',0);
-			$(this).parent().siblings().fadeToggle('swing');
+			$(this).css({'margin-left':'0','position':'initial'});
+			$(this).parent().siblings(".author-avatar").slice(pos.index,pos.index+3).fadeToggle(animation);
+			$(this).parent().siblings().andSelf().children('.author-img').click(fn1);
+			$(this).parent().siblings(".nav").toggle(animation);
 			//$(this).parent().siblings().toggle();
 		};
 
-		$('.author-img').toggleClick(fn1,fn2);
+		$('.author-avatar').slice(4).toggle();
+
+		$('.authoricon .widget-avatar .nav.previous').click(function(){
+			if(pos.index > 0){
+				$('.author-avatar').eq(pos.index - 1).toggle();
+				$('.author-avatar').eq(pos.index + 3).toggle();
+				pos.index--;
+			}	
+		});
+		
+		$('.authoricon .widget-avatar .nav.next').click(function(){
+			var $items = $('.author-avatar');
+			if(pos.index < $items.size() - 4){
+				$items.eq(pos.index).toggle();
+				$items.eq(pos.index + 4).toggle();
+				pos.index++;
+			}		
+		});
+		
+		$('.author-img').click(fn1);
 	});
 })( window, jQuery );
 </script>
