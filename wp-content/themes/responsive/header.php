@@ -123,6 +123,8 @@ if ( !defined('ABSPATH')) exit;
 		});
 
 		$("a:contains('Joomla Turbo')").css('display','none');
+		
+		$("#logo .logo-img img").css('visibility','visible');
 
 		<?php if (!is_handheld()) { ?>
 	    
