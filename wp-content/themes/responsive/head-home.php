@@ -8,6 +8,47 @@ if ( !defined('ABSPATH')) exit;
  */
 ?>
 
+<script type="text/javascript" language="javascript">
+var pos = {left:0};
+(function( window, $, undefined ) {
+	$(document).ready(function(){
+		$.fn.toggleClick = function(){
+			var functions = arguments;
+			var iteration = 0;
+			return this.click(function(){
+				functions[iteration].apply(this,arguments);
+				iteration = (iteration + 1) % functions.length;
+			});
+		};
+
+		var fn1 = function(){
+			pos.left = $(this).position().left;
+			$(this).animate({'margin-left': -pos.left},'swing',null,fn3);
+			$(this).parent().siblings().fadeToggle('swing');
+		};
+
+		var fn2 = function(){
+			$(this).animate({'margin-left': pos.left},'swing',null,fn4);
+			$(this).parent().children(".author-info").fadeToggle('swing');
+		};
+
+		var fn3 = function(){
+			$(this).css('margin-left',0);
+			$(this).parent().children(".author-info").fadeToggle('swing');
+			//$(this).parent().siblings().toggle();
+		};
+		
+		var fn4 = function(){
+			$(this).css('margin-left',0);
+			$(this).parent().siblings().fadeToggle('swing');
+			//$(this).parent().siblings().toggle();
+		};
+
+		$('.author-img').toggleClick(fn1,fn2);
+	});
+})( window, jQuery );
+</script>
+
 <style type="text/css">
 	#search-head #searchbox { display:block; }
 </style>

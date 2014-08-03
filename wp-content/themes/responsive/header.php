@@ -61,6 +61,37 @@ if ( !defined('ABSPATH')) exit;
 <!-- FishEye dock -->
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/interface.js"></script>
 
+<?php if ( is_category() || is_single() || is_search()) { ?>
+<style type="text/css">
+	#cssmenu { display: block !important; }
+	#search-head #searchbox { display:block; }
+</style>
+<?php } ?>
+
+<?php if ( is_page(274) ) { ?>
+<?php require_once( get_template_directory() . '/head-category.php' );?>
+<?php } ?>
+
+<?php if ( is_page('tag-fog') ) { ?>
+<?php } ?>
+
+<?php if ( is_page() ) { ?>
+<style type="text/css">
+	.breadcrumb-list,.post-meta,#respond { 
+		display: none !important; 
+	}
+</style>
+<?php } ?>
+<?php if(is_single()){ ?>
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/bubble.js?ver=1.0"></script> 
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/speaker.js?ver=1.0"></script> 
+<?php require_once( get_template_directory() . '/head-category.php' );?>
+<?php } ?>
+<?php if(is_home()): ?>
+<?php require_once( get_template_directory() . '/head-category.php' );?>
+<?php require_once( get_template_directory() . '/head-home.php' );?>
+<?php endif;?>
+
 
 <!-- Document Ready scripts -->
 <script type="text/javascript" language="javascript">
@@ -128,36 +159,6 @@ if ( !defined('ABSPATH')) exit;
 	});
 })( window, jQuery );
 </script>
-
-<?php if ( is_category() || is_single() || is_search()) { ?>
-<style type="text/css">
-	#cssmenu { display: block !important; }
-	#search-head #searchbox { display:block; }
-</style>
-<?php } ?>
-
-<?php if ( is_page(274) ) { ?>
-<?php require_once( get_template_directory() . '/head-category.php' );?>
-<?php } ?>
-
-<?php if ( is_page('tag-fog') ) { ?>
-<?php } ?>
-
-<?php if ( is_page() ) { ?>
-<style type="text/css">
-	.breadcrumb-list,.post-meta,#respond { 
-		display: none !important; 
-	}
-</style>
-<?php } ?>
-<?php if(is_single()){ ?>
-<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/bubble.js?ver=1.0"></script> 
-<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/speaker.js?ver=1.0"></script> 
-<?php require_once( get_template_directory() . '/head-category.php' );?>
-<?php } ?>
-<?php if(is_home()): ?>
-<?php require_once( get_template_directory() . '/head-home.php' );?>
-<?php endif;?>
 
 <!-- End of custom header code -->
 

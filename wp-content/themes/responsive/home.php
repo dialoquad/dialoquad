@@ -80,27 +80,9 @@ if ( !defined('ABSPATH')) exit;
     			<h1> <span>Mt. Rushmore</span> </h1>
   			</div>
   			<div class="authoricon">
-    			<div class=" grid col-220 author">
-      				<div class="michael author-wrapper">
-        				<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("葉展昀模組") ) : ?>
-        				<?php endif; ?>
-      				</div>
-    			</div>
-    			<div class=" grid col-220 author">
-      				<div class="david author-wrapper">
-        				<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("蘇敬博模組") ) : ?>
-        				<?php endif; ?>
-      				</div>
-    			</div>
-    			<div class=" grid col-220 author">
-      				<div class="jade author-wrapper">
-        				<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("傅宗玉模組") ) : ?>
-        				<?php endif; ?>
-      				</div>
-    			</div>
-    			<div class=" grid col-220 author fit">
-      				<div class="winston author-wrapper">
-        				<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("蘇煒翔模組") ) : ?>
+    			<div class=" grid col-940 author">
+      				<div class="author-wrapper">
+        				<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("Avatar Widgets") ) : ?>
         				<?php endif; ?>
       				</div>
     			</div>

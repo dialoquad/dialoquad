@@ -2294,6 +2294,136 @@ padding: 20px 20px 2px 20px;
 	color: #333;
 }
 
+.widget-title .author-profile {
+	display: inline-block;
+	float: left;
+	clear: none;
+}
+
+.widget-title .author-profile .display-authors-widget-alignnone {
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.widget-title .author-profile .display-authors-widget-alignnone:after {
+	content: ".";
+	clear: both;
+	height: 0;
+	overflow: hidden;
+	visibility: hidden;
+	display: inline-block;
+}
+
+.authoricon {
+	float: left;
+	margin: 20px auto;
+}
+	
+.authoricon:after {
+	content: ".";
+	height: 0;
+	line-height: 0;
+	clear: both;
+	display: block;
+	visibility: hidden;
+	overflow: hidden;
+}
+
+.authoricon .author-wrapper .widget-avatar .textwidget{
+	white-space: nowrap;
+}
+
+.authoricon .author-wrapper .author-avatar{
+	display: inline-block;
+	margin: 0;
+}
+
+.authoricon .author-wrapper .author-img {
+	margin: 15px 15px 0px 0px;
+	float: left;
+}
+
+.authoricon .author-wrapper .author-img:hover {
+	cursor: pointer;
+}
+
+.authoricon .author-wrapper .author-img img{
+	float: left;
+	margin: 0;
+}
+
+.authoricon .author-wrapper .author-info {
+	float: left;
+	width: 710px;
+	display: none;
+}
+
+.authoricon .author-wrapper .author-info .widget-title-home h3,
+.authoricon .author-wrapper .author-info .widget-title-home h3 a{
+	font-size: 16px;
+    font-family:Verdana, Geneva, sans-serif;
+	margin-top: 15.6px;
+	text-transform: none;
+}
+
+.authoricon .author-wrapper .author-info #author-links {
+	float: left;
+	width: 450px;
+}
+
+.authoricon .author-wrapper .author-info #category-menu>ul >li {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.authoricon .author-wrapper .author-info #category-menu>ul >li> a {
+	overflow: hidden;
+	width: 380px;
+	text-overflow: ellipsis;
+	display: inline-block;
+	line-height: normal;
+	margin: 5px 0px;
+	vertical-align: -32%;
+}
+
+.authoricon .author-wrapper .author-info #category-menu>ul >li> a:hover {
+	overflow: hidden;
+	width: 344px;
+	text-overflow: ellipsis;
+}
+
+.authoricon .author-wrapper .author-info #category-menu>ul >li:after {
+	content: ".";
+	height: 0;
+	line-height: 0;
+	clear: both;
+	display: block;
+	visibility: hidden;
+	overflow: hidden;
+}
+
+.authoricon .author-wrapper .author-info #author-tagcloud {
+	float: right;
+	width: 260px;
+}
+
+.widget-avatar {
+	overflow: hidden;
+}
+
+.widget-avatar:after {
+	content: ".";
+	height: 0;
+	line-height: 0;
+	clear: both;
+	display: block;
+	visibility: hidden;
+	overflow: hidden;
+}
+
+/*
 .author-wrapper {
 	margin-bottom: 30px;
 	clear: both;
@@ -2311,6 +2441,7 @@ padding: 20px 20px 2px 20px;
 .author-wrapper a:hover {
 	background-position: top;
 }
+
 
 .michael a {
 	background: url('images/michael.png') no-repeat; 
@@ -2333,12 +2464,12 @@ padding: 20px 20px 2px 20px;
 }
 
 .author-wrapper a {
-	background-position: bottom;
-	display: block;
+	display: inline-block;
 	width: 225px;
 	height: 225px;
 	text-indent: -9999px;
 }
+*/
 
 .widget_sp_image-image-link img{
 	/*
@@ -2458,6 +2589,8 @@ padding: 20px 20px 2px 20px;
 
 .tagcloud:after {
 	content: ".";
+	height: 0;
+	line-height: 0;
 	visibility: hidden;
 	display: block;
 	clear: both;
@@ -3525,7 +3658,7 @@ border-left: none;
 
 
 #category-menu  a:hover {
-	color: #AAA;
+	color: #AAA !important;
     filter: none;
 	width: auto;
 }
@@ -3534,7 +3667,7 @@ border-left: none;
 	float: none;
 	padding: 5px 0;
 	display: block;
-	width: auto !important;
+	width: auto;
 	background-image: none;
 }
 
@@ -3594,21 +3727,25 @@ border-left: none;
 	color: #999;
 }
 
+.home #category-menu> ul> li> ul> li a,
 .single #category-menu> ul> li> ul> li a {
 	color: #AA7D55;
 	font-size: 16px;
 }
 
+.home #category-menu> ul,
 .single #category-menu> ul {
 	padding-left: 0px;
 }
 
+.home #category-menu> ul> li> *:not(ul),
 .single #category-menu> ul> li> *:not(ul) {
 	height: 36px;
 	font-size: 32px;
 	background-size: 32px;
 }
 
+.home #category-menu> ul> li> i:first-child,
 .single #category-menu> ul> li> i:first-child {
 	margin-right: 10px;
 }
@@ -4104,6 +4241,7 @@ a.cn-nav-next{
 	content: '.';
 	display: block;
 	height: 0;
+	line-height: 0;
 	overflow: hidden;
 	visibility: hidden;
 }
@@ -4580,6 +4718,7 @@ p.comment-form-comment {
 	content: ".";
 	display:block;
 	height:0;
+	line-height: 0;
 	clear:both;
 	visibility:hidden;
 }
@@ -4837,7 +4976,7 @@ table.cart td.actions .coupon .input-text {
 	line-height: 1.5em;
 	padding: 10px 0;
 	clear: both;
-	margin: 0 auto;
+	margin: 30px auto 0px auto;
 
 	/*max-width: 960px;*/
 	/*padding: 0 25px 0 25px;*/
@@ -5047,6 +5186,8 @@ div.acx_fsmi_float_fix.widget-acx-social-icons-widget-3-widget {
 	clear:both;
 	visibility:hidden;
     clear: both;
+	height: 0;
+	line-height: 0;
 }
 
 .ie7 .clearfix,
