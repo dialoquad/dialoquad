@@ -16,14 +16,15 @@ if ( !defined('ABSPATH')) exit;
 
 function dq_all_avatar(){
   	global $wpua_functions;
-	$blogusers = get_users( array('orderby' => 'post_count', 'order' => 'DSC', 'role' => 'author') );
+	$blogusers = get_users( array('orderby' => 'post_count', 'order' => 'DSC', 'role' => 'editor') );
 	$output = '<i class="nav previous icon-arrow-left-2"></i>';
 	foreach ( $blogusers as $index=> $user ) {
   		$output.= '<div class="author-avatar"><div class="author-img">' . $wpua_functions->get_wp_user_avatar($user->user_email, '225');
 		$user_info = '<div id="author-links">';
- 	    $user_info .= '<div class="widget-title-home"><h3><a href="' . esc_url(get_bloginfo('url') . '/?author=' . $user->ID) . '">所有文章';	
-		$user_info .= '<span>(' . count_user_posts( $user->ID ) . ' Articles)</span></a></h3></div>';
- 	    $user_info .= '<div class="widget-title-home"><h3><a href="' . esc_url(get_bloginfo('url') . '/作者群/' . $user->data->user_nicename) . '">Prologue</a></h3></div>';
+ 	    $user_info .= '<div class="widget-title-home"><h3><i class="icon-user-3"></i><a href="' . esc_url(get_bloginfo('url') . '/編輯群#' . $user->data->user_nicename) . '">About</a></h3></div>';
+ 	    $user_info .= '<div class="widget-title-home"><h3><i class="icon-pencil"></i><a href="' . esc_url(get_bloginfo('url') . '/?author=' . $user->ID) . '">All Articles ';	
+		$user_info .= '<span>(' . count_user_posts( $user->ID ) . ')</span></a></h3></div>';
+ 	    $user_info .= '<div class="widget-title-home"><h3><i class="icon-comments"></i><a href="' . esc_url(get_bloginfo('url') . '/編輯群/' . $user->data->user_nicename) . '">Prologue</a></h3></div>';
 		
 		$menu = wp_nav_menu(array(
 			'container'       => '',
@@ -71,6 +72,36 @@ function author_get_terms($taxonomy, $r){
 
 add_shortcode('all_avatar','dq_all_avatar');
 add_filter('widget_text', 'do_shortcode');
+
+
+function dq_author_intro(){
+  	global $wpua_functions;
+	$blogusers = get_users( array('orderby' => 'post_count', 'order' => 'DSC', 'role' => 'editor') );
+	$output = '<div id="author-intro-all">';
+	foreach ( $blogusers as $index=> $user ) {
+  		$author_intro = '<a name="' . $user->data->user_nicename . '"></a>';
+		$author_intro .= '<p class="author-intro">';
+  		$author_intro .= '<span class="author-img">' . $wpua_functions->get_wp_user_avatar($user->user_email, '150') . '</span>';
+		$author_intro .= '<span class="author-intro-text">';
+ 	    $author_intro .= '<span><a href="' . esc_url(get_bloginfo('url') . '/編輯群/' . $user->data->user_nicename) . '">Prologue</a></span><br>';
+		$author_intro .='<span class="author-name">' . $user->data->display_name . '</span>';
+ 	    $author_intro .= ' ' . get_the_author_meta('description', $user->ID );	
+		$author_intro .='</span>'; //end of author-intro-text
+		$author_intro .= '</p>';
+		$output .= $author_intro;
+	}
+  	$author_intro  = '<p class="author-intro">';
+  	$author_intro .= '<span class="author-img">' . '<img src="' . esc_url(get_bloginfo('url') . '/wp-content/uploads/2013/03/joinusc.png') . '" style="width: 150px;" /></span>';
+	$author_intro .= '<span class="author-intro-text">';
+ 	$author_intro .= '想要來參與對話嗎？如果你覺得頗有趣，你可以考慮<a href="' . esc_url(get_bloginfo('url') . '/客座徵文') . '">客座徵文</a>；甚至一不小心，成為我們的一份子。四個人，只是一個開頭，我們希望有更多的人願意參與我們的對話，有更多人願意投入對話；我們知道，促成龐大的對話是漫長的旅程，路途上未必平順簡單，未必會盡如人意，但歡迎你與我們共同上路，與我們一同在未知的角落點燈。主題不限、題材自選，盡情地訴說吧，我們都因夢想而偉大，而夢想則因擁有彼此而更加豐盛充實。';
+	$author_intro .='</span>'; //end of author-intro-text
+	$author_intro .= '</p>';
+	$output .= $author_intro;
+	$output .= '</div>';
+	return $output;	
+}
+
+add_shortcode('author_intro','dq_author_intro');
 
 if ( function_exists('register_sidebar') )
   	register_sidebar(array(

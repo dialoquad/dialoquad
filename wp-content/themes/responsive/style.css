@@ -2371,10 +2371,14 @@ padding: 20px 20px 2px 20px;
 
 .authoricon .author-wrapper .author-info .widget-title-home h3,
 .authoricon .author-wrapper .author-info .widget-title-home h3 a{
-	font-size: 16px;
+	font-size: 14px;
     font-family:Verdana, Geneva, sans-serif;
-	margin-top: 15.6px;
+	margin-top: 5.6px;
 	text-transform: none;
+}
+
+.authoricon .author-wrapper .author-info .widget-title-home h3 i{
+	margin-right: 5px;
 }
 
 .authoricon .author-wrapper .author-info #author-links {
@@ -2451,53 +2455,37 @@ padding: 20px 20px 2px 20px;
 	left: -30px;
 }
 
-/*
-.author-wrapper {
-	margin-bottom: 30px;
-	clear: both;
-	overflow: hidden;
-	height: 235px;
+
+#author-intro-all .author-intro .author-img {
+	position: absolute;
+	height: 100%;
+	top: 0;
+}
+
+#author-intro-all .author-intro .author-intro-text {
+	line-height: 1.6em;
+	font-size: 14px;
+	display: block;
+	padding-left: 175px;
+}
+
+#author-intro-all .author-intro .author-name {
+	font-weight: bold;
+}
+
+#author-intro-all .author-intro {
 	position: relative;
+	margin: 20px 0px;
+	min-height: 175px;
 }
 
-.authoricon {
+#author-intro-all .author-intro:after {
+	content: " ";
 	clear: both;
+	display: block;
 	overflow: hidden;
-
+	visibility: hidden;
 }
-
-.author-wrapper a:hover {
-	background-position: top;
-}
-
-
-.michael a {
-	background: url('images/michael.png') no-repeat; 
-	background-size: 225px Auto;
-}
-
-.david a {
-	background: url('images/david.png') no-repeat; 
-	background-size: 225px Auto;
-}
-
-.jade a {
-	background: url('images/jade.png') no-repeat; 
-	background-size: 225px Auto;
-}
-
-.winston a {
-	background: url('images/winston.png') no-repeat; 
-	background-size: 225px Auto;
-}
-
-.author-wrapper a {
-	display: inline-block;
-	width: 225px;
-	height: 225px;
-	text-indent: -9999px;
-}
-*/
 
 .widget_sp_image-image-link img{
 	/*
