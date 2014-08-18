@@ -55,7 +55,7 @@ if ( !defined('ABSPATH')) exit;
                 	<div id="article-content">
                     	<?php the_content(__('Read more &#8250;', 'responsive')); ?>
                     </div><!-- end of #article-content -->
-                    <?php if ( get_the_author_meta('description') != '' ) : ?>
+                    <?php if ( get_the_author_meta('description') != '' && false) : ?>
 
                     <div id="author-meta">
                     	<?php if (function_exists('get_avatar')) { echo get_avatar( get_the_author_meta('email'), '80' ); }?>

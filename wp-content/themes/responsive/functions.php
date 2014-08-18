@@ -90,7 +90,7 @@ function dq_author_intro(){
 		$author_intro .= '</p>';
 		$output .= $author_intro;
 	}
-  	$author_intro  = '<p class="author-intro">';
+  	$author_intro  = '<br><p class="author-intro">';
   	$author_intro .= '<span class="author-img">' . '<img src="' . esc_url(get_bloginfo('url') . '/wp-content/uploads/2013/03/joinusc.png') . '" style="width: 150px;" /></span>';
 	$author_intro .= '<span class="author-intro-text">';
  	$author_intro .= '想要來參與對話嗎？如果你覺得頗有趣，你可以考慮<a href="' . esc_url(get_bloginfo('url') . '/客座徵文') . '">客座徵文</a>；甚至一不小心，成為我們的一份子。四個人，只是一個開頭，我們希望有更多的人願意參與我們的對話，有更多人願意投入對話；我們知道，促成龐大的對話是漫長的旅程，路途上未必平順簡單，未必會盡如人意，但歡迎你與我們共同上路，與我們一同在未知的角落點燈。主題不限、題材自選，盡情地訴說吧，我們都因夢想而偉大，而夢想則因擁有彼此而更加豐盛充實。';

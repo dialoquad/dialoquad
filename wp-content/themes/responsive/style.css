@@ -1691,7 +1691,7 @@ a.dock-item {
 -------------------------------------------------------------- */
 #featured {	
 	width: 99.893617021277%;
-	margin: 3% 0px 5% 0px;
+	margin: 4% 0px 4% 0px;
 }
 
 #featured.grid, #featured .grid{
@@ -2248,13 +2248,14 @@ padding: 20px 20px 2px 20px;
 	right: -5px;
 	color: #666;
 	background: rgba(255,255,255,0.8);
-	padding: 5px 10px 5px 0px;
 /*	font-family: "xinheiw3";*/
 	border-left: 3px solid #BE2832;
 	font-size: 12px;
-	line-height: 9px;
+	line-height: 20px;
+	padding-right: 10px;
+	padding-left: 32px;
 	height: 20px;
-	vertical-align: top;
+	vertical-align: middle;
 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4),0 0 0 transparent,0 0 0 transparent;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
@@ -2265,10 +2266,12 @@ padding: 20px 20px 2px 20px;
 }
 
 .random .relate-banner:before {
+	position: absolute;
 	margin-right: 5px;
 	font-size: 28px;
 	color: #BE2832;
 	opacity: 0.8;
+	left: 0px;
 }
 
 .random .relate-banner:after {
@@ -2339,6 +2342,7 @@ padding: 20px 20px 2px 20px;
 .authoricon .author-wrapper .widget-avatar .textwidget{
 	white-space: nowrap;
 	position: relative;
+	width: 960px;
 }
 
 .authoricon .author-wrapper .author-avatar{
@@ -2367,6 +2371,7 @@ padding: 20px 20px 2px 20px;
 	float: right;
 	width: 710px;
 	display: none;
+	position: relative;
 }
 
 .authoricon .author-wrapper .author-info .widget-title-home h3,
@@ -2383,7 +2388,7 @@ padding: 20px 20px 2px 20px;
 
 .authoricon .author-wrapper .author-info #author-links {
 	float: left;
-	width: 450px;
+	width: 50%;
 }
 
 .authoricon .author-wrapper .author-info *[id^=category-menu]>ul >li {
@@ -2394,7 +2399,7 @@ padding: 20px 20px 2px 20px;
 
 .authoricon .author-wrapper .author-info *[id^=category-menu]>ul >li> a {
 	overflow: hidden;
-	width: 380px;
+	width: 100%;
 	text-overflow: ellipsis;
 	display: inline-block;
 	line-height: normal;
@@ -2404,7 +2409,13 @@ padding: 20px 20px 2px 20px;
 
 .authoricon .author-wrapper .author-info *[id^=category-menu]>ul >li> a:hover {
 	overflow: hidden;
-	width: 344px;
+	width: -moz-calc(100% - 36px);
+	/* WebKit */
+	width: -webkit-calc(100% - 36px);
+	/* Opera */
+	width: -o-calc(100% - 36px);
+	/* Standard */
+	width: calc(100% - 36px);
 	text-overflow: ellipsis;
 }
 
@@ -2420,7 +2431,13 @@ padding: 20px 20px 2px 20px;
 
 .authoricon .author-wrapper .author-info #author-tagcloud {
 	float: right;
-	width: 260px;
+	width: -moz-calc(50% - 50px);
+	/* WebKit */
+	width: -webkit-calc(50% - 50px);
+	/* Opera */
+	width: -o-calc(50% - 50px);
+	/* Standard */
+	width: calc(50% - 50px);
 }
 
 .widget-avatar {
@@ -3917,40 +3934,6 @@ TinyNav + SelectBox
     -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-.lifted-shadow {
-	position:relative;       
-	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-
-.lifted-shadow:hover:after,
-.lifted-shadow:hover:before {
-	-webkit-box-shadow: 0 0 40px rgba(0,0,0,1);
-	-moz-box-shadow: 0 0 40px rgba(0,0,0,1);
-	box-shadow: 0 0 40px 4px rgba(0,0,0,1);
-}
-	
-.lifted-shadow:after,
-.lifted-shadow:before {
-	content: "";
-	position: absolute;
-	z-index: -1;
-	-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.7);
-	-moz-box-shadow: 0 0 40px rgba(0,0,0,0.7);
-	box-shadow: 0 0 40px 4px rgba(0,0,0,0.7);
-	top: 3.5%;
-	bottom: 0%;
-	left: 10px;
-	right: 10px;
-	-moz-border-radius: 50% / 10px;
-	border-radius: 50% / 10%;
-    -webkit-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	-ms-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-}
 
 .cn-loading{
     position: absolute;
@@ -5409,14 +5392,12 @@ only screen and (min-device-pixel-ratio:1.5) {
 		margin-right: 0;
 	}
 
-	.author-wrapper a {
-		width: 125px;
-		height: 125px;
-		background-size: 125px Auto;
-	}
-
 	div.powered {
 		width: 100%;
+	}
+
+	.authoricon .author-wrapper .author-info {
+		width: 485px;
 	}
 
 	.powered div {
@@ -5484,6 +5465,20 @@ only screen and (min-device-pixel-ratio:1.5) {
 	*[id^=category-menu]> ul> li> a {
 		font-size: 40px;
 	}
+	
+	.authoricon .author-wrapper .widget-avatar .textwidget {
+		width: 650px;
+	}
+	
+	.authoricon .author-wrapper .author-img {
+		height: 150px;
+		width: 150px;
+	}
+
+	.col-300.copyright {
+		width: 100%;
+	}
+
 
 }
 
@@ -5623,7 +5618,7 @@ only screen and (min-device-pixel-ratio:1.5) {
 	.authoricon {
 		width: auto;
 	}
-
+	
 }
 
 @media all and (max-width: 480px) {

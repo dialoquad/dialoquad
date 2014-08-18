@@ -68,11 +68,13 @@ if ( !defined('ABSPATH')) exit;
   	</div>
   	<!-- end of #featured --> 
 </div>
-<script type="text/javascript">
+	<script type="text/javascript">
 	jQuery(function() {
-			jQuery('#cn-slideshow').slideshow();
-			});
-		</script> 
+		jQuery('#cn-slideshow').slideshow(
+			<?php if(! is_handheld()){echo 'true';}else{echo 'false';} ?>
+		);
+	});
+	</script> 
 		<!-- end of .wide-container -->
 		<a class="scroll-anchor" name="author" data-text="Mt. Rushmore"></a>
 		<div class="wide-container">
@@ -97,8 +99,8 @@ if ( !defined('ABSPATH')) exit;
   			</div>
   			<div id="featured-content" class="grid col-940">
     			<div id="inner-content">
-					<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-					query_posts('showposts=1&paged='. $paged) ?>
+<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+query_posts('showposts=1&paged='. $paged) ?>
       				<?php if (have_posts()) : ?>
       				<?php while (have_posts()) : the_post(); ?>
       				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -161,13 +163,13 @@ if ( !defined('ABSPATH')) exit;
       				<p>
         			<?php _e('Don&#39;t panic, we&#39;ll get through this together. Let&#39;s explore our options here.', 'responsive'); ?>
       				</p>
-      				<h6><?php printf( __('You can return %s or search for the page you were looking for.', 'responsive'),
-	            		sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-		            	esc_url( get_home_url() ),
-		            	esc_attr__('Home', 'responsive'),
-		            	esc_attr__('&larr; Home', 'responsive')
+      					<h6><?php printf( __('You can return %s or search for the page you were looking for.', 'responsive'),
+	            			sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
+		            		esc_url( get_home_url() ),
+		            		esc_attr__('Home', 'responsive'),
+		            		esc_attr__('&larr; Home', 'responsive')
 	                	)); 
-						?></h6>
+?></h6>
       				<?php get_search_form(); ?>
       				<?php endif; ?>
       				<?php wp_reset_query(); ?>

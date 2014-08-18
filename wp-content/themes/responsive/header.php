@@ -49,6 +49,12 @@ if ( !defined('ABSPATH')) exit;
 
 <?php wp_enqueue_style('responsive-style', get_stylesheet_uri(), false, '1.8.8');?>
 
+<?php if(!is_handheld()){	
+	echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/style-desktop.css">';
+}else{	
+	echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/style-mobile.css">';
+}?>
+
 <!-- Start of custom header code -->
 
 <!-- Metro bootstrap code -->
@@ -61,6 +67,26 @@ if ( !defined('ABSPATH')) exit;
 <!-- FishEye dock -->
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/interface.js"></script>
 
+<!-- Slide-Out Mmenu -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/hammer.js/1.0.5/jquery.hammer.min.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.min.all.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.dragopen.min.js"></script>
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.css">
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.dragopen.css">
+<script type="text/javascript">
+<?php if( is_handheld()){
+	echo '$(function() {
+			$(\'nav#mmenu\').mmenu({
+            	searchfield: true,
+				dragOpen: {
+					open: true,
+					threshold: 480,
+					maxStartPos: 1024
+				}
+			});
+	});';
+} ?>
+</script>
 <?php if ( is_category() || is_single() || is_search()) { ?>
 <style type="text/css">
 	#cssmenu { display: block !important; }
@@ -197,7 +223,8 @@ fjs.parentNode.insertBefore(js, fjs);
     <div class="wide-container">
     <?php if (has_nav_menu('top-menu', 'responsive')) { ?>
 <?php wp_nav_menu(array(
-	'container'       => '',
+	'container'       => 'nav',
+	'container_id'       => 'mmenu',
 	'fallback_cb'	  =>  false,
 	'menu_class'      => 'top-menu',
 	'theme_location'  => 'top-menu')
@@ -209,6 +236,9 @@ fjs.parentNode.insertBefore(js, fjs);
 
 <?php if ( get_header_image() != '' ) : ?>
 
+<div class="header">
+	<a href="#mmenu"></a>
+</div>
 <div id="logo">
     <a href="<?php echo home_url('/'); ?>" class="logo-img" ><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>"/></a><a href="<?php echo home_url('/'); ?>" class="logo-caption">Dialoquad</a>
     </div><!-- end of #logo -->

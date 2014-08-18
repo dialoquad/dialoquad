@@ -1,0 +1,35 @@
+.lifted-shadow {
+	position:relative;       
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.lifted-shadow:hover:after,
+.lifted-shadow:hover:before {
+	-webkit-box-shadow: 0 0 40px rgba(0,0,0,1);
+	-moz-box-shadow: 0 0 40px rgba(0,0,0,1);
+	box-shadow: 0 0 40px 4px rgba(0,0,0,1);
+}
+	
+.lifted-shadow:after,
+.lifted-shadow:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0 0 40px rgba(0,0,0,0.7);
+	box-shadow: 0 0 40px 4px rgba(0,0,0,0.7);
+	top: 3.5%;
+	bottom: 0%;
+	left: 10px;
+	right: 10px;
+	-moz-border-radius: 50% / 10px;
+	border-radius: 50% / 10%;
+    -webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-ms-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+
