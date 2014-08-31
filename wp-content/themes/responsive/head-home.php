@@ -34,7 +34,7 @@ var pos = {left:0,index:0};
 
 		var fn3 = function(){
 			$(this).css('margin-left',0);
-			$(this).parent().children(".author-info").css('margin-left',0).fadeToggle(null,animation,function(){
+			$(this).parent().css('width','100%').children(".author-info").css('margin-left',0).fadeToggle(null,animation,function(){
 				$(this).siblings(".author-img").click(fn2);
 			});
 			//$(this).parent().siblings().toggle();
@@ -42,7 +42,7 @@ var pos = {left:0,index:0};
 		
 		var fn4 = function(){
 			$(this).css({'margin-left':'0','position':'initial'});
-			$(this).parent().siblings(".author-avatar").slice(pos.index,pos.index+3).fadeToggle(animation);
+			$(this).parent().css('width','auto').siblings(".author-avatar").slice(pos.index,pos.index+3).fadeToggle(animation);
 			$(this).parent().siblings().andSelf().children('.author-img').click(fn1);
 			$(this).parent().siblings(".nav").toggle(animation);
 			//$(this).parent().siblings().toggle();
@@ -71,10 +71,6 @@ var pos = {left:0,index:0};
 	});
 })( window, jQuery );
 </script>
-
-<style type="text/css">
-	#search-head #searchbox { display:block; }
-</style>
 
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri()?>/js/speaker.js?ver=1.0"></script> 
 

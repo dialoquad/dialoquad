@@ -71,23 +71,26 @@ if ( !defined('ABSPATH')) exit;
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/hammer.js/1.0.5/jquery.hammer.min.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.min.all.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.dragopen.min.js"></script>
-<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.css">
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.all.css">
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri()?>/mmenu/jquery.mmenu.dragopen.css">
 <script type="text/javascript">
-<?php if( is_handheld()){
-	echo '$(function() {
-			$(\'nav#mmenu\').mmenu({
-            	searchfield: true,
-				dragOpen: {
-					open: true,
-					threshold: 480,
-					maxStartPos: 1024
-				}
-			});
-	});';
-} ?>
+<?php if( is_mobile()){ ?>
+	$(function() {
+		$('nav#mmenu').mmenu({
+			searchfield: {
+				add: true,
+				search: false
+			},
+			dragOpen: {
+				open: true,
+				threshold: 180,
+				maxStartPos: 512
+			}
+		});
+	});
+<?php } ?>
 </script>
-<?php if ( is_category() || is_single() || is_search()) { ?>
+<?php if (!is_mobile() && ( is_category() || is_single() || is_search())) { ?>
 <style type="text/css">
 	#cssmenu { display: block !important; }
 	#search-head #searchbox { display:block; }
@@ -114,6 +117,11 @@ if ( !defined('ABSPATH')) exit;
 <?php require_once( get_template_directory() . '/head-category.php' );?>
 <?php } ?>
 <?php if(is_home()): ?>
+	<?php if(!is_mobile()){ ?>
+		<style type="text/css">
+			#search-head #searchbox { display:block; }
+		</style>
+	<?php }?>
 <?php require_once( get_template_directory() . '/head-category.php' );?>
 <?php require_once( get_template_directory() . '/head-home.php' );?>
 <?php endif;?>
@@ -167,6 +175,7 @@ if ( !defined('ABSPATH')) exit;
 			});
 
 			/* Anchor slide */
+
 			$("a[href*=#]").on('click', function(event){
 				var href = $(this).attr("href");
 				if ( /(#.*)/.test(href) ){
@@ -204,84 +213,85 @@ ga('send', 'pageview');
 
 </head>
 <body <?php body_class(); ?>>
-<a class="scroll-anchor" name="dqtop" data-text="Back to Top"></a>
+	<a class="scroll-anchor" name="dqtop" data-text="Back to Top"></a>
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) return;
-js = d.createElement(s); js.id = id;
-js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=493040587425313&version=v2.0";
-fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=493040587425313&version=v2.0";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 	<?php responsive_container(); // before container hook ?>
 	<div id="container" class="hfeed">
 
-    <?php responsive_header(); // before header hook ?>
+    	<?php responsive_header(); // before header hook ?>
 
-    <div id="header">
-    <div class="wide-container">
-    <?php if (has_nav_menu('top-menu', 'responsive')) { ?>
-<?php wp_nav_menu(array(
-	'container'       => 'nav',
-	'container_id'       => 'mmenu',
-	'fallback_cb'	  =>  false,
-	'menu_class'      => 'top-menu',
-	'theme_location'  => 'top-menu')
-); 
-?>
-<?php } ?>
+    	<div id="header">
+    		<div class="wide-container">
+				<?php if(is_mobile()){ ?>
+				<a href="#mmenu" id="mm-button"></a>
+				<?php }?>
+    			<?php if (has_nav_menu('top-menu', 'responsive')) { ?>
+				<?php wp_nav_menu(array(
+				'container'       => 'nav',
+				'container_id'       => 'mmenu',
+				'container_class'       => 'mm-white',
+				'fallback_cb'	  =>  false,
+				'menu_class'      => 'top-menu',
+				'theme_location'  => 'top-menu')
+				); 
+				?>
+				<?php } ?>
 
-<?php responsive_in_header(); // header hook ?>
+				<?php responsive_in_header(); // header hook ?>
 
-<?php if ( get_header_image() != '' ) : ?>
+				<?php if ( get_header_image() != '' ) : ?>
 
-<div class="header">
-	<a href="#mmenu"></a>
-</div>
-<div id="logo">
-    <a href="<?php echo home_url('/'); ?>" class="logo-img" ><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>"/></a><a href="<?php echo home_url('/'); ?>" class="logo-caption">Dialoquad</a>
-    </div><!-- end of #logo -->
+				<div id="logo">
+    				<a href="<?php echo home_url('/'); ?>" class="logo-img" ><img src="<?php header_image(); ?>" width="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> width;} else { echo HEADER_IMAGE_WIDTH;} ?>" height="<?php if(function_exists('get_custom_header')) { echo get_custom_header() -> height;} else { echo HEADER_IMAGE_HEIGHT;} ?>" alt="<?php bloginfo('name'); ?>"/></a><a href="<?php echo home_url('/'); ?>" class="logo-caption">Dialoquad</a>
+    			</div><!-- end of #logo -->
 
-    <?php endif; // header image was removed ?>
+    			<?php endif; // header image was removed ?>
 
-    <?php if ( !get_header_image() ) : ?>
+    			<?php if ( !get_header_image() ) : ?>
 
-    <div id="logo">
-    <span class="site-name"><a href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home"><?php bloginfo('name'); ?></a></span>
-    <span class="site-description"><?php bloginfo('description'); ?></span>
-    </div><!-- end of #logo -->  
+    			<div id="logo">
+    				<span class="site-name"><a href="<?php echo home_url('/'); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home"><?php bloginfo('name'); ?></a></span>
+    				<span class="site-description"><?php bloginfo('description'); ?></span>
+    			</div><!-- end of #logo -->  
 
-    <?php endif; // header image was removed (again) ?>
-    <div id="search-head" class="widget-wrapper widget_search metro">
-	<?php get_search_form(); ?>
-	</div>
-    </div><!-- end of .narrow-container -->
-    <div class="landing-box">
-    <div class="wide-container">
-    <?php get_sidebar('top'); ?>
-	<div id="cssmenu">
-<?php wp_nav_menu(array(
-	'container'       => '',
-	'theme_location'  => 'header-menu')
-); 
-?>
-</div>
-    <?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
-<?php wp_nav_menu(array(
-	'container'       => '',
-	'menu_class'      => 'sub-header-menu',
-	'theme_location'  => 'sub-header-menu')
-); 
-?>
-<?php } ?>
-</div><!-- end of .wide-container -->
-    </div><!-- end of .landing-box -->
-    </div>
-    <!-- end of #header -->
+    			<?php endif; // header image was removed (again) ?>
+			<div class="no-mobile"> 			
+				<?php get_search_form(); ?>
+			</div>
+    		</div><!-- end of .narrow-container -->
+    		<div class="landing-box">
+    			<div class="wide-container">
+    				<?php get_sidebar('top'); ?>
+					<div id="cssmenu">
+						<?php wp_nav_menu(array(
+						'container'       => '',
+						'theme_location'  => 'header-menu')
+						); 
+						?>
+					</div>
+    				<?php if (has_nav_menu('sub-header-menu', 'responsive')) { ?>
+					<?php wp_nav_menu(array(
+					'container'       => '',
+					'menu_class'      => 'sub-header-menu',
+					'theme_location'  => 'sub-header-menu')
+					); 
+					?>
+					<?php } ?>
+				</div><!-- end of .wide-container -->
+    		</div><!-- end of .landing-box -->
+    	</div>
+    	<!-- end of #header -->
 
-    <?php responsive_header_end(); // after header hook ?>
+    	<?php responsive_header_end(); // after header hook ?>
 
-	<?php responsive_wrapper(); // before wrapper ?>
-    <div id="wrapper" class="clearfix">
-    <?php responsive_in_wrapper(); // wrapper hook ?>
+		<?php responsive_wrapper(); // before wrapper ?>
+    	<div id="wrapper" class="clearfix">
+    		<?php responsive_in_wrapper(); // wrapper hook ?>
