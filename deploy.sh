@@ -227,7 +227,7 @@ mobile(){
 }
 
 localhost(){
-	sed -i "3,6s/192.168.0.[0-9]*/localhost/g" ./wp-config-local.php;
+	sed -i "3,6s/192.168.[0-9].[0-9]*/localhost/g" ./wp-config-local.php;
 }
 
 if [ "$1" = "pre-push" ]; then

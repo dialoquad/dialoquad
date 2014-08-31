@@ -29,7 +29,9 @@ if ( !defined('ABSPATH')) exit;
 		},function(){
 			var myvar = $(this);
 			var n = $(this).parent().index();
-			timer[n] = setTimeout(function(){unhover(myvar);},200);
+			<?php if(!is_handheld()){ ?>
+				timer[n] = setTimeout(function(){unhover(myvar);},200);
+			<?php }?>
 		});
 	});
 })( window, jQuery );

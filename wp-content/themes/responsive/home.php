@@ -24,14 +24,12 @@ if ( !defined('ABSPATH')) exit;
 <?php get_header(); ?>
 
 <div class="wide-container">
-	<a class="scroll-anchor" name="meme" data-text="Meme"></a>
+	<a class="scroll-anchor no-mobile" name="meme" data-text="Meme"></a>
   	<div class="sectionDivider">
     	<h1> <span>Meme</span> </h1>
   	</div>
-  	<div id="featured" class="grid col-940"> 
-
+  	<div id="featured" class="grid col-940 no-mobile"> 
     	<!-- end of .col-460 -->
-
     	<div id="featured-image" class="grid col-940 fit">
       		<div class="wrapper">
         		<div id="cn-slideshow" class="cn-slideshow lifted-shadow">
@@ -77,7 +75,7 @@ if ( !defined('ABSPATH')) exit;
 	</script> 
 		<!-- end of .wide-container -->
 		<a class="scroll-anchor" name="author" data-text="Mt. Rushmore"></a>
-		<div class="wide-container">
+		<div class="wide-container no-mobile">
   			<div class="sectionDivider">
     			<h1> <span>Mt. Rushmore</span> </h1>
   			</div>
@@ -170,7 +168,9 @@ query_posts('showposts=1&paged='. $paged) ?>
 		            		esc_attr__('&larr; Home', 'responsive')
 	                	)); 
 ?></h6>
-      				<?php get_search_form(); ?>
+					<div class="no-mobile"> 
+      					<?php get_search_form(); ?>
+					</div>
       				<?php endif; ?>
       				<?php wp_reset_query(); ?>
     			</div>
