@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Twenty Twelve package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2013-07-11 01:55:57+0000\n"
+"PO-Revision-Date: 2014-08-18 22:10:03+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -201,7 +201,7 @@ msgstr "主選單"
 
 #: footer.php:16
 msgid "Proudly powered by %s"
-msgstr "自豪的採用 %s </a> 與 <a href=\"http://wordpress.org/extend/themes/twentytwelve\">貳零壹貳主題</a>"
+msgstr "自豪的採用 %s"
 
 #: content-aside.php:26 content-image.php:26 content-link.php:24
 #: content-page.php:24 content-quote.php:23 content-status.php:40

@@ -52,12 +52,17 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 	/** Use for WP super-cache cli **/
 	define( 'WPCACHE_PHASE2', getenv('OPENSHIFT_REPO_DIR') . 'wp-content/plugins/wp-super-cache/wp-cache-phase2.php' );
 
+
 /** These settings can be configured for your local development environment
 	and will not affect your OpenShift configuration */
 } else {
 	include_once(ABSPATH . 'wp-config-local.php');
 }
 
+/** AWS Credentails **/
+define( 'AWS_ACCESS_KEY_ID', 'AKIAJFBSUXLY7A7D462Q' );
+
+define( 'AWS_SECRET_ACCESS_KEY', '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' );
 
 
 /** Database Charset to use in creating database tables. */

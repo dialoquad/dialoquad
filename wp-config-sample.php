@@ -62,16 +62,6 @@ define('NONCE_SALT',       'put your unique phrase here');
 $table_prefix  = 'wp_';
 
 /**
- * WordPress 本地化語言設定。預設為正體中文。
- *
- * 舉例來說，要使用 WordPress 正體中文介面，只需要填入 'zh_TW'。 
- * 更改此設定將 WordPress 本地化。對應的 MO 檔案必須放置於 wp-content/languages 目錄下。
- * 舉例來說，將 zh_TW.mo 放置於 wp-content/languages 內並將 WPLANG 設定為 'zh_TW' 將
- * 使用正體中文介面。
- */
-define ('WPLANG', 'zh_TW');
-
-/**
  * WordPress 自動儲存間隔
  *
  * 當您編輯文章時 WordPress 使用 Ajax 技術自動地定時幫您儲存文章草稿。

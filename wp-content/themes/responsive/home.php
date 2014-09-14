@@ -25,7 +25,7 @@ if ( !defined('ABSPATH')) exit;
 
 <div class="wide-container">
 	<a class="scroll-anchor no-mobile" name="meme" data-text="Meme"></a>
-  	<div class="sectionDivider">
+  	<div class="sectionDivider no-mobile">
     	<h1> <span>Meme</span> </h1>
   	</div>
   	<div id="featured" class="grid col-940 no-mobile"> 

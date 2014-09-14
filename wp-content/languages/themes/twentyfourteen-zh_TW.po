@@ -42,8 +42,8 @@ msgstr "更多獨白"
 msgid "%s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "%s <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/customizer.php:37 inc/customizer.php:102 inc/featured-content.php:410
-#: inc/featured-content.php:419 inc/featured-content.php:479
+#: inc/customizer.php:37 inc/customizer.php:102 inc/featured-content.php:407
+#: inc/featured-content.php:416 inc/featured-content.php:476
 msgctxt "featured content default tag slug"
 msgid "featured"
 msgstr "特色"
@@ -55,7 +55,7 @@ msgstr "使用這個小工具來列出你的近期獨白、引文、影片、音
 msgid "http://wordpress.org/themes/twentyfourteen"
 msgstr "http://wordpress.org/themes/twentyfourteen"
 
-#: inc/customizer.php:36 inc/featured-content.php:409
+#: inc/customizer.php:36 inc/featured-content.php:406
 msgid "Use a <a href=\"%1$s\">tag</a> to feature your posts. If no posts match the tag, <a href=\"%2$s\">sticky posts</a> will be displayed instead."
 msgstr "使用<a href=\"%1$s\">標籤</a>來標記出特色文章。如果沒有文章符合此標籤，將會顯示<a href=\"%2$s\">置頂文章</a>。"
 
@@ -85,11 +85,11 @@ msgstr "Y 年"
 msgid "Site Title Color"
 msgstr "網站標題顏色"
 
-#: inc/featured-content.php:431
+#: inc/featured-content.php:428
 msgid "Tag Name"
 msgstr "標籤名稱"
 
-#: inc/featured-content.php:436
+#: inc/featured-content.php:433
 msgid "Don&rsquo;t display tag on front end."
 msgstr "不在前台顯示標籤"
 
@@ -152,7 +152,7 @@ msgstr "「貳零壹肆」最低需求為 WordPress 3.6 版或以上。你目前
 msgid "Background may only be visible on wide screens."
 msgstr "背景可能只在寬螢幕上可見。"
 
-#: inc/customizer.php:35 inc/featured-content.php:408
+#: inc/customizer.php:35 inc/featured-content.php:405
 msgid "Featured Content"
 msgstr "特色內容"
 
@@ -172,19 +172,19 @@ msgstr "輪播"
 msgid "Enhance your site design by using <a href=\"%s\">Featured Images</a> for posts you&rsquo;d like to stand out (also known as post thumbnails). This allows you to associate an image with your post without inserting it. Twenty Fourteen uses featured images for posts and pages&mdash;above the title&mdash;and in the Featured Content area on the home page."
 msgstr "在你希望脫穎而出的文章中使用<a href=\"%s\">特色圖片</a>，來強化你的網站設計（俗稱的文章縮圖）。讓你可以將圖片關聯到文章，而無需在文章中插入該圖片。「貳零壹肆」在文章與頁面的標題上方顯示特色圖片，也會在首頁的特色內容區域展示。"
 
-#: inc/template-tags.php:53
+#: inc/template-tags.php:58
 msgid "Posts navigation"
 msgstr "文章導覽"
 
-#: inc/template-tags.php:84
+#: inc/template-tags.php:89
 msgid "<span class=\"meta-nav\">Published In</span>%title"
 msgstr "<span class=\"meta-nav\">發表於</span>%title"
 
-#: inc/template-tags.php:86
+#: inc/template-tags.php:91
 msgid "<span class=\"meta-nav\">Previous Post</span>%title"
 msgstr "<span class=\"meta-nav\">上一篇文章</span>%title"
 
-#: inc/template-tags.php:87
+#: inc/template-tags.php:92
 msgid "<span class=\"meta-nav\">Next Post</span>%title"
 msgstr "<span class=\"meta-nav\">下一篇文章</span>%title"
 
@@ -331,7 +331,7 @@ msgctxt "Lato font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:488
+#: functions.php:491
 msgid "Page %s"
 msgstr "第 %s 頁"
 
@@ -347,19 +347,19 @@ msgstr "主選單"
 msgid "Skip to content"
 msgstr "跳至內容區"
 
-#: inc/template-tags.php:80
+#: inc/template-tags.php:85
 msgid "Post navigation"
 msgstr "文章導覽列"
 
-#: inc/template-tags.php:45
+#: inc/template-tags.php:50
 msgid "&larr; Previous"
 msgstr "&larr; 上一篇"
 
-#: inc/template-tags.php:46
+#: inc/template-tags.php:51
 msgid "Next &rarr;"
 msgstr "下一篇 &rarr;"
 
-#: inc/template-tags.php:104
+#: inc/template-tags.php:109
 msgid "Sticky"
 msgstr "置頂"
 
