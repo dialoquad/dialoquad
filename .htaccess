@@ -15,6 +15,12 @@ ExpiresDefault "access plus 1 year"
 </IfModule>
 ## EXPIRES CACHING ##
 
+<FilesMatch "\.(ttf|ttc|otf|eot|woff)$">
+<IfModule mod_headers.c>
+Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatch>
+
 # BEGIN WPSuperCache
 <IfModule mod_rewrite.c>
 RewriteEngine On

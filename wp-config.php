@@ -60,9 +60,9 @@ if (getenv('OPENSHIFT_APP_NAME') != "") {
 }
 
 /** AWS Credentails **/
-define( 'AWS_ACCESS_KEY_ID', 'AKIAJFBSUXLY7A7D462Q' );
+//define( 'AWS_ACCESS_KEY_ID', 'AKIAJFBSUXLY7A7D462Q' );
 
-define( 'AWS_SECRET_ACCESS_KEY', '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' );
+//define( 'AWS_SECRET_ACCESS_KEY', 'ZBYWx+0VFUuW3KCERsN4EN1CCU9/GvlW6M1qOv48' );
 
 
 /** Database Charset to use in creating database tables. */
